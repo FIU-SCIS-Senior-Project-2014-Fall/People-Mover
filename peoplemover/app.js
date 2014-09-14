@@ -9,7 +9,10 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
 */
-
+// Ext.Loader.setPath({
+//     //'Ext': '../../src',
+//     'Ext.plugin': 'lib/plugin'
+// });
 Ext.application({
     name: 'PeopleMover',
 
@@ -66,7 +69,7 @@ Ext.application({
             items: [
                {
                     xtype: 'nestedlist',
-                    title: 'Pepe',
+                    title: 'RSS',
                     iconCls: 'home',
                     displayField: 'title',
 
@@ -123,7 +126,10 @@ Ext.application({
                         }
                     ]
                 }
+                // //this is the map
+                
             ]
         });    
+//Ext.Viewport.add(Ext.create('myapp.view.Main'));
     }
 });
