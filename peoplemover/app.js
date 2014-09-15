@@ -14,7 +14,7 @@
 //     'Ext.plugin': 'lib/plugin'
 // });
 Ext.application({
-    name: 'PeopleMove',
+    name: 'PeopleMover',
 
   // make sure the MessageBox class gets loaded
      requires: ['Ext.MessageBox'],
