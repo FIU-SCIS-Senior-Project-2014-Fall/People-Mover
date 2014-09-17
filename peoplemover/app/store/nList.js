@@ -6,52 +6,86 @@ Ext.define('PeopleMover.store.nList', {
         data : {
             items : [{
                 text : 'Near Me',
-                                handler: function(){                    
-                    Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
+                handler: function(){                    
+                  Ext.Viewport.animateActiveItem((
+                      Ext.create('PeopleMover.view.Main')),
+                        {type: 'slide', direction:'left'}).show();
+                } 
             },
             {
                 text : 'Easy Tracker',
-                                handler: function(){                    
-                    Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
+                                 items : [ {
+                      text : 'Palmetto High North Route',
+                      handler: function(){                    
+                        Ext.Viewport.animateActiveItem((
+                          Ext.create('PeopleMover.view.Main')),
+                          {type: 'slide', direction:'left'}).show();
+                      }
+
+                    }, {
+                      text : 'Palmetto High South Route',
+                      handler: function(){                    
+                        Ext.Viewport.animateActiveItem((
+                          Ext.create('PeopleMover.view.Main')),
+                            {type: 'slide', direction:'left'}).show();
+                      } 
+                    },{
+                      text : 'Palmetto Middle North Route',
+                      handler: function(){                    
+                        Ext.Viewport.animateActiveItem((
+                          Ext.create('PeopleMover.view.Main')),
+                            {type: 'slide', direction:'left'}).show();
+                      } 
+
+                    },{
+                    text : 'Palmetto Middle South Route',
+                        handler: function(){                    
+                        Ext.Viewport.animateActiveItem((
+                          Ext.create('PeopleMover.view.Main')),
+                            {type: 'slide', direction:'left'}).show();
+                            } 
+                },]
             },
             {
                 text : 'Trolley Tracker',
-                                handler: function(){                    
-                    Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
+                handler: function(){                    
+                  Ext.Viewport.animateActiveItem((
+                    Ext.create('PeopleMover.view.Main')),
+                      {type: 'slide', direction:'left'}).show();
+                            } 
             },
             {
                 text : 'Route Map',
-                                handler: function(){                    
-                    Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
+                handler: function(){                    
+                  Ext.Viewport.animateActiveItem((
+                    Ext.create('PeopleMover.view.Main')),
+                      {type: 'slide', direction:'left'}).show();
+                            } 
             }, 
             {
                 text : 'My Favorite Stops',
-                                handler: function(){                    
-                    Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
+                handler: function(){                    
+                  Ext.Viewport.animateActiveItem((
+                   Ext.create('PeopleMover.view.Main')),
+                      {type: 'slide', direction:'left'}).show();
+                      } 
             },
             {
                 text : 'Trolley Status Alerts',
-                                handler: function(){                    
-                    Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
-            },
-            {
-                text : 'More...',
                 handler: function(){                    
                     Ext.Viewport.animateActiveItem((
-                          Ext.create('PeopleMover.view.Main'))).show();
-                    } 
+                      Ext.create('PeopleMover.view.Main')),
+                        {type: 'slide', direction:'left'}).show();
+                            } 
+            },
+            {
+               text : 'More...',
+                handler: function(){                    
+                    Ext.Viewport.animateActiveItem((
+                      Ext.create('PeopleMover.view.Main')),
+                        {type: 'slide', direction:'left'}).show();
+                      } 
+
             }]
         }
     }
