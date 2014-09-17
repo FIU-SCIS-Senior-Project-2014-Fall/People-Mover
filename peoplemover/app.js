@@ -9,12 +9,14 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
 */
-// Ext.Loader.setPath({
-//     //'Ext': '../../src',
-//     'Ext.plugin': 'lib/plugin'
-// });
+
+
 Ext.application({
     name: 'PeopleMover',
+
+    views:['Main'],
+    stores:['nList'],
+    models:['Item'],
 
   // make sure the MessageBox class gets loaded
      requires: ['Ext.MessageBox'],
@@ -41,95 +43,8 @@ Ext.application({
 // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingImage').destroy();
       Ext.fly('appLoadingIndicator').destroy();
-    
-        
-    	 Ext.create('Ext.data.TreeStore', {
-            storeId: 'TreeStore',
-            fields: ['title', 'link', 'author', 'contentSnippet', 'content', {
-                name: 'leaf',
-                defaultValue: true
-            }],
-            root: {
-                leaf: false
-            },
-            proxy: {
-                type: 'jsonp',
-                url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://feeds.feedburner.com/SenchaBlog',
-                reader: {
-                    type: 'json',
-                    rootProperty: 'responseData.feed.entries'
-                }
-            }
-        });        
-	
-        Ext.create("Ext.tab.Panel", {
-            fullscreen: true,
-            tabBarPosition: 'bottom',
+      Ext.Viewport.add(Ext.create('PeopleMover.view.Main'));
+      
+}
 
-            items: [
-               {
-                    xtype: 'nestedlist',
-                    title: 'RSS',
-                    iconCls: 'home',
-                    displayField: 'title',
-
-                    store: 'TreeStore',
-
-                    detailCard: {
-                        xtype: 'panel',
-                        scrollable: true,
-                        styleHtmlContent: true
-                    },
-
-                    listeners: {
-                        itemtap: function(nestedList, list, index, element, post) {
-                            this.getDetailCard().setHtml(post.get('content'));
-                        }
-                    }
-                },
-                // this is the new item
-                {
-                    title: 'Contact',
-                    iconCls: 'user',
-                    xtype: 'formpanel',
-                    url: 'contact.php',
-                    layout: 'vbox',
-
-                    items: [
-                        {
-                            xtype: 'fieldset',
-                            title: 'Contact Us',
-                            instructions: '(email address is optional)',
-                            height: 285,
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    label: 'Name'
-                                },
-                                {
-                                    xtype: 'emailfield',
-                                    label: 'Email'
-                                },
-                                {
-                                    xtype: 'textareafield',
-                                    label: 'Message'
-                                }
-                            ]
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Send',
-                            ui: 'confirm',
-                            handler: function() {
-                                this.up('formpanel').submit();
-                            }
-                        }
-                    ]
-                }
-                // //this is the map
-                
-            ]
-        });    
-//Ext.Viewport.add(Ext.create('myapp.view.Main'));
-    }
 });
