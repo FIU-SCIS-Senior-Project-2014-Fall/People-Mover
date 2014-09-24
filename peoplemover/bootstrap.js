@@ -31,7 +31,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "../src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "../src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "../src/device/sqlite/Sencha.js",
-  "MyApp": "app"
+  "PeopleMover": "app"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -666,12 +666,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "MyApp.controller.MyController": [],
-  "MyApp.model.routeInfo": [],
-  "MyApp.store.listRoutes": [],
-  "MyApp.view.MyContainer": [],
-  "MyApp.view.MyNavigationView3": [],
-  "MyApp.view.RouteDetailsList": []
+  "PeopleMover.controller.MyController": [],
+  "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.listRoutes": [],
+  "PeopleMover.view.MyContainer": [],
+  "PeopleMover.view.RouteDetailsList": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1403,16 +1402,13 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "MyApp.controller.MyController": [],
-  "MyApp.model.routeInfo": [],
-  "MyApp.store.listRoutes": [],
-  "MyApp.view.MyContainer": [
+  "PeopleMover.controller.MyController": [],
+  "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.listRoutes": [],
+  "PeopleMover.view.MyContainer": [
     "widget.main"
   ],
-  "MyApp.view.MyNavigationView3": [
-    "widget.other"
-  ],
-  "MyApp.view.RouteDetailsList": [
+  "PeopleMover.view.RouteDetailsList": [
     "widget.DetailList"
   ]
 });

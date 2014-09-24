@@ -12,7 +12,7 @@
         "models": [
             "routeInfo"
         ],
-        "name": "MyApp",
+        "name": "PeopleMover",
         "stores": [
             "listRoutes"
         ],
