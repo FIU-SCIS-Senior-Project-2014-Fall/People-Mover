@@ -1,0 +1,61 @@
+{
+    "type": "Ext.navigation.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "other",
+        "designer|userClassName": "MyNavigationView3",
+        "useTitleForBackButtonText": true
+    },
+    "name": "MyNavigationView3",
+    "designerId": "d99435ff-e30e-4ce7-a891-73a6f2672ebf",
+    "cn": [
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": null
+            },
+            "name": "MyList3",
+            "designerId": "734b5d95-b88e-4691-9903-7a828c465871",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<div>List Item {string}</div>"
+                        ]
+                    },
+                    "name": "itemTpl",
+                    "designerId": "218b4f2f-96d7-4898-8d9a-2911fc482cf3"
+                },
+                {
+                    "type": "Ext.navigation.Bar",
+                    "reference": {
+                        "name": "navigationBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": "top"
+                    },
+                    "name": "MyNavigationBar",
+                    "designerId": "f8316904-7903-4aae-9254-faf0a9fe85fc"
+                }
+            ]
+        }
+    ]
+}

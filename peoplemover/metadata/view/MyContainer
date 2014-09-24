@@ -1,0 +1,251 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|initialView": true,
+        "designer|userAlias": "main",
+        "designer|userClassName": "MyContainer",
+        "id": null,
+        "layout": "fit"
+    },
+    "name": "MyContainer",
+    "designerId": "6f9a458a-f649-4141-845c-4dc2a4e35858",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "id": null,
+                "title": null
+            },
+            "name": "MyTitleBar",
+            "designerId": "404937dd-a3ae-456d-962d-9eedcdc7de12",
+            "cn": [
+                {
+                    "type": "Ext.Img",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": "top",
+                        "height": 50,
+                        "src": "resources/images/word_pvlogo.png",
+                        "width": 150
+                    },
+                    "name": "MyImg",
+                    "designerId": "ec53c565-2707-438e-b892-09d9ad090726"
+                }
+            ]
+        },
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeItem": 2,
+                "docked": null,
+                "id": "myTabPanel",
+                "itemId": "myTabPanel"
+            },
+            "name": "MyTabPanel",
+            "designerId": "b63ce7c6-3fc0-4983-b74b-e8e1b2e4bdb2",
+            "cn": [
+                {
+                    "type": "Ext.tab.Bar",
+                    "reference": {
+                        "name": "tabBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|pack": "center",
+                        "docked": "bottom"
+                    },
+                    "name": "MyTabBar",
+                    "designerId": "b64c026b-a8be-4216-bda2-6fefd9a9bac9"
+                },
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "info",
+                        "id": null,
+                        "itemId": "routeView",
+                        "title": "Routes"
+                    },
+                    "name": "MyNavigationView",
+                    "designerId": "73e4cd17-b6f7-482f-b474-0fc7b193b08c",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "RouteList",
+                                "id": null,
+                                "itemId": "myroutelist",
+                                "onItemDisclosure": null,
+                                "store": "listRoutes",
+                                "triggerEvent": null
+                            },
+                            "name": "MyList",
+                            "designerId": "26ab2c85-4b13-46d1-9e3c-62370ae624aa",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<div>{route}</div>"
+                                        ]
+                                    },
+                                    "name": "itemTpl",
+                                    "designerId": "016c6ade-b4d4-414f-9df4-b585bf2c75af"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "favorites",
+                        "title": "Favorites"
+                    },
+                    "name": "MyNavigationView2",
+                    "designerId": "306b5ac8-c378-4e58-a02b-ec9746b174f7",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "FavoriteList",
+                                "store": null
+                            },
+                            "name": "MyList1",
+                            "designerId": "e03bc1ce-6fff-4bf6-b040-f18850904e32",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<div>List Item {string}</div>"
+                                        ]
+                                    },
+                                    "name": "itemTpl",
+                                    "designerId": "5d0d85cd-ed63-4eb4-8961-3653a265a7cb"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Map",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "maps",
+                        "mapOptions": [
+                            "{center: new google.maps.LatLng(25.662715, -80.308101),",
+                            "          zoom: 15,",
+                            "          disableDefaultUI: true",
+                            "       }"
+                        ],
+                        "title": "Near Me"
+                    },
+                    "name": "MyMap",
+                    "designerId": "b9afd723-a80e-44f0-aaf6-8a7a997bf5ff"
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "Trolley 1: Malfunction...north route will not be available today!",
+                        "iconCls": "info",
+                        "title": "Mover Alerts"
+                    },
+                    "name": "MyContainer1",
+                    "designerId": "f079e2b9-f3e3-425e-a27c-1e30746f748c",
+                    "cn": [
+                        {
+                            "type": "Ext.TitleBar",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "docked": "top",
+                                "title": "Alerts"
+                            },
+                            "name": "MyTitleBar1",
+                            "designerId": "242f3d8b-d1de-430a-a5e2-e6e69487c8fa"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "iconCls": "more",
+                        "title": "More"
+                    },
+                    "name": "MyNavigationView1",
+                    "designerId": "b804a5e9-aa54-47e0-8206-025f03bda2a8"
+                }
+            ]
+        }
+    ]
+}

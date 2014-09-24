@@ -1,0 +1,27 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "MyController"
+        ],
+        "models": [
+            "routeInfo"
+        ],
+        "name": "MyApp",
+        "stores": [
+            "listRoutes"
+        ],
+        "views": [
+            "MyContainer",
+            "RouteDetailsList",
+            "MyNavigationView3"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application"
+}

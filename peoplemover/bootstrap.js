@@ -31,7 +31,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "../src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "../src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "../src/device/sqlite/Sencha.js",
-  "PeopleMover": "app"
+  "MyApp": "app"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -531,6 +531,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
+  "Ext.log.Base": [],
+  "Ext.log.Logger": [],
+  "Ext.log.filter.Filter": [],
+  "Ext.log.filter.Priority": [],
+  "Ext.log.formatter.Default": [],
+  "Ext.log.formatter.Formatter": [],
+  "Ext.log.formatter.Identity": [],
+  "Ext.log.writer.Console": [],
+  "Ext.log.writer.DocumentTitle": [],
+  "Ext.log.writer.Remote": [],
+  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -655,7 +666,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "PeopleMover.view.Main": []
+  "MyApp.controller.MyController": [],
+  "MyApp.model.routeInfo": [],
+  "MyApp.store.listRoutes": [],
+  "MyApp.view.MyContainer": [],
+  "MyApp.view.MyNavigationView3": [],
+  "MyApp.view.RouteDetailsList": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1236,6 +1252,17 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
+  "Ext.log.Base": [],
+  "Ext.log.Logger": [],
+  "Ext.log.filter.Filter": [],
+  "Ext.log.filter.Priority": [],
+  "Ext.log.formatter.Default": [],
+  "Ext.log.formatter.Formatter": [],
+  "Ext.log.formatter.Identity": [],
+  "Ext.log.writer.Console": [],
+  "Ext.log.writer.DocumentTitle": [],
+  "Ext.log.writer.Remote": [],
+  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -1376,8 +1403,17 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "PeopleMover.view.Main": [
+  "MyApp.controller.MyController": [],
+  "MyApp.model.routeInfo": [],
+  "MyApp.store.listRoutes": [],
+  "MyApp.view.MyContainer": [
     "widget.main"
+  ],
+  "MyApp.view.MyNavigationView3": [
+    "widget.other"
+  ],
+  "MyApp.view.RouteDetailsList": [
+    "widget.DetailList"
   ]
 });
 
