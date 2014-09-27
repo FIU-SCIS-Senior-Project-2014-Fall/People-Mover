@@ -17,24 +17,38 @@ public class UnitListController {
 	    }
 	 private List<Unit> ListUnitCx()
 	 {
-		  //String temp;
-	        ValidateUser vu = new ValidateUser("vpinecrest", "0102");
+		  String filename = "ppmWS.properties";
+		  String login="";
+		  String password="";
+	      String domain = "";
+	      String userValidationRequest="";
+	      String unitListRequest="";
+		  PropertyReader propReader = new PropertyReader(filename);
+		  try {
+			 login=propReader.getProperty("login");
+			 password = propReader.getProperty("password");
+			 domain = propReader.getProperty("domain");
+			 userValidationRequest = propReader.getProperty("userValidationRequest");
+			 unitListRequest = propReader.getProperty("unitListRequest");	 
+			 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	        ValidateUser vu = new ValidateUser(login,password);
 	        String urlParameters = "login="+vu.getLogin()+"&password="+vu.getPass()+"&AppId="+vu.getAppId()+"&IPAddress=";
-	        String domain = "http://www.tsoapi.com";
-	        String userValRequest = domain+"/Authentication.asmx/ValidateUser";
-	        
-	        
-	        
+	 
+	        userValidationRequest= domain+userValidationRequest;        
 	       
-	        String unitListRequest = domain+"/Units.asmx/GetUnitList";
+	       
 
 	         ValUserHandler valUserHlnd = new ValUserHandler(vu);
 	         MyCx mc = new MyCx();
-	         mc.GetCx(urlParameters, userValRequest, valUserHlnd);
-	         
+	         mc.GetCx(urlParameters, userValidationRequest, valUserHlnd);	         
 	         String token  = vu.getToken();
-	         String urlParamUnitList = "token="+token;
 	         
+	         String urlParamUnitList = "token="+token;
+	         unitListRequest = domain+unitListRequest;
 	        
 	         MyCx mcUnitL = new MyCx();
 	         GetUnitListHandler gUnitListHlnd = new GetUnitListHandler();
