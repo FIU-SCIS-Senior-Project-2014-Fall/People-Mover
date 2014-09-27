@@ -14,7 +14,8 @@ Ext.define('PeopleMover.view.MyContainer', {
         'Ext.navigation.View',
         'Ext.dataview.List',
         'Ext.XTemplate',
-        'Ext.Map'
+        'Ext.Map',
+        'Ext.Button'
     ],
 
     config: {
@@ -100,9 +101,91 @@ Ext.define('PeopleMover.view.MyContainer', {
                         ]
                     },
                     {
-                        xtype: 'navigationview',
+                        xtype: 'container',
                         title: 'More',
-                        iconCls: 'more'
+                        iconCls: 'more',
+                        padding: '',
+                        items: [
+                            {
+                                xtype: 'button',
+                                handler: function(button, e) {
+                                    if(Ext.getCmp('widget.aboutUs'))
+                                    {
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(Ext.getCmp('widget.about'));
+                                    }
+                                    else
+                                    {
+                                        var sample = Ext.create('PeopleMover.view.MyContainer2');
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(sample);
+                                    }
+                                },
+                                border: 1,
+                                height: '50px',
+                                itemId: 'aboutUs',
+                                style: 'background: white',
+                                iconCls: 'team',
+                                text: 'About Us'
+                            },
+                            {
+                                xtype: 'button',
+                                handler: function(button, e) {
+                                    if(Ext.getCmp('widget.problem'))
+                                    {
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(Ext.getCmp('widget.problem'));
+                                    }
+                                    else
+                                    {
+                                        var sample = Ext.create('PeopleMover.view.Problem');
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(sample);
+                                    }
+                                },
+                                height: '50px',
+                                style: 'background:white',
+                                iconCls: 'info',
+                                text: 'Report a Problem'
+                            },
+                            {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                style: 'background:white',
+                                iconCls: 'add',
+                                text: 'Request A Stop'
+                            },
+                            {
+                                xtype: 'button',
+                                handler: function(button, e) {
+                                    if(Ext.getCmp('widget.contactUs'))
+                                    {
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(Ext.getCmp('widget.contactUs'));
+                                    }
+                                    else
+                                    {
+                                        var sample = Ext.create('PeopleMover.view.MyFormPanel1');
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(sample);
+                                    }
+                                },
+                                border: 1,
+                                height: '50px',
+                                itemId: 'contactUs',
+                                style: 'background:white',
+                                iconCls: 'reply',
+                                text: 'Enter Feedback'
+                            },
+                            {
+                                xtype: 'button',
+                                height: '50px',
+                                style: 'background:white',
+                                iconCls: 'info',
+                                text: 'Trolley Alerts'
+                            }
+                        ]
                     }
                 ]
             }

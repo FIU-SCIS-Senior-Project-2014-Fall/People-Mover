@@ -14,7 +14,8 @@ Ext.define('PeopleMover.controller.MyController', {
             list: 'main #myroutelist',
             listDetail: 'widget.DetailList',
             titleList: '#titleList',
-            back: '#backButton'
+            back: '#backButton',
+            aboutus: 'main #aboutUs'
         },
 
         control: {
@@ -28,6 +29,9 @@ Ext.define('PeopleMover.controller.MyController', {
         var sample = Ext.create('widget.DetailList');
 
         //Ext.getCmp('titleList').setTitle(MyApp.view.MyContainer.itemTpl);
+        var view = Ext.getCmp('titleList');
+        view.setTitle('Stops');
+        //view.titlebar.setTitle('{route}');
         Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
         Ext.Viewport.setActiveItem(sample);
 

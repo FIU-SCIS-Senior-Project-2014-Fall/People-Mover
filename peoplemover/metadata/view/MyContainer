@@ -232,18 +232,209 @@
                     ]
                 },
                 {
-                    "type": "Ext.navigation.View",
+                    "type": "Ext.Container",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "height": null,
                         "iconCls": "more",
+                        "padding": "",
                         "title": "More"
                     },
-                    "name": "MyNavigationView1",
-                    "designerId": "b804a5e9-aa54-47e0-8206-025f03bda2a8"
+                    "name": "MyContainer3",
+                    "designerId": "ed008cdb-6337-4156-a373-685020dc4f68",
+                    "cn": [
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": 1,
+                                "bottom": null,
+                                "designer|uiInterfaceName": "normal",
+                                "height": "50px",
+                                "iconCls": "team",
+                                "itemId": "aboutUs",
+                                "padding": null,
+                                "style": "background: white",
+                                "text": "About Us"
+                            },
+                            "name": "MyButton2",
+                            "designerId": "8e79db6b-33d4-4aa1-b49a-65bc7438007b",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "if(Ext.getCmp('widget.aboutUs'))",
+                                            "{",
+                                            "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                            "    Ext.Viewport.setActiveItem(Ext.getCmp('widget.about'));",
+                                            "}",
+                                            "else",
+                                            "{",
+                                            "    var sample = Ext.create('PeopleMover.view.MyContainer2');",
+                                            "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                            "    Ext.Viewport.setActiveItem(sample);",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "b6be3679-ef57-4c7b-95f6-1bf9037ffda0"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "normal",
+                                "height": "50px",
+                                "iconCls": "info",
+                                "style": "background:white",
+                                "text": "Report a Problem"
+                            },
+                            "name": "MyButton7",
+                            "designerId": "9599e009-b69f-4efe-90e0-f69e365e06ac",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "if(Ext.getCmp('widget.problem'))",
+                                            "{",
+                                            "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                            "    Ext.Viewport.setActiveItem(Ext.getCmp('widget.problem'));",
+                                            "}",
+                                            "else",
+                                            "{",
+                                            "    var sample = Ext.create('PeopleMover.view.Problem');",
+                                            "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                            "    Ext.Viewport.setActiveItem(sample);",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "6bb2de20-ed48-47e5-815c-f263c5d8a9b3"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": 1,
+                                "designer|uiInterfaceName": "normal",
+                                "height": "50px",
+                                "iconCls": "add",
+                                "style": "background:white",
+                                "text": "Request A Stop"
+                            },
+                            "name": "MyButton3",
+                            "designerId": "362379ed-ae60-45be-8f75-81e1f1944be5"
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": 1,
+                                "designer|uiInterfaceName": "normal",
+                                "height": "50px",
+                                "iconCls": "reply",
+                                "itemId": "contactUs",
+                                "style": "background:white",
+                                "text": "Enter Feedback"
+                            },
+                            "name": "MyButton4",
+                            "designerId": "8005efc4-918d-4d01-b30d-ce3896c1cb0a",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "if(Ext.getCmp('widget.contactUs'))",
+                                            "{",
+                                            "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                            "    Ext.Viewport.setActiveItem(Ext.getCmp('widget.contactUs'));",
+                                            "}",
+                                            "else",
+                                            "{",
+                                            "    var sample = Ext.create('PeopleMover.view.MyFormPanel1');",
+                                            "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                            "    Ext.Viewport.setActiveItem(sample);",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "3d5ecf7c-6fa1-439e-8417-80e9f0bfb442"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": "50px",
+                                "iconCls": "info",
+                                "style": "background:white",
+                                "text": "Trolley Alerts"
+                            },
+                            "name": "MyButton8",
+                            "designerId": "d2439bba-b3c4-4d95-a615-c6480c0400c6"
+                        }
+                    ]
                 }
             ]
         }

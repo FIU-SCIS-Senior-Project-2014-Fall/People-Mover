@@ -1,0 +1,155 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "problem",
+        "designer|userClassName": "Problem",
+        "fullscreen": true
+    },
+    "name": "MyFormPanel",
+    "designerId": "3098e783-82f2-4708-92f3-624d0882be80",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Report a Problem"
+            },
+            "name": "MyTitleBar4",
+            "designerId": "7c05f1f2-1ffd-4bfd-a7f4-5a24c5dd5e3b",
+            "cn": [
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "back",
+                        "text": "Back",
+                        "ui": "back"
+                    },
+                    "name": "MyButton5",
+                    "designerId": "dc32ad07-bec7-48e1-9327-e92c3ec16439",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "if(Ext.getCmp('widget.main'))",
+                                    "{",
+                                    "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                    "    Ext.getCmp('myTabPanel').setActiveItem(5);",
+                                    "    Ext.Viewport.setActiveItem(Ext.getCmp('widget.main'));",
+                                    "}",
+                                    "else",
+                                    "{",
+                                    "    var sample = Ext.create('PeopleMover.view.MyContainer');",
+                                    "    Ext.getCmp('myTabPanel').setActiveItem(5);",
+                                    "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                    "    Ext.Viewport.setActiveItem(sample);",
+                                    "}"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "7e27af3a-059d-4e54-8436-f2f880dd2df9"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": null
+            },
+            "name": "MyFieldSet",
+            "designerId": "0be7bd7f-200f-4e8c-b196-66c69f00e747",
+            "cn": [
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Name",
+                        "name": "nameBox"
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "aafea705-971e-4737-b0b2-ad0344aedcd1"
+                },
+                {
+                    "type": "Ext.field.Email",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Email",
+                        "name": "emailBox",
+                        "placeHolder": "email@example.com"
+                    },
+                    "name": "MyEmailField1",
+                    "designerId": "2183a7f9-afdf-41f3-afb9-0657d4b71e3d"
+                },
+                {
+                    "type": "Ext.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Report Issue",
+                        "name": "infoBox"
+                    },
+                    "name": "MyTextArea1",
+                    "designerId": "a1f0e5fd-9c7c-48e4-8935-81eb38d2e66c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "confirm",
+                "text": "Submit",
+                "ui": "confirm"
+            },
+            "name": "MyButton6",
+            "designerId": "9bed9be5-3292-45d3-8a12-fa949c6a1955"
+        }
+    ]
+}

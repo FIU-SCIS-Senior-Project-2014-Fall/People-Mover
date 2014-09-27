@@ -670,6 +670,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "PeopleMover.model.routeInfo": [],
   "PeopleMover.store.listRoutes": [],
   "PeopleMover.view.MyContainer": [],
+  "PeopleMover.view.MyContainer2": [],
+  "PeopleMover.view.MyFormPanel1": [],
+  "PeopleMover.view.Problem": [],
   "PeopleMover.view.RouteDetailsList": []
 });
 
@@ -1407,6 +1410,15 @@ Ext.ClassManager.addNameAliasMappings({
   "PeopleMover.store.listRoutes": [],
   "PeopleMover.view.MyContainer": [
     "widget.main"
+  ],
+  "PeopleMover.view.MyContainer2": [
+    "widget.aboutUs"
+  ],
+  "PeopleMover.view.MyFormPanel1": [
+    "widget.contactUs"
+  ],
+  "PeopleMover.view.Problem": [
+    "widget.problem"
   ],
   "PeopleMover.view.RouteDetailsList": [
     "widget.DetailList"

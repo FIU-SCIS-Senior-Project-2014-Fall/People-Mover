@@ -19,7 +19,9 @@
         "views": [
             "MyContainer",
             "RouteDetailsList",
-            "MyNavigationView3"
+            "MyContainer2",
+            "MyFormPanel1",
+            "Problem"
         ]
     },
     "name": "Application",
