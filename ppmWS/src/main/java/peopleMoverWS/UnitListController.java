@@ -51,7 +51,7 @@ public class UnitListController {
 	         unitListRequest = domain+unitListRequest;
 	        
 	         MyCx mcUnitL = new MyCx();
-	         GetUnitListHandler gUnitListHlnd = new GetUnitListHandler();
+	         UnitListHandler gUnitListHlnd = new UnitListHandler();
 	        
 	         mcUnitL.GetCx(urlParamUnitList, unitListRequest, gUnitListHlnd);
 	         //System.out.println(vu.getToken());

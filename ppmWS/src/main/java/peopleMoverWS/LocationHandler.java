@@ -58,7 +58,7 @@ public class LocationHandler extends DefaultHandler{
         {
             bPostalCode = true;
         }
-        else if(qName.equalsIgnoreCase("CoutryCode"))
+        else if(qName.equalsIgnoreCase("CountryCode"))
         {
             bCountryCode = true;
         }
@@ -100,7 +100,7 @@ public class LocationHandler extends DefaultHandler{
         {
             bPostalCode = false;
         }
-        else if(qName.equalsIgnoreCase("CoutryCode"))
+        else if(qName.equalsIgnoreCase("CountryCode"))
         {
             bCountryCode = false;
         }
