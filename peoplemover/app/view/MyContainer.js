@@ -11,11 +11,11 @@ Ext.define('PeopleMover.view.MyContainer', {
         'Ext.Img',
         'Ext.tab.Panel',
         'Ext.tab.Bar',
+        'Ext.Button',
         'Ext.navigation.View',
         'Ext.dataview.List',
         'Ext.XTemplate',
-        'Ext.Map',
-        'Ext.Button'
+        'Ext.Map'
     ],
 
     config: {
@@ -48,18 +48,37 @@ Ext.define('PeopleMover.view.MyContainer', {
                 },
                 items: [
                     {
-                        xtype: 'navigationview',
+                        xtype: 'container',
                         title: 'Routes',
                         iconCls: 'info',
-                        itemId: 'routeView',
                         items: [
                             {
-                                xtype: 'list',
-                                itemId: 'myroutelist',
-                                itemTpl: [
-                                    '<div>{route}</div>'
-                                ],
-                                store: 'listRoutes'
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                style: 'background: white',
+                                text: 'Palmetto High North Route'
+                            },
+                            {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                style: 'background: white',
+                                text: 'Palmetto High South Route'
+                            },
+                            {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                style: 'background: white',
+                                text: 'Palmetto Middle North Route'
+                            },
+                            {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                style: 'background: white',
+                                text: 'Palmetto Middle South Route'
                             }
                         ]
                     },
@@ -89,16 +108,8 @@ Ext.define('PeopleMover.view.MyContainer', {
                     },
                     {
                         xtype: 'container',
-                        title: 'Mover Alerts',
-                        iconCls: 'info',
-                        html: 'Trolley 1: Malfunction...north route will not be available today!',
-                        items: [
-                            {
-                                xtype: 'titlebar',
-                                docked: 'top',
-                                title: 'Alerts'
-                            }
-                        ]
+                        title: 'Service Times',
+                        iconCls: 'info'
                     },
                     {
                         xtype: 'container',
@@ -150,6 +161,19 @@ Ext.define('PeopleMover.view.MyContainer', {
                             },
                             {
                                 xtype: 'button',
+                                handler: function(button, e) {
+                                    if(Ext.getCmp('widget.requestStop'))
+                                    {
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(Ext.getCmp('widget.requestStop'));
+                                    }
+                                    else
+                                    {
+                                        var sample = Ext.create('PeopleMover.view.requestStop');
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(sample);
+                                    }
+                                },
                                 border: 1,
                                 height: '50px',
                                 style: 'background:white',
@@ -180,10 +204,106 @@ Ext.define('PeopleMover.view.MyContainer', {
                             },
                             {
                                 xtype: 'button',
+                                handler: function(button, e) {
+                                    if(Ext.getCmp('widget.alerts'))
+                                    {
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(Ext.getCmp('widget.alerts'));
+                                    }
+                                    else
+                                    {
+                                        var sample = Ext.create('PeopleMover.view.TrolleyAlerts');
+                                        Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
+                                        Ext.Viewport.setActiveItem(sample);
+                                    }
+                                },
                                 height: '50px',
                                 style: 'background:white',
                                 iconCls: 'info',
                                 text: 'Trolley Alerts'
+                            },
+                            {
+                                xtype: 'button',
+                                handler: function(button, e) {
+                                    if (!this.overlay) {
+                                        this.overlay = Ext.Viewport.add({
+                                            alias: 'widget.popup',
+                                            id: 'popupmenu',
+                                            xtype: 'fieldset',
+                                            modal: true,
+                                            hideOnMaskTap: true,
+                                            showAnimation: {
+                                                type: 'popIn',
+                                                duration: 250,
+                                                easing: 'ease-out'
+                                            },
+                                            hideAnimation: {
+                                                type: 'popOut',
+                                                duration: 250,
+                                                easing: 'ease-out'
+                                            },
+                                            centered: true,
+                                            width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                                            height: Ext.filterPlatform('ie10') ? '30%' : Ext.os.deviceType == 'Phone' ? 220 : 400,
+                                            styleHtmlContent: true,
+
+
+                                            items: [
+                                            {
+                                                docked: 'top',
+                                                xtype: 'toolbar',
+                                                title: 'Login'
+                                            },
+                                            {
+                                                xtype: 'textfield',
+                                                label: 'User Name'
+                                            },
+                                            {
+                                                xtype: 'passwordfield',
+                                                label: 'Password'
+                                            },
+                                            {
+                                                xtype: 'container',
+                                                layout: {
+                                                    type: 'hbox',
+                                                    pack: 'center'
+                                                },
+                                                items: [
+                                                {
+                                                    xtype: 'button',
+                                                    margin: '5px',
+                                                    ui: 'confirm',
+                                                    text: 'Sign In'
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    margin: '5px',
+                                                    ui: 'decline',
+                                                    padding: '5px',
+                                                    text: 'Cancel',
+                                                    listeners : {
+                                                        tap : function() {
+                                                            var pnl = Ext.getCmp('popupmenu');
+                                                            pnl.hide();
+                                                        }
+                                                    }
+
+                                                }
+                                                ]
+                                            }
+                                            ],
+                                            scrollable: false
+                                        });
+                                    }
+
+                                    this.overlay.show();
+                                },
+                                border: 1,
+                                height: '50px',
+                                id: 'signinbutton',
+                                style: 'background:white',
+                                iconCls: 'user',
+                                text: 'Sign In'
                             }
                         ]
                     }

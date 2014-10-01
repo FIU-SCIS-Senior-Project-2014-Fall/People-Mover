@@ -1,0 +1,81 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "alerts",
+        "designer|userClassName": "TrolleyAlerts"
+    },
+    "name": "MyContainer4",
+    "designerId": "1d8d8aff-4048-482c-b080-9c766c92b530",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Trolley Alerts"
+            },
+            "name": "MyTitleBar3",
+            "designerId": "58886be3-d8fb-43b9-8fd5-a12c40066c19",
+            "cn": [
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "back",
+                        "text": "Back",
+                        "ui": "back"
+                    },
+                    "name": "MyButton1",
+                    "designerId": "ac175d9e-b45b-4905-9ac5-db2cde095caf",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "if(Ext.getCmp('widget.main'))",
+                                    "{",
+                                    "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                    "    Ext.getCmp('myTabPanel').setActiveItem(5);",
+                                    "    Ext.Viewport.setActiveItem(Ext.getCmp('widget.main'));",
+                                    "}",
+                                    "else",
+                                    "{",
+                                    "    var sample = Ext.create('PeopleMover.view.MyContainer');",
+                                    "    Ext.getCmp('myTabPanel').setActiveItem(5);",
+                                    "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
+                                    "    Ext.Viewport.setActiveItem(sample);",
+                                    "}"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "ccd38440-8b1c-472f-be4b-ef142d0a115f"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -21,7 +21,11 @@
             "RouteDetailsList",
             "MyContainer2",
             "MyFormPanel1",
-            "Problem"
+            "Problem",
+            "requestStop",
+            "TrolleyAlerts",
+            "MyNavigationView",
+            "MyPanel1"
         ]
     },
     "name": "Application",

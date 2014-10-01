@@ -15,7 +15,8 @@ Ext.define('PeopleMover.controller.MyController', {
             listDetail: 'widget.DetailList',
             titleList: '#titleList',
             back: '#backButton',
-            aboutus: 'main #aboutUs'
+            aboutus: 'main #aboutUs',
+            signIn: 'widget.signIn'
         },
 
         control: {
@@ -37,6 +38,14 @@ Ext.define('PeopleMover.controller.MyController', {
 
         //            var sample = Ext.create('MyApp.view.RouteDetailsList');
 
+    },
+
+    showSignInForm: function() {
+        var popup = Ext.create('Ext.Panel', {
+                    html: 'popup',
+                    hideOnMaskTap: true,
+                    modal: true
+                });
     }
 
 });

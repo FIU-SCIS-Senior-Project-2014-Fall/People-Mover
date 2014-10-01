@@ -20,7 +20,11 @@ Ext.application({
         'RouteDetailsList',
         'MyContainer2',
         'MyFormPanel1',
-        'Problem'
+        'Problem',
+        'requestStop',
+        'TrolleyAlerts',
+        'MyNavigationView',
+        'MyPanel1'
     ],
     controllers: [
         'MyController'
@@ -28,8 +32,8 @@ Ext.application({
     name: 'PeopleMover',
 
     launch: function() {
-    Ext.fly('appLoadingImage').destroy();
-    Ext.fly('appLoadingIndicator').destroy();
+      Ext.fly('appLoadingImage').destroy();
+      Ext.fly('appLoadingIndicator').destroy();
 
         Ext.create('PeopleMover.view.MyContainer', {fullscreen: true});
     }

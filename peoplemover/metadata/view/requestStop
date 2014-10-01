@@ -6,12 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "contactUs",
-        "designer|userClassName": "MyFormPanel1",
+        "designer|userAlias": "requestStop",
+        "designer|userClassName": "requestStop",
         "fullscreen": true
     },
-    "name": "MyFormPanel1",
-    "designerId": "30a95818-6e87-42c5-b8f4-a00377865fe0",
+    "name": "MyFormPanel",
+    "designerId": "aa691015-8560-4423-a5b8-7d8135dd3662",
     "cn": [
         {
             "type": "Ext.TitleBar",
@@ -22,10 +22,10 @@
             "codeClass": null,
             "userConfig": {
                 "docked": "top",
-                "title": "Feedback"
+                "title": "Request a Stop"
             },
             "name": "MyTitleBar4",
-            "designerId": "423beeee-27b8-40eb-b3e8-0c7285091a0f",
+            "designerId": "2a0f69c1-845f-4cfd-b872-f863647c3fa1",
             "cn": [
                 {
                     "type": "Ext.Button",
@@ -40,7 +40,7 @@
                         "ui": "back"
                     },
                     "name": "MyButton5",
-                    "designerId": "9e52287f-e6ad-4161-81cc-e9a14ea4d9fe",
+                    "designerId": "288ff74b-1bf0-434f-a1d9-4c619dcf1dba",
                     "cn": [
                         {
                             "type": "fixedfunction",
@@ -72,7 +72,7 @@
                                 ]
                             },
                             "name": "handler",
-                            "designerId": "13211e1f-7cea-4a2f-a2f0-a6932c245cb3"
+                            "designerId": "3a8b541f-df56-4cf8-8a92-b216bebe4c49"
                         }
                     ]
                 }
@@ -89,7 +89,7 @@
                 "title": null
             },
             "name": "MyFieldSet",
-            "designerId": "291b3833-a71b-45e5-ae61-7ef5602f38d0",
+            "designerId": "369507c2-64e8-4bad-9f97-0da217adb7e7",
             "cn": [
                 {
                     "type": "Ext.field.Text",
@@ -105,7 +105,7 @@
                         "required": true
                     },
                     "name": "MyTextField1",
-                    "designerId": "b433b5a8-a8ce-47df-a5af-351e0215ff2b"
+                    "designerId": "e98591e5-0348-4747-8895-71f66da39899"
                 },
                 {
                     "type": "Ext.field.Email",
@@ -122,7 +122,23 @@
                         "required": true
                     },
                     "name": "MyEmailField1",
-                    "designerId": "90419a05-cc20-4438-85ce-b62924b7f3d4"
+                    "designerId": "35ff686c-f415-4352-920f-bf89bab13665"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Address of Stop",
+                        "labelWrap": true,
+                        "name": null,
+                        "required": true
+                    },
+                    "name": "MyTextField",
+                    "designerId": "616cd273-1cc0-4f65-aa6e-92289dfedb3c"
                 },
                 {
                     "type": "Ext.field.TextArea",
@@ -132,14 +148,13 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "label": "Your Feedback",
+                        "label": "Reason for Stop",
                         "labelWidth": "35%",
                         "labelWrap": true,
-                        "name": "infoBox",
-                        "required": true
+                        "name": "infoBox"
                     },
                     "name": "MyTextArea1",
-                    "designerId": "261de869-2861-4001-bbfe-c5d15c4fa952"
+                    "designerId": "fad3f28b-3aa5-487a-bdd0-8f1e723b843f"
                 }
             ]
         },
@@ -156,7 +171,7 @@
                 "ui": "confirm"
             },
             "name": "MyButton6",
-            "designerId": "5d598f4d-6668-494d-ad84-e6914328dbf0"
+            "designerId": "fb38d8c1-6e6c-46ae-93b2-7b6d5bfa073b"
         }
     ]
 }

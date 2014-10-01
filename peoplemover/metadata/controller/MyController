@@ -113,6 +113,40 @@
             },
             "name": "aboutus",
             "designerId": "cb3bd8de-c95a-4d1e-b3c9-030218e4f967"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "signIn",
+                "selector": "widget.signIn"
+            },
+            "name": "signIn",
+            "designerId": "4c368c25-33e4-480f-91ed-3e7ae5c2ce91"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showSignInForm",
+                "implHandler": [
+                    "var popup = Ext.create('Ext.Panel', {",
+                    "            html: 'popup',",
+                    "            hideOnMaskTap: true,",
+                    "            modal: true",
+                    "        });"
+                ]
+            },
+            "name": "showSignInForm",
+            "designerId": "03258e0a-c500-4439-a8b5-9b7060edcda3"
         }
     ]
 }

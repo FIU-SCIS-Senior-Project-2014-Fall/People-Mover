@@ -100,7 +100,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "label": "Name",
-                        "name": "nameBox"
+                        "labelWrap": true,
+                        "name": "nameBox",
+                        "required": true
                     },
                     "name": "MyTextField1",
                     "designerId": "aafea705-971e-4737-b0b2-ad0344aedcd1"
@@ -114,8 +116,10 @@
                     "codeClass": null,
                     "userConfig": {
                         "label": "Email",
+                        "labelWrap": true,
                         "name": "emailBox",
-                        "placeHolder": "email@example.com"
+                        "placeHolder": "email@example.com",
+                        "required": true
                     },
                     "name": "MyEmailField1",
                     "designerId": "2183a7f9-afdf-41f3-afb9-0657d4b71e3d"
@@ -129,7 +133,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "label": "Report Issue",
-                        "name": "infoBox"
+                        "labelWrap": true,
+                        "name": "infoBox",
+                        "required": true
                     },
                     "name": "MyTextArea1",
                     "designerId": "a1f0e5fd-9c7c-48e4-8935-81eb38d2e66c"

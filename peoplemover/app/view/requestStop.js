@@ -1,10 +1,10 @@
 /*
- * File: app/view/MyFormPanel1.js
+ * File: app/view/requestStop.js
  */
 
-Ext.define('PeopleMover.view.MyFormPanel1', {
+Ext.define('PeopleMover.view.requestStop', {
     extend: 'Ext.form.Panel',
-    alias: 'widget.contactUs',
+    alias: 'widget.requestStop',
 
     requires: [
         'Ext.TitleBar',
@@ -20,7 +20,7 @@ Ext.define('PeopleMover.view.MyFormPanel1', {
             {
                 xtype: 'titlebar',
                 docked: 'top',
-                title: 'Feedback',
+                title: 'Request a Stop',
                 items: [
                     {
                         xtype: 'button',
@@ -63,12 +63,17 @@ Ext.define('PeopleMover.view.MyFormPanel1', {
                         placeHolder: 'email@example.com'
                     },
                     {
+                        xtype: 'textfield',
+                        label: 'Address of Stop',
+                        labelWrap: true,
+                        required: true
+                    },
+                    {
                         xtype: 'textareafield',
-                        label: 'Your Feedback',
+                        label: 'Reason for Stop',
                         labelWidth: '35%',
                         labelWrap: true,
-                        name: 'infoBox',
-                        required: true
+                        name: 'infoBox'
                     }
                 ]
             },

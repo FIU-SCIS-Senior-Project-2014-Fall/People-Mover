@@ -50,18 +50,24 @@ Ext.define('PeopleMover.view.Problem', {
                     {
                         xtype: 'textfield',
                         label: 'Name',
-                        name: 'nameBox'
+                        labelWrap: true,
+                        name: 'nameBox',
+                        required: true
                     },
                     {
                         xtype: 'emailfield',
                         label: 'Email',
+                        labelWrap: true,
                         name: 'emailBox',
+                        required: true,
                         placeHolder: 'email@example.com'
                     },
                     {
                         xtype: 'textareafield',
                         label: 'Report Issue',
-                        name: 'infoBox'
+                        labelWrap: true,
+                        name: 'infoBox',
+                        required: true
                     }
                 ]
             },
