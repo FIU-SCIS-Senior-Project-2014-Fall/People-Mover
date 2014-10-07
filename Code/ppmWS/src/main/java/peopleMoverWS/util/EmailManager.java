@@ -1,6 +1,8 @@
 package peopleMoverWS.util;
 
 
+import java.util.UUID;
+
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 public class EmailManager {
@@ -19,6 +21,10 @@ public class EmailManager {
 			System.out.println(" AddressException Occurred for: " + email);
 		}
 		return isValid;
+	}
+	public static String generateToken()
+	{
+		return UUID.randomUUID().toString();
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -20,19 +21,27 @@ public class UserDAOImpl implements UserDAO{
 		this.dataSource = dataSource;
 	}
 	@Override
-	public void save(User user)
+	public int save(User user)
 	{
 		String query = "insert into User (token,email,password) values (?,?,?)";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		Object[] args = new Object[]{user.getToken(),user.getEmail(),user.getPassword()};
-		int out = jdbcTemplate.update(query,args);
-		
-		if(out!=0)
+		int out;
+		try{
+		 out = jdbcTemplate.update(query,args);
+		}catch(DataAccessException e)
 		{
-			 System.out.println("User saved with id="+user.getToken());
-        }else System.out.println("User save failed with id="+user.getToken());
+			e.printStackTrace();
+			out = 0;
+		}
+		
+		return out;
+//		if(out!=0)
+//		{
+//			 System.out.println("User saved with id="+user.getToken());
+//        }else System.out.println("User save failed with id="+user.getToken());
 		
 	}
 	@Override
@@ -56,26 +65,61 @@ public class UserDAOImpl implements UserDAO{
 		return user;
 	}
 	@Override
-	public void update(User user) {
+	public String getByEmail(String email,String pass)
+	{
+		String query = "select token, email, password from User where email= ? and password=?";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		User user;
+		try {
+			user = jdbcTemplate.queryForObject(query,new Object[]{email,pass}, new RowMapper<User>(){
+				@Override
+				public User mapRow(ResultSet rs, int rowNum) throws SQLException
+				{
+					User user = new User();
+				
+					
+						user.setToken(rs.getString("token"));
+						user.setEmail(rs.getString("email"));
+						user.setPassword(rs.getString("password"));
+					
+					
+					return user;
+				}
+				
+			});
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			user = new User();
+			user.setToken("");
+		}
+		
+		return user.getToken();
+	}
+	@Override
+	public int update(User user) {
 		String query = "update User set email=?, password=? where token=?";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] args = new Object[] {user.getEmail(), user.getPassword(), user.getToken()};
 		
 		int out = jdbcTemplate.update(query, args);
-		if(out !=0){
-			System.out.println("User updated with id="+user.getToken());
-		}else System.out.println("No User found with id="+user.getToken());
+		return out;
+//		if(out !=0){
+//			System.out.println("User updated with id="+user.getToken());
+//		}else System.out.println("No User found with id="+user.getToken());
 	}
 	@Override
-	public void deleteByToken(String token) {
+	public int deleteByToken(String token) {
 
 		String query = "delete from User where token=?";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		int out = jdbcTemplate.update(query,token);
-		if(out !=0){
-			System.out.println("User deleted with id="+token);
-		}else System.out.println("No User found with id="+token);
+		return out;
+//		if(out !=0){
+//			System.out.println("User deleted with id="+token);
+//		}else System.out.println("No User found with id="+token);
 	}
 	@Override
 	public List<User> getAll() {

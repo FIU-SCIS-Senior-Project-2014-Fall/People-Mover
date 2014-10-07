@@ -6,13 +6,14 @@ public interface UserDAO {
 	//CRUD operations
 	     
 	    //Create
-	    public void save(User user);
+	    public int save(User user);
 	    //Read
 	    public User getByToken(String token);
+	    public String getByEmail(String email,String pass);
 	    //Update
-	    public void update(User user);
+	    public int update(User user);
 	    //Delete
-	    public void deleteByToken(String token);
+	    public int deleteByToken(String token);
 	    //Get All
 	    public List<User> getAll();
 }
