@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import peopleMoverWS.MyCx;
-import peopleMoverWS.PropertyReader;
 import peopleMoverWS.model.Unit;
 import peopleMoverWS.model.ValidateUser;
+import peopleMoverWS.util.MyCx;
+import peopleMoverWS.util.PropertyReader;
 
 @RestController
 public class UnitListController {
