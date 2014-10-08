@@ -8,21 +8,23 @@ import org.springframework.web.bind.annotation.RestController;
 import peopleMoverDB.dao.UserDAO;
 import peopleMoverDB.model.User;
 import peopleMoverWS.util.EmailManager;
-
+import peopleMoverWS.model.FormattedMessage;
 
 @RestController
 public class UserAuth {
 	@RequestMapping("/userauth")
-	public String getUserAuth(@RequestParam(value="islogin", required=true)String islogin,@RequestParam(value="email", required=true) String email,@RequestParam(value="pass", required=true) String pass) 
+	public FormattedMessage getUserAuth(@RequestParam(value="islogin", required=true)String islogin,@RequestParam(value="email", required=true) String email,@RequestParam(value="pass", required=true) String pass) 
 	{
-		String token="";
-		token = getUserAuthCx(islogin,email, pass);
+
+		FormattedMessage fMessage;
+		fMessage = getUserAuthCx(islogin,email, pass);
 		
 		
-		return token ;
+		return fMessage ;
 	}
-	private String getUserAuthCx(String isLogin,String email, String pass)
-	{
+	private FormattedMessage getUserAuthCx(String isLogin,String email, String pass)
+	{;
+		FormattedMessage fMessage = new FormattedMessage();
 		boolean validemail = EmailManager.emailCheck(email);
 		if(validemail)
 		{
@@ -41,23 +43,46 @@ public class UserAuth {
 				ctx.close();
 				
 				if(!newtoken.isEmpty())
-					return newtoken;
+				{
+					fMessage.setMessage(newtoken);
+					fMessage.setCode("1");
+					return fMessage;
+				}
 				else
-					return "Not Match";
+				{
+					fMessage.setMessage("Not Match");
+					fMessage.setCode("0");
+					return fMessage;
+					
+				}
 			}
 			else {
 				int out  = loginUserDAO.save(loginUser);
 				ctx.close();
 				if(out!=0)
-					return token;
+					{
+					fMessage.setMessage(token);
+					fMessage.setCode("1");
+					return fMessage;
+					}
 				else
-					return "Insertion Error";
+				{
+					fMessage.setMessage("Insertion Error");
+					fMessage.setCode("0");
+					return fMessage;
+					
 				}
+			}
 			
 			
 			
 		}
 		else
-			return "not valid email";
+		{
+			fMessage.setMessage("not valid email");
+			fMessage.setCode("0");
+			return fMessage;
+			
+		}
 	}
 }
