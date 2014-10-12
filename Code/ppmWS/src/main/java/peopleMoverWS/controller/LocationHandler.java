@@ -4,6 +4,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import peopleMoverWS.model.Location;
+//import peopleMoverWS.model.Unit;
 
 /**
  *
@@ -20,7 +21,9 @@ public class LocationHandler extends DefaultHandler{
     private boolean bLongitude;
     private boolean bLastEventDate;
     private boolean bHeading;
-    public LocationHandler() {
+    private String UnitID;
+    public LocationHandler(String UnitID) {
+    	this.UnitID = UnitID;
         loc = null;
         bAddress = false;
         bCity = false;
@@ -40,7 +43,7 @@ public class LocationHandler extends DefaultHandler{
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException { 
         if (qName.equalsIgnoreCase("Position")) {
-            loc = new Location();
+            loc = new Location(this.UnitID);
             
         }
         else if(qName.equalsIgnoreCase("Address"))

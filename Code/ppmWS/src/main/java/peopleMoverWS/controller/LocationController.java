@@ -15,12 +15,12 @@ import peopleMoverWS.util.PropertyReader;
 @RestController
 public class LocationController {
 	@RequestMapping("/getlocation")
-	public Location getLocation(@RequestParam(value="filterBy", required=true) String filterBy,@RequestParam(value="id", required=true) String id) 
+	public Location getLocation(/*@RequestParam(value="filterBy", required=true) String filterBy,*/@RequestParam(value="id", required=true) String id) 
 	{
-		Location loc = getLocationCx(filterBy, id);
+		Location loc = getLocationCx(/*filterBy,*/ id);
 		return loc ;
 	}
-	private Location getLocationCx(String filter,String filterId)
+	private Location getLocationCx(/*String filter,*/String filterId)
 	{
 		 String filename = "ppmWS.properties";
 		  String login="";
@@ -49,11 +49,11 @@ public class LocationController {
 	         mc.GetCx(urlParameters, userValidationRequest, valUserHlnd);	         
 	         String token  = vu.getToken();
 	         	         
-	         String urlParamLocation = "token="+token+"&filterBy="+filter+"&id="+filterId;
+	         String urlParamLocation = "token="+token+"&filterBy=UNITID"/*+filter*/+"&id="+filterId;
 	         locationRequest = domain+locationRequest;
 	        
 	         MyCx mcLocation = new MyCx();
-	         LocationHandler locHnld = new LocationHandler();	        
+	         LocationHandler locHnld = new LocationHandler(filterId);	        
 	         mcLocation.GetCx(urlParamLocation, locationRequest, locHnld);
 	         //System.out.println(vu.getToken());
 	         

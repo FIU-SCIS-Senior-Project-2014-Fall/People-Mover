@@ -4,6 +4,7 @@ package peopleMoverWS.model;
 * @author maurice
 */
 public class Location {
+   String UnitID;
    String Address;
    String City;
    String State;
@@ -15,6 +16,20 @@ public class Location {
    String Heading;
 
    public Location() {
+	   this.UnitID = null;
+       this.Address = null;
+       this.City = null;
+       this.State = null;
+       this.PostalCode =null;
+       this.CountryCode = null;
+       this.Latitude = null;
+       this.Longitude = null;
+       this.LastEventDate = null;
+       this.Heading = null;   
+       
+   }
+   public Location(String UnitID) {
+	   this.UnitID = UnitID;
        this.Address = null;
        this.City = null;
        this.State = null;
@@ -27,7 +42,15 @@ public class Location {
        
    }
 
-   public String getAddress() {
+   public String getUnitID() {
+	return UnitID;
+}
+
+public void setUnitID(String unitID) {
+	UnitID = unitID;
+}
+
+public String getAddress() {
        return Address;
    }
 
