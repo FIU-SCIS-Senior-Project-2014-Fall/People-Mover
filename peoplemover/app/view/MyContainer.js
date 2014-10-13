@@ -17,6 +17,7 @@ Ext.define('PeopleMover.view.MyContainer', {
         'Ext.XTemplate',
         'Ext.Map'
     ],
+    
 
     config: {
         layout: 'fit',
@@ -102,10 +103,131 @@ Ext.define('PeopleMover.view.MyContainer', {
                         mapOptions: {
                             center: new google.maps.LatLng(25.662715,
                             -80.308101),
-                            zoom: 15,
-                            disableDefaultUI: true
-                        }
-                    },
+                            zoom: 14,
+                            navigationControl: true,
+                            disableDefaultUI: true,
+
+                        },listeners: {
+        maprender: function() {
+            // Get a ref to the google map object (should be provided
+            // as an argument to the listener but apparently there is
+            // a bug...)
+            var gMap = this.getMap();
+            var directionsService;
+            var directionsDisplay;
+            var rendererOptions = {
+                map: gMap
+              }
+            directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions)
+
+            directionsService = new google.maps.DirectionsService();
+
+            //1st stop 25.665225, -80.30050699999998
+            var middle = [[25.6534939,-80.31298529999998]];
+            var iconBase = 'resources/images/';
+
+            for(var i = 0; i < middle.length; i++){
+                var block = middle[i];
+                new google.maps.Marker({
+                map: gMap,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng (block[0],block[1]),
+                title:"Palmetto Middle School",
+                icon: iconBase + 'middlebusstop.png'
+            });
+
+            }
+
+            var high = [[25.6602027,-80.31616079999998]];
+
+            for(var i = 0; i < high.length; i++){
+                var block = high[i];
+                new google.maps.Marker({
+                map: gMap,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng (block[0],block[1]),
+                title:"Palmetto High School",
+                icon: iconBase + 'seniorbusstop.png'
+            });
+
+            }
+
+            var position= [
+            [25.6577797, -80.3126168], [25.6710309, -80.30413820000001], [25.665225, -80.30050699999998],
+            [25.6726499,-80.31166989999997], [25.6688665,-80.303542], [25.674441, -80.31784800000003], [25.6692328, -80.3126011],
+            [25.6699387, -80.31465049999997]];
+
+            var wayStops= [
+            [25.6577797, -80.3126168], [25.6710309, -80.30413820000001], [25.665225, -80.30050699999998],
+            [25.6726499,-80.31166989999997], [25.6688665,-80.303542], [25.674441, -80.31784800000003], [25.6692328, -80.3126011],
+            [25.6699387, -80.31465049999997], [25.666213, -80.30943889999998], [25.6657788, -80.31045340000003], [25.6798662, -80.30383089999998],
+            [25.6836482, -80.2991265], [25.669451, -80.28562699999998]];
+
+
+            //var waypoints = [];
+            /*waypoint1 = new google.maps.LatLng(25.6577797, -80.3126168);
+            waypoint2 = new google.maps.LatLng(25.6710309, -80.30413820000001);
+
+            wayPointArray = new Array();
+            wayPointArray.push({location: waypoint1, stopover: false});
+            wayPointArray.push({location: waypoint2, stopover: false});
+
+            */wayPointArray = new Array();
+
+            for (var i = 0; i < 8; i++){
+                var block = position[i];
+                waypoint = new google.maps.LatLng(block[0], block[1]);
+                wayPointArray.push({location: waypoint, stopover: false});
+            }
+
+            
+          /* for (var i = 0; i < position.length; i++) {
+                var block= position[i];
+                waypoints.push({
+                    location: new google.maps.LatLng (block[0],block[1]),
+                    stopover: true
+                });
+        }*/
+
+
+            for(var i = 0; i < position.length; i++){
+                var block = position[i];
+                new google.maps.Marker({
+                map: gMap,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng(block[0],block[1]),
+                title:"Hello World!"
+            });
+
+                var request = {
+      origin: new google.maps.LatLng (25.6602027,-80.31616079999998),
+      destination: new google.maps.LatLng (25.6534939,-80.31298529999998),
+      waypoints: wayPointArray,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+
+  // Route the directions and pass the response to a
+  // function to create markers for each step.
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      //var warnings = document.getElementById("warnings_panel");
+      //warnings.innerHTML = "" + response.routes[0].warnings + "";
+      directionsDisplay.setDirections(response);
+      //showSteps(response);
+    }
+  });
+
+            }
+
+            google.maps.event.addListener(block, 'click', function() {
+    infowindow.open(map,block);
+  });
+
+
+
+
+        }, 
+                    }},
                     {
                         xtype: 'container',
                         title: 'Service Times',
