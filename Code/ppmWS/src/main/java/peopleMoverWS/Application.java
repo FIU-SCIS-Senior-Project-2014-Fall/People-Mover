@@ -10,13 +10,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import peopleMoverWS.util.TSOLookupService;
 
 @Configuration
-@EnableAutoConfiguration
 @ComponentScan
+@EnableAutoConfiguration
 public class Application {
 
     public static void main(String[] args) {
     	
-        //SpringApplication.run(Application.class, args);
+        //ApplicationContext appcontext = SpringApplication.run(Application.class, args);
+        //TSOLookupService tso = appcontext.getBean(TSOLookupService.class);
        SpringApplication.run(new Object[]{Application.class, TSOLookupService.class}, args);
     	//ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
     }

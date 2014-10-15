@@ -34,6 +34,7 @@ public class LocationHandler extends DefaultHandler{
         bLongitude = false;
         bLastEventDate = false;
         bHeading = false;
+        
                
     }
     

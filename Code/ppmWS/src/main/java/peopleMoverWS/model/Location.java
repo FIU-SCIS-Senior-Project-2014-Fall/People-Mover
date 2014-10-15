@@ -14,6 +14,7 @@ public class Location {
    String Longitude;
    String LastEventDate;
    String Heading;
+   String InsertionTime;
 
    public Location() {
 	   this.UnitID = null;
@@ -25,7 +26,8 @@ public class Location {
        this.Latitude = null;
        this.Longitude = null;
        this.LastEventDate = null;
-       this.Heading = null;   
+       this.Heading = null;  
+       this.InsertionTime=null;
        
    }
    public Location(String UnitID) {
@@ -38,7 +40,8 @@ public class Location {
        this.Latitude = null;
        this.Longitude = null;
        this.LastEventDate = null;
-       this.Heading = null;   
+       this.Heading = null;
+      
        
    }
 
@@ -58,7 +61,8 @@ public String getAddress() {
        this.Address = Address;
    }
 
-   public String getCity() {
+  
+public String getCity() {
        return City;
    }
 
