@@ -13,6 +13,6 @@
  <task:annotation-driven />
     <util:properties id="applicationProps" location="application.properties" />
     <context:property-placeholder properties-ref="applicationProps" />
-    <bean id="tsoLookupService" class="peopleMoverWS.util.TSOLookupService"></bean>
+    <bean id="TSOLookupService" class="peopleMoverWS.util.TSOLookupService"></bean>
  
 </beans>

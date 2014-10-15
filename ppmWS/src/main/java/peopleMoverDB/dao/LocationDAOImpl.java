@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +16,6 @@ import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-
-import peopleMoverDB.model.User;
 import peopleMoverWS.model.Location;
 
 public class LocationDAOImpl implements LocationDAO {
@@ -28,13 +27,13 @@ public class LocationDAOImpl implements LocationDAO {
 	@Override
 	public int save(Location location) throws ParseException
     {
-String query = "insert into Location (UnitID,LastEventDate,Address,City,State, PostalCode, CountryCode, Latitude, Longitude, Heading ) values (?,?,?,?,?,?,?,?,?,?)";
+String query = "insert into Location (UnitID,LastEventDate,Address,City,State, PostalCode, CountryCode, Latitude, Longitude, Heading, InsertionTime ) values (?,?,?,?,?,?,?,?,?,?,?)";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		
 		Object[] args = new Object[]{location.getUnitID(),inputFormat.parse(location.getLastEventDate()),location.getAddress(),location.getCity(),location.getState(),location.getPostalCode(),location.getCountryCode(),
-									location.getLatitude(),location.getLongitude(),location.getHeading()};
+									location.getLatitude(),location.getLongitude(),location.getHeading(),new Date()};
 		int out;
 		try{
 		 out = jdbcTemplate.update(query,args);

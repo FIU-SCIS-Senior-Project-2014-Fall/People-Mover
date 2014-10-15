@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,7 +20,9 @@ import peopleMoverWS.controller.UnitListController;
 import peopleMoverWS.model.Location;
 import peopleMoverWS.model.Unit;
 
-
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
 @EnableScheduling
 public class TSOLookupService {
 
@@ -40,7 +45,7 @@ public class TSOLookupService {
 				newUnit=unitDAO.getByID(unit.getID());
 			} catch (EmptyResultDataAccessException e1) {
 				// TODO Auto-generated catch block
-				//e1.printStackTrace();
+				e1.printStackTrace();
 			}
 			finally{
 				if(newUnit == null)
@@ -49,7 +54,7 @@ public class TSOLookupService {
 						unitDAO.save(unit);
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
-						//e.printStackTrace();
+						e.printStackTrace();
 					}
 				}	
 			}
@@ -59,7 +64,7 @@ public class TSOLookupService {
 				dbLoc = locationDAO.getByUnitIDAndDateTime(loc.getUnitID(), loc.getLastEventDate());
 			} catch (EmptyResultDataAccessException e1) {
 				// TODO Auto-generated catch block
-				//e1.printStackTrace();
+				e1.printStackTrace();
 			}
 			finally
 			{
@@ -69,7 +74,7 @@ public class TSOLookupService {
 						locationDAO.save(loc);
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
-						//e.printStackTrace();
+						e.printStackTrace();
 					}
 				}
 			}
