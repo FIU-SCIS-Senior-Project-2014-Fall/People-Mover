@@ -34,15 +34,32 @@ Ext.define('Feed.controller.RouteController', {
     },
 
     launch: function() {
-         var task = Ext.create('Ext.util.DelayedTask', function () {
-                       //load the list's store here. The list will be automatically updated
-             var list = Ext.getCmp('routelist');
-             list.getStore('UnitListStore').load();    // Assuming your list component is "listComp"
-             list.refresh();
-            console.log('callback!');
-            // The task will be called after each 10000 ms
+        var someFunction = function() {
+            var task = Ext.create('Ext.util.DelayedTask', function() {
+                var list = Ext.getCmp('routelist');
+                list.getStore().load();
+                list.refresh();
+                console.log('callback!');
+                someFunction.call(this);
+            }, this);
+
             task.delay(10000);
-                });
+        };
+
+
+        someFunction();
+    },
+
+    init: function(application) {
+        /*var task = Ext.create('Ext.util.DelayedTask', function () {
+                       //load the list's store here. The list will be automatically updated
+             //var list = Ext.getCmp('routelist');
+             //list.getStore('UnitListStore').load();    // Assuming your list component is "listComp"
+             //list.refresh();
+            console.log('test!');
+            // The task will be called after each 10000 ms
+            task.delay(1000);
+                },this);
 
 
         //The function will start after 0 milliseconds
@@ -50,7 +67,7 @@ Ext.define('Feed.controller.RouteController', {
         task.delay(0);
 
         //to stop the task, just call the cancel method
-        //task.cancel();
+        //task.cancel();*/
     }
 
 });

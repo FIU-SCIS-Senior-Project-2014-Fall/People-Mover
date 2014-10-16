@@ -27,7 +27,8 @@ Ext.define('Feed.view.Routes.List', {
         grouped: false,
         onItemDisclosure: true,
         itemTpl: [
-            '<div>{unitID} <br />',
+            '<div>{unitID} | {lastEventDate} <br />',
+            '    {lastLatitude} |{lastLongitude}<br />',
             '    {address}</div>'
         ]
     }

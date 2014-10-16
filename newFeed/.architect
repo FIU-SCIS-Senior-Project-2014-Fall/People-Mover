@@ -402,6 +402,9 @@
             "cn": [
                 {
                     "id": "3725fda8-def0-4565-b13a-12e1f079213c"
+                },
+                {
+                    "id": "a2881419-5892-448e-80f3-30514995cd04"
                 }
             ]
         },
@@ -429,8 +432,8 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": null,
-        "selectedInstance": null
+        "topInstance": "a8456ddb-77b2-4f56-a28e-5fe055b0cc03",
+        "selectedInstance": "a8456ddb-77b2-4f56-a28e-5fe055b0cc03"
     },
     "editMode": "code",
     "userSettings": {

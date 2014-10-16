@@ -26,7 +26,8 @@
             "userConfig": {
                 "designer|displayName": "itemTpl",
                 "implHandler": [
-                    "<div>{unitID} <br />",
+                    "<div>{unitID} | {lastEventDate} <br />",
+                    "    {lastLatitude} |{lastLongitude}<br />",
                     "    {address}</div>"
                 ]
             },
