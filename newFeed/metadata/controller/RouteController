@@ -1,0 +1,60 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "route",
+        "designer|userClassName": "RouteController",
+        "models": [
+            "UnitList"
+        ],
+        "requires": [
+            "Ext.util.DelayedTask"
+        ],
+        "stores": [
+            "UnitListStore"
+        ],
+        "views": [
+            "Routes.List"
+        ]
+    },
+    "name": "MyController",
+    "designerId": "a8456ddb-77b2-4f56-a28e-5fe055b0cc03",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    " var task = Ext.create('Ext.util.DelayedTask', function () {",
+                    "               //load the list's store here. The list will be automatically updated",
+                    "     var list = Ext.getCmp('routelist');",
+                    "     list.getStore('UnitListStore').load();    // Assuming your list component is \"listComp\"",
+                    "     list.refresh();",
+                    "    console.log('callback!');",
+                    "    // The task will be called after each 10000 ms",
+                    "    task.delay(10000);",
+                    "        });",
+                    "",
+                    "",
+                    "//The function will start after 0 milliseconds",
+                    "//so we want to start instantly at first",
+                    "task.delay(0);",
+                    "",
+                    "//to stop the task, just call the cancel method",
+                    "//task.cancel();"
+                ]
+            },
+            "name": "launch",
+            "designerId": "3725fda8-def0-4565-b13a-12e1f079213c"
+        }
+    ]
+}

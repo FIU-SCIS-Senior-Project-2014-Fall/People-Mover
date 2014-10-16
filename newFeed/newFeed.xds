@@ -1,0 +1,70 @@
+{
+    "name": "newFeed",
+    "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "5.0.2.270",
+            "frameworkVersion": "2.3.1.410"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "iPhone",
+                "builtIn": true,
+                "height": 480,
+                "width": 320
+            },
+            "viewportOrientation": "portrait"
+        },
+        "urlPrefix": "http://localhost:1841",
+        "exportPath": "",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "projectHasEnabledWebServer": true
+    },
+    "xdsVersion": "3.1.0",
+    "xdsBuild": 1903,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000007,
+    "framework": "touch23",
+    "viewOrderMap": {
+        "view": [
+            "498dd6ec-4628-4484-877a-b7d33e587689",
+            "5d991599-1c18-47cd-aea6-a0fde376a92d",
+            "8dfa68c3-dcda-46b2-9c70-7c0d6abff151",
+            "bbf9d344-a904-48fc-9751-b7d983fadc22",
+            "318e0639-d776-41b1-9e23-01fbacaac81d",
+            "2a091605-b040-405a-850b-7188c860907c",
+            "a46759a0-9c71-494d-b02d-3ee920bea23a"
+        ],
+        "store": [
+            "f6c25b60-a60b-4ab6-a994-1d34cee875f5",
+            "836a9d83-2905-4366-829b-fae819f43a55",
+            "bca16d92-974d-41c6-b021-ca22bcb31fd8",
+            "9cd5d50c-3d15-48ba-a903-a64be6a6ba8f",
+            "37090c73-153a-46c0-b2be-76dd442c5a97"
+        ],
+        "controller": [
+            "481f8a52-b7d9-4a8f-a22d-48a70d155e28",
+            "4213b342-3f4d-4d3f-9046-05c69ff3af7a",
+            "a8456ddb-77b2-4f56-a28e-5fe055b0cc03"
+        ],
+        "model": [
+            "c0b797e7-eb24-41b3-bdb9-8bdb6995dc99",
+            "8a2b9bc8-ddb5-41e5-87ad-774df4bf3bf5",
+            "56645fcf-b8ce-42ee-a55d-84138aaed06c",
+            "5c815774-715e-45e7-b6aa-d2a7280f2707"
+        ],
+        "resource": [
+            "cf4f2a8b-eb9b-41e4-b237-b768723f8f14",
+            "dde98444-3625-4565-8207-0dffeba38da0"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "type": "Ext.dataview.List",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "RoutesList",
+        "designer|userClassName": "Routes.List",
+        "grouped": false,
+        "id": "routelist",
+        "onItemDisclosure": true,
+        "store": "UnitListStore"
+    },
+    "name": "MyList",
+    "designerId": "a46759a0-9c71-494d-b02d-3ee920bea23a",
+    "cn": [
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "itemTpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "itemTpl",
+                "implHandler": [
+                    "<div>{unitID} <br />",
+                    "    {address}</div>"
+                ]
+            },
+            "name": "itemTpl",
+            "designerId": "d7a9d708-0015-4d07-862e-2f2a31294432"
+        }
+    ]
+}
