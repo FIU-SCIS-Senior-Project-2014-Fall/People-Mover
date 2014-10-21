@@ -1,0 +1,26 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "userauth",
+        "designer|userClassName": "UserAuth"
+    },
+    "name": "MyModel",
+    "designerId": "36edf482-14cc-4c8a-8a82-1050d73e0aa6",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyRestProxy",
+            "designerId": "ee67d679-cc57-492b-ba9a-7a78b60d7690"
+        }
+    ]
+}
