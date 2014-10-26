@@ -87,6 +87,15 @@
                     }
                 ]
             },
+            "Ext.dataview.List": {
+                "globalVars": [
+                    {
+                        "name": "list-active-color",
+                        "enabled": true,
+                        "value": ""
+                    }
+                ]
+            },
             "Ext.tab.Panel": {
                 "globalVars": [
                     {

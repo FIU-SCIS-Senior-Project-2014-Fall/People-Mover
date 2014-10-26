@@ -10,32 +10,42 @@ Ext.Loader.setConfig({
 
 Ext.application({
     models: [
-        'routeInfo'
+        'routeInfo',
+        'UnitList',
+        'MapLocations'
     ],
     stores: [
-        'listRoutes'
+        'listRoutes',
+        'UnitListStore',
+        'MapStore'
     ],
     views: [
-        'MyContainer',
         'RouteDetailsList',
         'MyContainer2',
-        'MyFormPanel1',
+        'FeedBackView',
         'Problem',
         'requestStop',
         'TrolleyAlerts',
         'MyNavigationView',
-        'MyPanel1'
+        'MyPanel1',
+        'UnitListView',
+        'MyMap',
+        'LoginForm',
+        'RegisterForm',
+        'MainView'
     ],
     controllers: [
-        'MyController'
+        'MyController',
+        'UnitListController',
+        'UserController',
+        'MapController'
     ],
     name: 'PeopleMover',
 
     launch: function() {
-      Ext.fly('appLoadingImage').destroy();
-      Ext.fly('appLoadingIndicator').destroy();
-
-        Ext.create('PeopleMover.view.MyContainer', {fullscreen: true});
+        Ext.fly('appLoadingImage').destroy();
+              Ext.fly('appLoadingIndicator').destroy();
+        Ext.create('PeopleMover.view.MainView', {fullscreen: true});
     }
 
 });

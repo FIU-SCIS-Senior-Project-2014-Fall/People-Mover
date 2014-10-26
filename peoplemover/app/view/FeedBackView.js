@@ -1,10 +1,10 @@
 /*
- * File: app/view/Problem.js
+ * File: app/view/FeedBackView.js
  */
 
-Ext.define('PeopleMover.view.Problem', {
+Ext.define('PeopleMover.view.FeedBackView', {
     extend: 'Ext.form.Panel',
-    alias: 'widget.problem',
+    alias: 'widget.feedback',
 
     requires: [
         'Ext.form.FieldSet',
@@ -36,7 +36,8 @@ Ext.define('PeopleMover.view.Problem', {
                     },
                     {
                         xtype: 'textareafield',
-                        label: 'Report Issue',
+                        label: 'Your Feedback',
+                        labelWidth: '35%',
                         labelWrap: true,
                         name: 'infoBox',
                         required: true

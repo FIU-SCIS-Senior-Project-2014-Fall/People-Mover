@@ -6,78 +6,13 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "contactUs",
-        "designer|userClassName": "MyFormPanel1",
+        "designer|userAlias": "feedback",
+        "designer|userClassName": "FeedBackView",
         "fullscreen": true
     },
     "name": "MyFormPanel1",
     "designerId": "30a95818-6e87-42c5-b8f4-a00377865fe0",
     "cn": [
-        {
-            "type": "Ext.TitleBar",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "docked": "top",
-                "title": "Feedback"
-            },
-            "name": "MyTitleBar4",
-            "designerId": "423beeee-27b8-40eb-b3e8-0c7285091a0f",
-            "cn": [
-                {
-                    "type": "Ext.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|uiInterfaceName": "back",
-                        "text": "Back",
-                        "ui": "back"
-                    },
-                    "name": "MyButton5",
-                    "designerId": "9e52287f-e6ad-4161-81cc-e9a14ea4d9fe",
-                    "cn": [
-                        {
-                            "type": "fixedfunction",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|params": [
-                                    "button",
-                                    "e"
-                                ],
-                                "fn": "handler",
-                                "implHandler": [
-                                    "if(Ext.getCmp('widget.main'))",
-                                    "{",
-                                    "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
-                                    "    Ext.getCmp('myTabPanel').setActiveItem(5);",
-                                    "    Ext.Viewport.setActiveItem(Ext.getCmp('widget.main'));",
-                                    "}",
-                                    "else",
-                                    "{",
-                                    "    var sample = Ext.create('PeopleMover.view.MyContainer');",
-                                    "    Ext.getCmp('myTabPanel').setActiveItem(5);",
-                                    "    Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);",
-                                    "    Ext.Viewport.setActiveItem(sample);",
-                                    "}"
-                                ]
-                            },
-                            "name": "handler",
-                            "designerId": "13211e1f-7cea-4a2f-a2f0-a6932c245cb3"
-                        }
-                    ]
-                }
-            ]
-        },
         {
             "type": "Ext.form.FieldSet",
             "reference": {

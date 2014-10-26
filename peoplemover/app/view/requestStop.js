@@ -7,43 +7,15 @@ Ext.define('PeopleMover.view.requestStop', {
     alias: 'widget.requestStop',
 
     requires: [
-        'Ext.TitleBar',
-        'Ext.Button',
         'Ext.form.FieldSet',
         'Ext.field.Email',
-        'Ext.field.TextArea'
+        'Ext.field.TextArea',
+        'Ext.Button'
     ],
 
     config: {
         fullscreen: true,
         items: [
-            {
-                xtype: 'titlebar',
-                docked: 'top',
-                title: 'Request a Stop',
-                items: [
-                    {
-                        xtype: 'button',
-                        handler: function(button, e) {
-                            if(Ext.getCmp('widget.main'))
-                            {
-                                Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
-                                Ext.getCmp('myTabPanel').setActiveItem(5);
-                                Ext.Viewport.setActiveItem(Ext.getCmp('widget.main'));
-                            }
-                            else
-                            {
-                                var sample = Ext.create('PeopleMover.view.MyContainer');
-                                Ext.getCmp('myTabPanel').setActiveItem(5);
-                                Ext.Viewport.remove(Ext.Viewport.getActiveItem(), true);
-                                Ext.Viewport.setActiveItem(sample);
-                            }
-                        },
-                        ui: 'back',
-                        text: 'Back'
-                    }
-                ]
-            },
             {
                 xtype: 'fieldset',
                 items: [
