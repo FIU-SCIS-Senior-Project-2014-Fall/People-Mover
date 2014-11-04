@@ -1,0 +1,186 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MapController",
+        "models": [
+            "MapLocations"
+        ],
+        "requires": [
+            "Ext.util.DelayedTask"
+        ],
+        "stores": [
+            "MapStore"
+        ],
+        "views": [
+            "MyMap"
+        ]
+    },
+    "name": "MyController1",
+    "designerId": "76e0b36e-f4f4-4306-b070-9d57900fe5a7",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mapComponent",
+                "selector": "#mymap"
+            },
+            "name": "mapComponent",
+            "designerId": "ca4a43b7-5d38-4e1f-8f44-5d7f13618085"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#mymap",
+                "designer|targetType": "MyMap",
+                "fn": "onMymapMaprender",
+                "implHandler": [
+                    "var store, latLng, marker;",
+                    "var iconBase = 'resources/images/';",
+                    "var gMap = this.getMapComponent();",
+                    "var map = Ext.getCmp('mymap').getMap();",
+                    "        // Get store",
+                    "        store = Ext.getStore('MapStore');",
+                    "        store.load();",
+                    "        // On each store record",
+                    "        store.each(function(record, index, length) {",
+                    "",
+                    "            // Get position",
+                    "            //latLng = new google.maps.LatLng(record.get('lastLatitude'), record.get('lastLongitude'));",
+                    "            var m = new google.maps.LatLng(record.data.lastLatitude,",
+                    "                                           record.data.lastLongitude);",
+                    "//             var m = new google.maps.LatLng(25.6534939,",
+                    "//                                           -80.31298529999998);",
+                    "            // Create marker",
+                    "            marker = new google.maps.Marker({",
+                    "                position: m,",
+                    "                //map: gMap,",
+                    "                animation: google.maps.Animation.DROP,",
+                    "                draggable: true,",
+                    "                icon: iconBase + 'logo_icon.png'",
+                    "            });",
+                    "",
+                    "           // var lookup = [];",
+                    "            //lookup.push(new google.maps.LatLng(record.data.lastLatitude,",
+                    "                                       //    record.data.lastLongitude));",
+                    "            //marker.setPosition(myLatLng);",
+                    "",
+                    "//            if(lookup.length == 2){",
+                    "//          setInterval(function() {",
+                    "//          position = m,",
+                    "//          marker.setPosition(marker.position);",
+                    "//      }, 5000);",
+                    "//             }else{",
+                    "",
+                    "//            //marker.setMap(null);",
+                    "           marker.setMap(map);",
+                    "//             }",
+                    "",
+                    "           // marker.setMap(map);",
+                    "",
+                    "            //updateMarker(marker);",
+                    "        });",
+                    ""
+                ],
+                "name": "maprender"
+            },
+            "name": "onMymapMaprender",
+            "designerId": "01c78f90-4508-4ae3-ae12-1eb3dade447f"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "count = 0; ",
+                    "var autocallFunction = function() {",
+                    "            var task = Ext.create('Ext.util.DelayedTask', function() {",
+                    "                var store, latLng, marker;",
+                    "var iconBase = 'resources/images/';",
+                    "//var gMap = this.getMapComponent();",
+                    "var map = Ext.getCmp('mymap').getMap();",
+                    "        // Get store",
+                    "        store = Ext.getStore('MapStore');",
+                    "        store.load();",
+                    "        // On each store record",
+                    "        store.each(function(record, index, length) {",
+                    "",
+                    "",
+                    "",
+                    "            // Get position",
+                    "            //latLng = new google.maps.LatLng(record.get('lastLatitude'), record.get('lastLongitude'));",
+                    "            var m = new google.maps.LatLng(record.data.lastLatitude,",
+                    "                                           record.data.lastLongitude);",
+                    "//             var m = new google.maps.LatLng(25.6534939,",
+                    "//                                           -80.31298529999998);",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "            // Create marker",
+                    "            marker = new google.maps.Marker({",
+                    "                position: m,",
+                    "                //map: gMap,",
+                    "                //animation: google.maps.Animation.DROP,",
+                    "                draggable: true,",
+                    "                icon: iconBase + 'middlebusstop.png'",
+                    "            });",
+                    "",
+                    "",
+                    "           // if(count > 1){",
+                    "         setInterval(function() {",
+                    "             ",
+                    "         position = m,",
+                    "         //marker.setPosition(position);",
+                    "             marker.setMap(null);",
+                    "     }, 10000);",
+                    "           // }else{",
+                    "            ",
+                    "           //",
+                    "            marker.setMap(map);",
+                    "            position = m;",
+                    "            marker.setPosition(position);",
+                    "            //marker.setMap(null);",
+                    "          //  count++;",
+                    "          //  }",
+                    "            ",
+                    "                //break;",
+                    "",
+                    "",
+                    "        });",
+                    "",
+                    "                //console.log('callback!');",
+                    "                autocallFunction.call(this);",
+                    "            }, this);",
+                    "",
+                    "            task.delay(10000);",
+                    "        };",
+                    "",
+                    "",
+                    "        autocallFunction();"
+                ]
+            },
+            "name": "launch",
+            "designerId": "f51a8013-9083-4659-8283-9d59f523a720"
+        }
+    ]
+}

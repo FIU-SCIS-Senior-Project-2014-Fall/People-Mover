@@ -1,0 +1,54 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MiddleNorthModel"
+    },
+    "name": "MyModel",
+    "designerId": "891ab2c5-9678-4bfd-9b58-70b5aa4043b3",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name"
+            },
+            "name": "field29",
+            "designerId": "7de6272d-232c-4cb9-ba63-2a9a6259de4b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "time"
+            },
+            "name": "field30",
+            "designerId": "ff53da11-cd15-4caa-834e-152f2ff5809f"
+        },
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "middlenorth.json"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "6167cf58-c4a3-42d2-a6a9-fef3e986de97"
+        }
+    ]
+}
