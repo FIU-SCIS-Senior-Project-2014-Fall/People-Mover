@@ -50,7 +50,7 @@ public class UserAuth {
 				}
 				else
 				{
-					fMessage.setMessage("Not Match");
+					fMessage.setMessage("No Match");
 					fMessage.setCode("0");
 					return fMessage;
 					
@@ -79,7 +79,7 @@ public class UserAuth {
 		}
 		else
 		{
-			fMessage.setMessage("not valid email");
+			fMessage.setMessage("Not valid email");
 			fMessage.setCode("0");
 			return fMessage;
 			
