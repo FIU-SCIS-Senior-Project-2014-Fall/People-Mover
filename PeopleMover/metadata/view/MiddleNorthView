@@ -24,7 +24,7 @@
             "userConfig": {
                 "designer|displayName": "itemTpl",
                 "implHandler": [
-                    "<div>{name}</div>"
+                    "<div>{street}</div>"
                 ]
             },
             "name": "itemTpl",

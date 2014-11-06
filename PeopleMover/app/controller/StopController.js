@@ -65,7 +65,7 @@ Ext.define('PeopleMover.controller.StopController', {
         //Ext.Msg.alert("Info","clicked");
         console.log(record.data);
         //Ext.getStore('MiddleNorthStore').clearFilter();
-        this.currentstop = record.get("name");
+        //this.currentstop = record.get("street");
         //Ext.getStore('MiddleNorthStore').filter("name",this.currentstop);
         console.log(dataview.title);
 

@@ -25,7 +25,7 @@ Ext.define('PeopleMover.view.MiddleNorthView', {
         store: 'MiddleNorthStore',
         onItemDisclosure: true,
         itemTpl: [
-            '<div>{name}</div>'
+            '<div>{street}</div>'
         ]
     }
 

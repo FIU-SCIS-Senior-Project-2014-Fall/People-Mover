@@ -18,21 +18,35 @@ Ext.define('PeopleMover.model.MiddleNorthModel', {
 
     requires: [
         'Ext.data.Field',
-        'Ext.data.proxy.Ajax'
+        'Ext.data.proxy.Rest'
     ],
 
     config: {
         fields: [
             {
-                name: 'name'
+                name: 'stopId',
+                type: 'int'
             },
             {
-                name: 'time'
+                name: 'routeId'
+            },
+            {
+                name: 'street'
+            },
+            {
+                name: 'latitude'
+            },
+            {
+                name: 'longitude'
+            },
+            {
+                name: 'scheduledTime'
             }
         ],
         proxy: {
-            type: 'ajax',
-            url: 'middlenorth.json'
+            type: 'rest',
+            url: 'http://pm-dev.cs.fiu.edu:8080/ppmws/getstops?RouteId=1',
+            useDefaultXhrHeader: false
         }
     }
 });

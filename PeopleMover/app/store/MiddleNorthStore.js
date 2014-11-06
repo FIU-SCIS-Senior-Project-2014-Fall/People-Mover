@@ -23,6 +23,7 @@ Ext.define('PeopleMover.store.MiddleNorthStore', {
     config: {
         autoLoad: true,
         model: 'PeopleMover.model.MiddleNorthModel',
+        remoteSort: true,
         storeId: 'MiddleNorthStore'
     }
 });

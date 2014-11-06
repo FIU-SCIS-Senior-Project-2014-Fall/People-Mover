@@ -53,6 +53,9 @@ Ext.define('PeopleMover.controller.UserController', {
             },
             "registerform #registerButton": {
                 tap: 'register'
+            },
+            "problem #bProbSubmit": {
+                tap: 'submitProb'
             }
         }
     },
@@ -170,7 +173,7 @@ Ext.define('PeopleMover.controller.UserController', {
 
 
                     var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                      Ext.Msg.alert("Info","message: "+jsonResp.message);
+                      Ext.Msg.alert("Info","Login Successful");
 
                      localStorage.setItem('ppmtoken',jsonResp.message);
 
@@ -236,7 +239,16 @@ Ext.define('PeopleMover.controller.UserController', {
 
 
                     var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                      Ext.Msg.alert("Info","message:"+jsonResp.message);
+                       Ext.Msg.alert("Info","Login Successful");
+
+                     localStorage.setItem('ppmtoken',jsonResp.message);
+
+                    //get back
+                         mainView.pop();
+
+                //     // Hide login panel
+                     form.hide();
+
 
                 };
 
@@ -276,6 +288,63 @@ Ext.define('PeopleMover.controller.UserController', {
                                         failure: failureCallback
                                     });
                              }
+
+
+    },
+
+    submitProb: function(button, e, eOpts) {
+        var form = button.up('formpanel'),
+                values = form.getValues(),				// Form values
+                mainView = this.getMainView();
+
+
+        // Success
+                        var successCallback = function(resp, ops) {
+
+
+
+
+                            var jsonResp = Ext.util.JSON.decode(resp.responseText);
+                               Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+                            //get back
+                                 mainView.pop();
+
+                        //     // Hide login panel
+                             form.hide();
+
+
+                        };
+
+                        // Failure
+                        var failureCallback = function(resp, ops) {
+
+                           var jsonResp = Ext.util.JSON.decode(resp.responseText);
+                                      Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+
+                        };
+                        //TODO: Registration using server-side authentication service
+
+
+
+
+
+                                            Ext.Ajax.request({
+                                                url: "http://pm-dev.cs.fiu.edu:8080/ppmws/sendemail",
+                                                method: 'POST',
+                                                /*headers: { 'Content-Type': 'application/json' },*/
+                                                params: {
+                                                    "name":values.nameBox,
+                                                    "type": "PROBLEM",
+                                                     "email":values.emailBox,
+                                                     "message": values.infoBox
+                                                    },
+                                                success: successCallback,
+                                                failure: failureCallback
+                                            });
 
 
     }

@@ -32,8 +32,8 @@ Ext.define('PeopleMover.view.EstTimeView', {
                 xtype: 'fieldset',
                 tpl: [
                     '<tpl for="."><br>',
-                    '<h3><b>Stop Name:</b></h3><h3>{name}</h3>',
-                    '    <h3><b>Scheduled Time:</b></h3><h3>{time}</h3></tpl>'
+                    '<h3><b>Stop Name:</b></h3><h3>{street}</h3>',
+                    '    <h3><b>Scheduled Time:</b></h3><h3>{scheduledTime}</h3></tpl>'
                 ],
                 title: 'Stop Description ',
                 items: [

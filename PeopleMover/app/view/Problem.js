@@ -56,6 +56,7 @@ Ext.define('PeopleMover.view.Problem', {
             },
             {
                 xtype: 'button',
+                itemId: 'bProbSubmit',
                 ui: 'confirm',
                 text: 'Submit'
             }

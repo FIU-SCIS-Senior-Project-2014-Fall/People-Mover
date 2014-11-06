@@ -86,6 +86,8 @@
             "codeClass": null,
             "userConfig": {
                 "designer|uiInterfaceName": "confirm",
+                "id": null,
+                "itemId": "bProbSubmit",
                 "text": "Submit",
                 "ui": "confirm"
             },

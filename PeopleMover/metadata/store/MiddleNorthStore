@@ -9,6 +9,7 @@
         "autoLoad": true,
         "designer|userClassName": "MiddleNorthStore",
         "model": "MiddleNorthModel",
+        "remoteSort": true,
         "storeId": "MiddleNorthStore"
     },
     "name": "MyStore",

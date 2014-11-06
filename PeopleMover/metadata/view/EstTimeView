@@ -82,8 +82,8 @@
                         "designer|displayName": "tpl",
                         "implHandler": [
                             "<tpl for=\".\"><br>",
-                            "<h3><b>Stop Name:</b></h3><h3>{name}</h3>",
-                            "    <h3><b>Scheduled Time:</b></h3><h3>{time}</h3></tpl>"
+                            "<h3><b>Stop Name:</b></h3><h3>{street}</h3>",
+                            "    <h3><b>Scheduled Time:</b></h3><h3>{scheduledTime}</h3></tpl>"
                         ]
                     },
                     "name": "tpl2",
