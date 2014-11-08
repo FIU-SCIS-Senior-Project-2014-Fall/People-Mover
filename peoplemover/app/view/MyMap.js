@@ -5,15 +5,21 @@
 Ext.define('PeopleMover.view.MyMap', {
     extend: 'Ext.Map',
     alias: 'widget.mymap',
+    store: 'MapStore',
+
+    requires: [
+        'Ext.data.Store',
+        ],
 
     config: {
         id: 'mymap',
         itemId: 'mymap',
+        //useCurrentLocation: true,
         mapListeners: '//test',
         mapOptions: {
             center: new google.maps.LatLng(25.662715,
             -80.308101),
-            zoom: 15,
+            zoom: 14,
             navigationControl: true,
             disableDefaultUI: true,
             
@@ -198,6 +204,134 @@ Ext.define('PeopleMover.view.MyMap', {
                 path2.setMap(gMap);
                 path.setMap(gMap);
 
+            var allStops = [
+                                    [25.683558, -80.302937],[25.679579, -80.314014],[25.674111, -80.310723],
+                                    [25.672324, -80.309774],[25.670047, -80.310594],[25.669206, -80.314628],[25.673928, -80.317830],
+                                    [25.668423, -80.318685],[25.666770, -80.311508],[25.659658, -80.303406],[25.657376, -80.318258],
+                                    [25.655606, -80.314575],[25.651925, -80.313009],[25.654467, -80.318168],[25.655188, -80.327312],
+                                    [25.651581, -80.324233],[25.651474, -80.327800],[25.651408, -80.329799],[25.643997, -80.330056],
+                                    [25.644072, -80.325969],[25.644183, -80.321865],[25.645683, -80.321900],[25.644609, -80.307684],
+                                    [25.647133, -80.305715],[25.649387, -80.301740],[25.650818, -80.305817],[25.655838, -80.306032],
+                                    [25.647511, -80.293629],[25.653779, -80.290729],[25.655539, -80.290804],[25.647486, -80.293639],
+                                    [25.650833, -80.305817],[25.646519, -80.305731],[25.647196, -80.317854],[25.645668, -80.321910],
+                                    [25.645117, -80.326008],[25.645914, -80.326047],[25.644013, -80.330060],[25.647717, -80.329019],
+                                    [25.648631, -80.330221],[25.649666, -80.327764],[25.651407, -80.329754],[25.651460, -80.327796],
+                                    [25.655198, -80.327260],[25.655377, -80.322298],[25.661114, -80.316250],[25.659031, -80.325006],
+                                    [25.662501, -80.323666],[25.665944, -80.322421],[25.668420, -80.318673],[25.671978, -80.318802],
+                                    [25.673951, -80.317826],[25.669190, -80.314601],[25.672333, -80.309795],[25.679566, -80.314011],
+                                    [25.681500, -80.311029],[25.667100, -80.298287],[25.659692, -80.300003],[25.659650, -80.303408]
+                                    ];
+
+
+                var markers = new Array();
+
+                for(var x = 0; x < allStops.length; x++)
+                {
+
+                    var close = allStops[x];
+                    markers.push({
+                        latitude: close[0],
+                        longitude: close[1]
+                    });
+                }
+                store = Ext.getStore('MapStore');
+                store.load();
+
+                store.each(function(record, index, length) {
+                    console.log('we got into the store');
+
+                    // Get position
+                    for(var r = 0; r < allStops.length; r++){
+                        var stops = allStops[r];
+
+                        var estimatedTime = find_estimated_distance( record.data.lastLatitude, record.data.lastLongitude, stops[0], stops[1] );
+                    }              
+
+                });
+
+             var geo = Ext.create('Ext.util.Geolocation', {
+              autoUpdate: true,
+              frequency: '10000',
+
+                    listeners: {
+                        locationupdate: function (geo) {        
+
+                            var center = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
+                           // Ext.getCmp('gMap').setData(center);
+                           var closest = find_closest_marker(geo.getLatitude(), geo.getLongitude());
+
+                           var closestLat = closest[0];
+                           var closestLon = closest[1];
+
+                           //gMap.setCenter(new google.maps.LatLng( closestLat, closestLon ) );
+
+
+                           var marker = new google.maps.Marker({map: gMap, position: new google.maps.LatLng( closestLat, closestLon ), clickable: true});
+
+                            marker.info = new google.maps.InfoWindow({
+                              content: '<b>this is the closest location</b> '
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function() {
+                              marker.info.open(gMap, marker);
+                            });
+
+                        },
+
+                        locationerror: function (geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+
+                            if (bTimeout) {
+                                alert('Timeout occurred.');
+                            } 
+                            else {
+                                alert('Error occurred.');
+                            }
+
+                }
+
+            }
+
+        });
+
+function find_closest_marker( lat1, lon1 ) {    
+    var pi = Math.PI;
+    var R = 6371; //equatorial radius
+    var distances = [];
+    var closest = -1;
+    var lat3;
+    var lon3;
+
+    for( i=0; i < markers.length; i++ ) {  
+        var lat2 = allStops[i][0];
+        var lon2 = allStops[i][1];
+
+        var chLat = lat2-lat1;
+        var chLon = lon2-lon1;
+
+        var dLat = chLat*(pi/180);
+        var dLon = chLon*(pi/180);
+
+        var rLat1 = lat1*(pi/180);
+        var rLat2 = lat2*(pi/180);
+
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(rLat1) * Math.cos(rLat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c;
+
+        distances[i] = d;
+        //console.log('d is ' + d);
+        if ( closest == -1 || d < distances[closest] ) {
+            closest = i;
+            lat3 = lat2;
+            lon3 = lon2;
+        }
+    }
+    return [lat3, lon3];
+    
+} 
+
+
                 var task = Ext.create('Ext.util.DelayedTask', function() {
                     //load the list's store here. The list will be automatically updated
                     listComp.getStore().load();    // Assuming your list component is "listComp"
@@ -206,6 +340,8 @@ Ext.define('PeopleMover.view.MyMap', {
                     // The task will be called after each 10000 ms
                     task.delay(10000);
                 }, this);
+
+
 
                 var maprender = function() {
                                 	        // Get a ref to the google map object (should be provided
@@ -221,21 +357,19 @@ Ext.define('PeopleMover.view.MyMap', {
 
                                 	directionsService = new google.maps.DirectionsService();
 
-
+                                	        //1st stop 25.665225, -80.30050699999998
                                 	        var iconBase = 'resources/images/';
 
 
-                                	var positionMid = [
-                                	[25.683558, -80.302937],[25.679579, -80.314014],[25.674111, -80.310723],
-                                	[25.672324, -80.309774],[25.670047, -80.310594],[25.669206, -80.314628],[25.673928, -80.317830],
+                                	var positionMid= [
+                                	[25.683558, -80.302937], [25.679579, -80.314014], [25.674111, -80.310723],
+                                	[25.672324, -80.309774], [25.670047, -80.310594], [25.669206, -80.314628], [25.673928, -80.317830],
                                 	[25.668423, -80.318685],[25.666770, -80.311508],[25.659658, -80.303406],[25.657376, -80.318258],
                 					[25.655606, -80.314575],[25.651925, -80.313009],[25.654467, -80.318168],[25.655188, -80.327312],
                 					[25.651581, -80.324233],[25.651474, -80.327800],[25.651408, -80.329799],[25.643997, -80.330056],
                 					[25.644072, -80.325969],[25.644183, -80.321865],[25.645683, -80.321900],[25.644609, -80.307684],
                 					[25.647133, -80.305715],[25.649387, -80.301740],[25.650818, -80.305817],[25.655838, -80.306032],
-                					[25.647511, -80.293629]
-
-                                    ]
+                					[25.647511, -80.293629]];
 
                 					var positionHigh = [
                                         [25.653779, -80.290729],[25.655539, -80.290804],[25.647486, -80.293639],[25.650833, -80.305817],
@@ -245,46 +379,14 @@ Ext.define('PeopleMover.view.MyMap', {
                                         [25.655377, -80.322298],[25.661114, -80.316250],[25.659031, -80.325006],[25.662501, -80.323666],
                                         [25.665944, -80.322421],[25.668420, -80.318673],[25.671978, -80.318802],[25.673951, -80.317826],
                                         [25.669190, -80.314601],[25.672333, -80.309795],[25.679566, -80.314011],[25.681500, -80.311029],
-                                        [25.667100, -80.298287]
+                                        [25.667100, -80.298287],[25.659692, -80.300003],[25.659650, -80.303408]
 
-                                    ]
-
-                                    var positionBoth = [
-                                        [25.659650, -80.303408], [25.659692, -80.300003]
-
-                                    ]
-
-                //                 	var wayStops= [
-                //                 	[25.6577797, -80.3126168], [25.6710309, -80.30413820000001], [25.665225, -80.30050699999998],
-                //                 	[25.6726499,-80.31166989999997], [25.6688665,-80.303542], [25.674441, -80.31784800000003], [25.6692328, -80.3126011],
-                //                 	[25.6699387, -80.31465049999997], [25.666213, -80.30943889999998], [25.6657788, -80.31045340000003], [25.6798662, -80.30383089999998],
-                //                 	[25.6836482, -80.2991265], [25.669451, -80.28562699999998],[25.647878, -80.321986]];
+                                    ];
 
 
-                //                 	        //var waypoints = [];
-                //                 	        /*waypoint1 = new google.maps.LatLng(25.6577797, -80.3126168);
-                //                 	        waypoint2 = new google.maps.LatLng(25.6710309, -80.30413820000001);
-
-                //                 	        wayPointArray = new Array();
-                //                 	        wayPointArray.push({location: waypoint1, stopover: false});
-                //                 	        wayPointArray.push({location: waypoint2, stopover: false});
-
-                //                 	        */wayPointArray = new Array();
-
-                //                 	        for (var i = 0; i < 8; i++){
-                //                 	        	var block = position[i];
-                //                 	        	waypoint = new google.maps.LatLng(block[0], block[1]);
-                //                 	        	wayPointArray.push({location: waypoint, stopover: false});
-                //                 	        }
 
 
-                //                 	      /* for (var i = 0; i < position.length; i++) {
-                //                 	            var block= position[i];
-                //                 	            waypoints.push({
-                //                 	                location: new google.maps.LatLng (block[0],block[1]),
-                //                 	                stopover: true
-                //                 	            });
-                //                 	}*/
+                                    
 
 
                                 	for(var i = 0; i < positionHigh.length; i++){
@@ -294,16 +396,20 @@ Ext.define('PeopleMover.view.MyMap', {
                                 			animation: google.maps.Animation.DROP,
                                 			position: new google.maps.LatLng(block[0],block[1]),
                                 			title:'Place number ' + i,
-                                            icon: iconBase + 'seniorbusstop.png'
+                                            icon: iconBase + 'bus.png',
+
+
                                 		});
 
-                                	            // Wrapping the event listener inside an anonymous function
+
+
+                                	// Wrapping the event listener inside an anonymous function
                                 	// that we immediately invoke and passes the variable i to.
                                 	(function(i, marker) {
                                 	// Creating the event listener. It now has access to the values of
                                 	// i and marker as they were during its creation
                                 	google.maps.event.addListener(marker, 'click', function() {
-                                		var block = position[i];
+                                		var block = positionHigh[i];
                                 		var infowindow = new google.maps.InfoWindow({
                                 			content: ''+ new google.maps.LatLng(block[0],block[1])
                                 		});
@@ -311,35 +417,18 @@ Ext.define('PeopleMover.view.MyMap', {
                                 	});
                                 	})(i, marker);
 
-        //                         	var request = {
-        //                         		origin: new google.maps.LatLng (25.6602027,-80.31616079999998),
-        //                         		destination: new google.maps.LatLng (25.6534939,-80.31298529999998),
-        //                         		//waypoints: wayPointArray,
-        //                         		travelMode: google.maps.TravelMode.DRIVING
-        //                         	};
-
-                                	// Route the directions and pass the response to a
-                                	// function to create markers for each step.
-        //                         	directionsService.route(request, function(response, status) {
-        //                         		if (status == google.maps.DirectionsStatus.OK) {
-        //                         	  //var warnings = document.getElementById("warnings_panel");
-        //                         	  //warnings.innerHTML = "" + response.routes[0].warnings + "";
-        //                         	  directionsDisplay.setDirections(response);
-        //                         	  //showSteps(response);
-        //                         	}
-        //                         	});
 
 
                                 	}
 
                                     for(var i = 0; i < positionMid.length; i++){
-                                        var blockMid = positionMid[i];
+                                        var block2 = positionMid[i];
                                         var marker = new google.maps.Marker({
                                             map: gMap,
                                             animation: google.maps.Animation.DROP,
-                                            position: new google.maps.LatLng(blockMid[0],blockMid[1]),
+                                            position: new google.maps.LatLng(block2[0],block2[1]),
                                             title:'Place number ' + i,
-                                            icon: iconBase + 'middlebusstop.png'
+                                            icon: iconBase + 'bus2.png'
                                         });
 
                                                 // Wrapping the event listener inside an anonymous function
@@ -348,41 +437,13 @@ Ext.define('PeopleMover.view.MyMap', {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
-                                        var blockMid2 = positionMid[i];
+                                        var block3 = positionMid[i];
                                         var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ new google.maps.LatLng(blockMid2[0],blockMid2[1])
+                                            content: ''+ marker.getPosition()//new google.maps.LatLng(block3[0],block3[1])
                                         });
                                         infowindow.open(gMap, marker);
                                     });
                                     })(i, marker);
-
-
-                                    }
-
-                                    for(var i = 0; i < positionBoth.length; i++){
-                                        var blockBoth = positionBoth[i];
-                                        var marker = new google.maps.Marker({
-                                            map: gMap,
-                                            animation: google.maps.Animation.DROP,
-                                            position: new google.maps.LatLng(blockBoth[0],blockBoth[1]),
-                                            title:'Place number ' + i,
-                                            icon: iconBase + 'mid_high_bus_stop.png'
-                                        });
-
-                                                // Wrapping the event listener inside an anonymous function
-                                    // that we immediately invoke and passes the variable i to.
-                                    (function(i, marker) {
-                                    // Creating the event listener. It now has access to the values of
-                                    // i and marker as they were during its creation
-                                    google.maps.event.addListener(marker, 'click', function() {
-                                        var blockBoth2 = positionBoth[i];
-                                        var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ new google.maps.LatLng(blockBoth2[0],blockBoth2[1])
-                                        });
-                                        infowindow.open(gMap, marker);
-                                    });
-                                    })(i, marker);
-
 
 
                                     }
@@ -391,12 +452,19 @@ Ext.define('PeopleMover.view.MyMap', {
                                 		infowindow.open(map,block);
                                 	});
 
+                                                    
+
 
 
 
                               	};
+                                //closestStop();
                                 maprender();
 
     }
+
+
+
+
 
 });

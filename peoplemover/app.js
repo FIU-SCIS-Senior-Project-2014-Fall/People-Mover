@@ -12,33 +12,46 @@ Ext.application({
     models: [
         'routeInfo',
         'UnitList',
-        'MapLocations'
+        'MapLocations',
+        'MiddleNorthModel',
+        'MiddleSouthModel',
+        'HighNorthModel',
+        'HighSouthModel'
     ],
     stores: [
         'listRoutes',
         'UnitListStore',
-        'MapStore'
+        'MapStore',
+        'MiddleSouthStore',
+        'MiddleNorthStore',
+        'HighNorthStore',
+        'HighSouthStore'
     ],
     views: [
         'RouteDetailsList',
-        'MyContainer2',
         'FeedBackView',
         'Problem',
         'requestStop',
         'TrolleyAlerts',
         'MyNavigationView',
-        'MyPanel1',
         'UnitListView',
         'MyMap',
         'LoginForm',
         'RegisterForm',
-        'MainView'
+        'MainView',
+        'MiddleSouthView',
+        'MiddleNorthView',
+        'HighNorthView',
+        'HighSouthView',
+        'AboutUs',
+        'EstTimeView'
     ],
     controllers: [
         'MyController',
         'UnitListController',
         'UserController',
-        'MapController'
+        'MapController',
+        'StopController'
     ],
     name: 'PeopleMover',
 

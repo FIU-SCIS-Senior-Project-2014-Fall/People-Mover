@@ -54,6 +54,19 @@
             },
             "name": "MyRestProxy1",
             "designerId": "859ecc53-4968-4281-a90a-db6770093299"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "unitID"
+            },
+            "name": "field28",
+            "designerId": "78a281f0-ba69-4e03-86c8-75e07d3905dc"
         }
     ]
 }

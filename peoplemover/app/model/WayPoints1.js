@@ -1,8 +1,4 @@
-/*
- * File: app/model/MapLocations.js
- */
-
-Ext.define('PeopleMover.model.MapLocations', {
+Ext.define('PeopleMover.model.Waypoints', {
     extend: 'Ext.data.Model',
 
     requires: [
@@ -13,21 +9,24 @@ Ext.define('PeopleMover.model.MapLocations', {
     config: {
         fields: [
             {
-                name: 'lastLatitude'
+                name: 'latitude'
             },
             {
-                name: 'lastLongitude'
+                name: 'longitude'
             },
             {
-                name: 'unitID'
+                name: 'stopId'
             },
             {
-                name: 'address'
+                name: 'wayID'
+            },
+            {
+                name: 'routeID'
             }
         ],
         proxy: {
             type: 'rest',
-            url: 'http://pm-dev.cs.fiu.edu:8080/ppmws/getunitlist',
+            url: 'http://pm-dev.cs.fiu.edu:8080/ppmws/getwaypoints?StopId=1&RouteId=1',
             useDefaultXhrHeader: false
         }
     }

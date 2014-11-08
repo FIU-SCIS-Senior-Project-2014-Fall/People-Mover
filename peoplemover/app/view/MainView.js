@@ -42,6 +42,7 @@ Ext.define('PeopleMover.view.MainView', {
                                 xtype: 'button',
                                 border: 1,
                                 height: '50px',
+                                itemId: 'bhighnorth',
                                 style: 'background: white',
                                 text: 'Palmetto High North Route'
                             },
@@ -49,6 +50,7 @@ Ext.define('PeopleMover.view.MainView', {
                                 xtype: 'button',
                                 border: 1,
                                 height: '50px',
+                                itemId: 'bhighsouth',
                                 style: 'background: white',
                                 text: 'Palmetto High South Route'
                             },
@@ -56,6 +58,7 @@ Ext.define('PeopleMover.view.MainView', {
                                 xtype: 'button',
                                 border: 1,
                                 height: '50px',
+                                itemId: 'bmiddlenorth',
                                 style: 'background: white',
                                 text: 'Palmetto Middle North Route'
                             },
@@ -63,6 +66,7 @@ Ext.define('PeopleMover.view.MainView', {
                                 xtype: 'button',
                                 border: 1,
                                 height: '50px',
+                                itemId: 'bmiddlesouth',
                                 style: 'background: white',
                                 text: 'Palmetto Middle South Route'
                             }
