@@ -234,20 +234,6 @@ Ext.define('PeopleMover.view.MyMap', {
                         longitude: close[1]
                     });
                 }
-                store = Ext.getStore('MapStore');
-                store.load();
-
-                store.each(function(record, index, length) {
-                    console.log('we got into the store');
-
-                    // Get position
-                    for(var r = 0; r < allStops.length; r++){
-                        var stops = allStops[r];
-
-                        var estimatedTime = find_estimated_distance( record.data.lastLatitude, record.data.lastLongitude, stops[0], stops[1] );
-                    }              
-
-                });
 
              var geo = Ext.create('Ext.util.Geolocation', {
               autoUpdate: true,
@@ -257,14 +243,10 @@ Ext.define('PeopleMover.view.MyMap', {
                         locationupdate: function (geo) {        
 
                             var center = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
-                           // Ext.getCmp('gMap').setData(center);
-                           var closest = find_closest_marker(geo.getLatitude(), geo.getLongitude());
+                            var closest = find_closest_marker(geo.getLatitude(), geo.getLongitude());
 
                            var closestLat = closest[0];
                            var closestLon = closest[1];
-
-                           //gMap.setCenter(new google.maps.LatLng( closestLat, closestLon ) );
-
 
                            var marker = new google.maps.Marker({map: gMap, position: new google.maps.LatLng( closestLat, closestLon ), clickable: true});
 
@@ -360,97 +342,6 @@ function find_closest_marker( lat1, lon1 ) {
                                 	        //1st stop 25.665225, -80.30050699999998
                                 	        var iconBase = 'resources/images/';
 
-
-                                	var positionMid= [
-                                	[25.683558, -80.302937], [25.679579, -80.314014], [25.674111, -80.310723],
-                                	[25.672324, -80.309774], [25.670047, -80.310594], [25.669206, -80.314628], [25.673928, -80.317830],
-                                	[25.668423, -80.318685],[25.666770, -80.311508],[25.659658, -80.303406],[25.657376, -80.318258],
-                					[25.655606, -80.314575],[25.651925, -80.313009],[25.654467, -80.318168],[25.655188, -80.327312],
-                					[25.651581, -80.324233],[25.651474, -80.327800],[25.651408, -80.329799],[25.643997, -80.330056],
-                					[25.644072, -80.325969],[25.644183, -80.321865],[25.645683, -80.321900],[25.644609, -80.307684],
-                					[25.647133, -80.305715],[25.649387, -80.301740],[25.650818, -80.305817],[25.655838, -80.306032],
-                					[25.647511, -80.293629]];
-
-                					var positionHigh = [
-                                        [25.653779, -80.290729],[25.655539, -80.290804],[25.647486, -80.293639],[25.650833, -80.305817],
-                                        [25.646519, -80.305731],[25.647196, -80.317854],[25.645668, -80.321910],[25.645117, -80.326008],
-                                        [25.645914, -80.326047],[25.644013, -80.330060],[25.647717, -80.329019],[25.648631, -80.330221],
-                                        [25.649666, -80.327764],[25.651407, -80.329754],[25.651460, -80.327796],[25.655198, -80.327260],
-                                        [25.655377, -80.322298],[25.661114, -80.316250],[25.659031, -80.325006],[25.662501, -80.323666],
-                                        [25.665944, -80.322421],[25.668420, -80.318673],[25.671978, -80.318802],[25.673951, -80.317826],
-                                        [25.669190, -80.314601],[25.672333, -80.309795],[25.679566, -80.314011],[25.681500, -80.311029],
-                                        [25.667100, -80.298287],[25.659692, -80.300003],[25.659650, -80.303408]
-
-                                    ];
-
-
-
-
-                                    
-
-
-                                	for(var i = 0; i < positionHigh.length; i++){
-                                		var block = positionHigh[i];
-                                		var marker = new google.maps.Marker({
-                                			map: gMap,
-                                			animation: google.maps.Animation.DROP,
-                                			position: new google.maps.LatLng(block[0],block[1]),
-                                			title:'Place number ' + i,
-                                            icon: iconBase + 'bus.png',
-
-
-                                		});
-
-
-
-                                	// Wrapping the event listener inside an anonymous function
-                                	// that we immediately invoke and passes the variable i to.
-                                	(function(i, marker) {
-                                	// Creating the event listener. It now has access to the values of
-                                	// i and marker as they were during its creation
-                                	google.maps.event.addListener(marker, 'click', function() {
-                                		var block = positionHigh[i];
-                                		var infowindow = new google.maps.InfoWindow({
-                                			content: ''+ new google.maps.LatLng(block[0],block[1])
-                                		});
-                                		infowindow.open(gMap, marker);
-                                	});
-                                	})(i, marker);
-
-
-
-                                	}
-
-                                    for(var i = 0; i < positionMid.length; i++){
-                                        var block2 = positionMid[i];
-                                        var marker = new google.maps.Marker({
-                                            map: gMap,
-                                            animation: google.maps.Animation.DROP,
-                                            position: new google.maps.LatLng(block2[0],block2[1]),
-                                            title:'Place number ' + i,
-                                            icon: iconBase + 'bus2.png'
-                                        });
-
-                                                // Wrapping the event listener inside an anonymous function
-                                    // that we immediately invoke and passes the variable i to.
-                                    (function(i, marker) {
-                                    // Creating the event listener. It now has access to the values of
-                                    // i and marker as they were during its creation
-                                    google.maps.event.addListener(marker, 'click', function() {
-                                        var block3 = positionMid[i];
-                                        var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getPosition()//new google.maps.LatLng(block3[0],block3[1])
-                                        });
-                                        infowindow.open(gMap, marker);
-                                    });
-                                    })(i, marker);
-
-
-                                    }
-
-                                	google.maps.event.addListener(block, 'click', function() {
-                                		infowindow.open(map,block);
-                                	});
 
                                                     
 
