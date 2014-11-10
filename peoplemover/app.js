@@ -12,6 +12,10 @@ Ext.application({
     models: [
         'routeInfo',
         'UnitList',
+        'WayPoints1',
+        'WayPoints2',
+        'WayPoints3',
+        'WayPoints4',
         'MapLocations',
         'MiddleNorthModel',
         'MiddleSouthModel',
@@ -20,6 +24,10 @@ Ext.application({
     ],
     stores: [
         'listRoutes',
+        'WayPointStore1',
+        'WayPointStore2',
+        'WayPointStore3',
+        'WayPointStore4',
         'UnitListStore',
         'MapStore',
         'MiddleSouthStore',

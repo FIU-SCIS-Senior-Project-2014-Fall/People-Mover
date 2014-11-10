@@ -33,13 +33,129 @@ Ext.define('PeopleMover.controller.MapController', {
 
     onMymapMaprender: function(map, gmap, eOpts) {
         var store, latLng, marker, midNorth, midSouth, highNorth, highSouth, i;
+        
         var iconBase = 'resources/images/';
         var gMap = this.getMapComponent();
         var map = Ext.getCmp('mymap').getMap();
-                // Get store
+        var midSouthWayPoints = new Array();
+        var midNorthWayPoints = new Array();
+        var highSouthWayPoints = new Array();
+        var highNorthWayPoints = new Array();
+
+                // Get store for Middle South WayPoints
+
+                waypointMidSouth = Ext.getStore('WayPointStore1');
+                waypointMidSouth.load();
+
+                waypointMidSouth.each(function(record,index,length){
+
+                    var x = 0;
+
+                   while(x < record.data.listwp.length){
+                        var temp = new google.maps.LatLng(record.get('listwp')[x].latitude, record.get('listwp')[x].longitude); 
+                        midSouthWayPoints.push(temp);
+                        x++;
+                    }
+
+                });
+                var pathMS = new google.maps.Polyline({
+                    path: midSouthWayPoints,
+                    strokeColor: '#f08616',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 5
+                });
+               pathMS.setMap(map);
+
+               midSouthWayPoints = [];
+
+
+            // Get Store for Middle North WayPoints
+                waypointMidNorth = Ext.getStore('WayPointStore2');
+                waypointMidNorth.load();
+
+                waypointMidNorth.each(function(record,index,length){
+
+                    var x = 0;
+
+                   while(x < record.data.listwp.length){
+                        var temp = new google.maps.LatLng(record.get('listwp')[x].latitude, record.get('listwp')[x].longitude); 
+                        midNorthWayPoints.push(temp);
+                        x++;
+                    }
+
+                });
+                var pathMN = new google.maps.Polyline({
+                    path: midNorthWayPoints,
+                    strokeColor: '#f08616',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 5
+                });
+               pathMN.setMap(map);
+
+               midNorthWayPoints = [];
+
+
+               //Get Store for High South WayPoints
+
+                waypointHighSouth = Ext.getStore('WayPointStore3');
+                waypointHighSouth.load();
+
+                waypointHighSouth.each(function(record,index,length){
+
+                    var x = 0;
+
+                   while(x < record.data.listwp.length){
+                        var temp = new google.maps.LatLng(record.get('listwp')[x].latitude, record.get('listwp')[x].longitude); 
+                        highSouthWayPoints.push(temp);
+                        // console.log(record.get('listwp')[x].latitude+','+ record.get('listwp')[x].longitude);
+                        x++;
+                    }
+
+                });
+                var pathHS = new google.maps.Polyline({
+                    path: highSouthWayPoints,
+                    strokeColor: '#40c5e6',
+                    strokeOpacity: 0.65,
+                    strokeWeight: 5
+                });
+               pathHS.setMap(map);
+
+               highSouthWayPoints = [];
+
+
+
+                //Get Store for High South WayPoints
+
+                waypointHighNorth = Ext.getStore('WayPointStore4');
+                waypointHighNorth.load();
+
+                waypointHighNorth.each(function(record,index,length){
+
+                    var x = 0;
+
+                   while(x < record.data.listwp.length){
+                        var temp = new google.maps.LatLng(record.get('listwp')[x].latitude, record.get('listwp')[x].longitude); 
+                        highNorthWayPoints.push(temp);
+                        //console.log(record.get('listwp')[x].latitude+','+ record.get('listwp')[x].longitude);
+                        x++;
+                    }
+
+                });
+                var pathHN = new google.maps.Polyline({
+                    path: highNorthWayPoints,
+                    strokeColor: '#40c5e6',
+                    strokeOpacity: 0.65,
+                    strokeWeight: 5
+                });
+               pathHN.setMap(map);
+
+               highNorthWayPoints = [];
+
+
                 store = Ext.getStore('MapStore');
                 store.load();
-                                    trolleys = [];
+
+                trolleys = [];
 
 
                 //get store for the stops
@@ -52,6 +168,8 @@ Ext.define('PeopleMover.controller.MapController', {
                 highSouth.load();
                 highNorth.load();
 
+
+                // shows the stops for High School South Route
                 highSouth.each(function(record,index,length) {
 
                     var x = new google.maps.LatLng(record.data.latitude, record.data.longitude);
@@ -69,7 +187,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
                                         var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle()//new google.maps.LatLng(block3[0],block3[1])
+                                            content: ''+ marker.getTitle() + '<br/>Scheduled Time ' + record.data.scheduledTime//new google.maps.LatLng(block3[0],block3[1])
                                         });
                                         infowindow.open(map, marker);
                                     });
@@ -79,6 +197,7 @@ Ext.define('PeopleMover.controller.MapController', {
 
                 });
 
+                // shows the stops for High School North Route
                 highNorth.each(function(record,index,length) {
 
                     var x = new google.maps.LatLng(record.data.latitude, record.data.longitude);
@@ -106,7 +225,7 @@ Ext.define('PeopleMover.controller.MapController', {
 
                 });
 
-
+                // shows the stops for Middle School South Route
                 midSouth.each(function(record,index,length) {
 
                     var x = new google.maps.LatLng(record.data.latitude, record.data.longitude);
@@ -134,6 +253,7 @@ Ext.define('PeopleMover.controller.MapController', {
 
                 });
 
+                // shows the stops for Middle School North Route
                 midNorth.each(function(record,index,length) {
 
                     var x = new google.maps.LatLng(record.data.latitude, record.data.longitude);
@@ -193,14 +313,6 @@ Ext.define('PeopleMover.controller.MapController', {
                         //var estimatedTime = find_estimated_distance( record.data.lastLatitude, record.data.lastLongitude, stops[0], stops[1] );
 
                         var m = new google.maps.LatLng(record.data.lastLatitude, record.data.lastLongitude)
-                       // var m2 = new google.maps.LatLng(stops[0],stops[1])
-
-                        //meters just using this function
-                        //the multiplication is to get from meters to miles
-
-                        // console.log('the distances are: ' + google.maps.geometry.spherical.computeDistanceBetween(m, m2)*0.000621371 + ' meters ' +
-                        //   'for Trolley ' + record.data.unitID)
-                    //} 
 
                     // Create marker
                     marker = new google.maps.Marker({
@@ -217,7 +329,8 @@ Ext.define('PeopleMover.controller.MapController', {
 
                 for( i = 0; i < trolleys.length; i++)
                 {
-                    var contentString = record.data.address;
+                    var contentString = 'Trolley ID: ' + record.data.unitID + '<br/>Location: ' + record.data.address;
+
 
                     var infowindow = new google.maps.InfoWindow({
                           content: contentString
@@ -290,7 +403,7 @@ Ext.define('PeopleMover.controller.MapController', {
                     for( j = 0; j < trolley.length; j++)
                 {
                     var contentString = 'Trolley ID: ' + record.data.unitID + '<br/>Location: ' + record.data.address;
-
+                    //console.log(record.data.address);
                     var infowindow = new google.maps.InfoWindow({
                           content: contentString
                       });
@@ -307,9 +420,6 @@ Ext.define('PeopleMover.controller.MapController', {
 
                     task.delay(10000);
                 };
-
-
-
                 autocallFunction();
     }
 
@@ -317,9 +427,10 @@ Ext.define('PeopleMover.controller.MapController', {
 });
 
 
+
 function find_estimated_distance( lat1, lon1, lat2, lon2 ) {    
 
-      var R = 6371; // Radius of the earth in km
+    var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
   var dLon = deg2rad(lon2-lon1); 
   var a = 

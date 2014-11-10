@@ -15,13 +15,15 @@
         "models": [
             "routeInfo",
             "UnitList",
-            "MapLocations"
+            "MapLocations",
+            "Waypoints1"
         ],
         "name": "PeopleMover",
         "stores": [
             "listRoutes",
             "UnitListStore",
-            "MapStore"
+            "MapStore",
+            "MyWaypoints1"
         ],
         "views": [
             "RouteDetailsList",
