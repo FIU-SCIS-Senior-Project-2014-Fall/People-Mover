@@ -531,6 +531,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
+  "Ext.log.Base": [],
+  "Ext.log.Logger": [],
+  "Ext.log.filter.Filter": [],
+  "Ext.log.filter.Priority": [],
+  "Ext.log.formatter.Default": [],
+  "Ext.log.formatter.Formatter": [],
+  "Ext.log.formatter.Identity": [],
+  "Ext.log.writer.Console": [],
+  "Ext.log.writer.DocumentTitle": [],
+  "Ext.log.writer.Remote": [],
+  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -655,7 +666,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "PeopleMover.view.Main": []
+  "PeopleMover.controller.MyController": [],
+  "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.listRoutes": [],
+  "PeopleMover.view.MyContainer": [],
+  "PeopleMover.view.MyContainer2": [],
+  "PeopleMover.view.MyFormPanel1": [],
+  "PeopleMover.view.MyNavigationView": [],
+  "PeopleMover.view.MyPanel1": [],
+  "PeopleMover.view.Problem": [],
+  "PeopleMover.view.RouteDetailsList": [],
+  "PeopleMover.view.TrolleyAlerts": [],
+  "PeopleMover.view.requestStop": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1236,6 +1258,17 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
+  "Ext.log.Base": [],
+  "Ext.log.Logger": [],
+  "Ext.log.filter.Filter": [],
+  "Ext.log.filter.Priority": [],
+  "Ext.log.formatter.Default": [],
+  "Ext.log.formatter.Formatter": [],
+  "Ext.log.formatter.Identity": [],
+  "Ext.log.writer.Console": [],
+  "Ext.log.writer.DocumentTitle": [],
+  "Ext.log.writer.Remote": [],
+  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -1376,8 +1409,31 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "PeopleMover.view.Main": [
+  "PeopleMover.controller.MyController": [],
+  "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.listRoutes": [],
+  "PeopleMover.view.MyContainer": [
     "widget.main"
+  ],
+  "PeopleMover.view.MyContainer2": [
+    "widget.aboutUs"
+  ],
+  "PeopleMover.view.MyFormPanel1": [
+    "widget.contactUs"
+  ],
+  "PeopleMover.view.MyNavigationView": [],
+  "PeopleMover.view.MyPanel1": [],
+  "PeopleMover.view.Problem": [
+    "widget.problem"
+  ],
+  "PeopleMover.view.RouteDetailsList": [
+    "widget.DetailList"
+  ],
+  "PeopleMover.view.TrolleyAlerts": [
+    "widget.alerts"
+  ],
+  "PeopleMover.view.requestStop": [
+    "widget.requestStop"
   ]
 });
 

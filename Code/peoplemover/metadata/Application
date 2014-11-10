@@ -1,0 +1,65 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "MyController",
+            "UnitListController",
+            "UserController",
+            "MapController"
+        ],
+        "models": [
+            "routeInfo",
+            "UnitList",
+            "MapLocations",
+            "Waypoints1"
+        ],
+        "name": "PeopleMover",
+        "stores": [
+            "listRoutes",
+            "UnitListStore",
+            "MapStore",
+            "MyWaypoints1"
+        ],
+        "views": [
+            "RouteDetailsList",
+            "MyContainer2",
+            "FeedBackView",
+            "Problem",
+            "requestStop",
+            "TrolleyAlerts",
+            "MyNavigationView",
+            "MyPanel1",
+            "UnitListView",
+            "MyMap",
+            "LoginForm",
+            "RegisterForm",
+            "MainView"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "Ext.fly('appLoadingImage').destroy();",
+                    "      Ext.fly('appLoadingIndicator').destroy();"
+                ]
+            },
+            "name": "launch",
+            "designerId": "c6f70a42-59d7-4511-9cf3-59f91e0c92d0"
+        }
+    ]
+}
