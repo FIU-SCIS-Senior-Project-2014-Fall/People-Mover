@@ -20,6 +20,7 @@ Ext.define('PeopleMover.view.MainView', {
     requires: [
         'PeopleMover.view.UnitListView',
         'PeopleMover.view.MyMap',
+        'PeopleMover.view.TrolleyAlerts',
         'Ext.tab.Panel',
         'Ext.tab.Bar',
         'Ext.Button',
@@ -94,8 +95,8 @@ Ext.define('PeopleMover.view.MainView', {
                         iconCls: 'maps'
                     },
                     {
-                        xtype: 'container',
-                        title: 'Service Times',
+                        xtype: 'trolleyalerts',
+                        title: 'Trolley Alerts',
                         iconCls: 'info'
                     },
                     {
@@ -147,7 +148,7 @@ Ext.define('PeopleMover.view.MainView', {
                                 itemId: 'trolleyAlerts',
                                 style: 'background:white',
                                 iconCls: 'info',
-                                text: 'Trolley Alerts'
+                                text: 'Service Times'
                             },
                             {
                                 xtype: 'button',
@@ -184,7 +185,7 @@ Ext.define('PeopleMover.view.MainView', {
                     items: [
                         {
                             xtype: 'image',
-                            height: 50,
+                            height: 52,
                             width: 150,
                             src: 'resources/images/word_pvlogo.png'
                         }

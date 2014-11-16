@@ -162,7 +162,7 @@
                     "masterInstanceId": "5d7dc174-2f91-48db-9505-ad621e7718a5"
                 },
                 {
-                    "type": "Ext.Container",
+                    "type": "linkedinstance",
                     "reference": {
                         "name": "items",
                         "type": "array"
@@ -170,10 +170,11 @@
                     "codeClass": null,
                     "userConfig": {
                         "iconCls": "info",
-                        "title": "Service Times"
+                        "title": "Trolley Alerts"
                     },
-                    "name": "MyContainer4",
-                    "designerId": "4d61ffb7-df34-4e60-b13d-5e7de932458c"
+                    "name": "trolleyalerts",
+                    "designerId": "9b0cc99a-9aba-4fcd-8b0b-a40accbe617e",
+                    "masterInstanceId": "d1e32daf-2e21-4e25-b423-422e035e308f"
                 },
                 {
                     "type": "Ext.Container",
@@ -282,7 +283,7 @@
                                 "iconCls": "info",
                                 "itemId": "trolleyAlerts",
                                 "style": "background:white",
-                                "text": "Trolley Alerts"
+                                "text": "Service Times"
                             },
                             "name": "MyButton8",
                             "designerId": "d2439bba-b3c4-4d95-a615-c6480c0400c6"
@@ -367,7 +368,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "docked": null,
-                                "height": 50,
+                                "height": 52,
                                 "src": "resources/images/word_pvlogo.png",
                                 "width": 150
                             },

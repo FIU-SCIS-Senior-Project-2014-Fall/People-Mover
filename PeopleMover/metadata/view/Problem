@@ -74,6 +74,61 @@
                     },
                     "name": "MyTextArea1",
                     "designerId": "a1f0e5fd-9c7c-48e4-8935-81eb38d2e66c"
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout": "hbox"
+                    },
+                    "name": "MyContainer",
+                    "designerId": "af32cbc5-d526-4c45-8524-02e1e6fa0dca",
+                    "cn": [
+                        {
+                            "type": "Ext.Img",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "centered": null,
+                                "height": 200,
+                                "id": "pictureBox",
+                                "itemId": "itemPictureBox",
+                                "src": "resources/images/logo.png",
+                                "width": 200
+                            },
+                            "name": "MyImg",
+                            "designerId": "56f37009-14ac-4a74-8959-b3566460f720"
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|uiInterfaceName": "decline-round",
+                                "docked": null,
+                                "height": 201,
+                                "iconAlign": "top",
+                                "iconCls": "compose",
+                                "id": "bPicture",
+                                "itemId": "itemBPicture",
+                                "text": "Make<br>a<br>Picture",
+                                "ui": "decline-round",
+                                "width": 99
+                            },
+                            "name": "MyButton",
+                            "designerId": "eac5a7e0-4f62-46b5-b9d4-30aff697354d"
+                        }
+                    ]
                 }
             ]
         },

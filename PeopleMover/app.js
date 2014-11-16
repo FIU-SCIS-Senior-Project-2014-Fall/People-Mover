@@ -20,11 +20,18 @@ Ext.Loader.setConfig({
 
 
 Ext.application({
+
+    requires: [
+        'Ext.device.Camera'
+    ],
     models: [
         'routeInfo',
         'UnitList',
         'MapLocations',
-        'MiddleNorthModel'
+        'MiddleNorthModel',
+        'HighNorthModel',
+        'HighSouthModel',
+        'MiddleSouthModel'
     ],
     stores: [
         'listRoutes',
@@ -37,7 +44,6 @@ Ext.application({
         'FeedBackView',
         'Problem',
         'requestStop',
-        'TrolleyAlerts',
         'MyNavigationView',
         'UnitListView',
         'MyMap',
@@ -46,14 +52,17 @@ Ext.application({
         'MainView',
         'MiddleNorthView',
         'AboutUs',
-        'EstTimeView'
+        'EstTimeView',
+        'ServiceTimes',
+        'TrolleyAlerts'
     ],
     controllers: [
         'MyController',
         'UnitListController',
         'UserController',
         'MapController',
-        'StopController'
+        'StopController',
+        'AlertsController'
     ],
     name: 'PeopleMover',
 

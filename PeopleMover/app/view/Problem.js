@@ -21,6 +21,7 @@ Ext.define('PeopleMover.view.Problem', {
         'Ext.form.FieldSet',
         'Ext.field.Email',
         'Ext.field.TextArea',
+        'Ext.Img',
         'Ext.Button'
     ],
 
@@ -51,6 +52,31 @@ Ext.define('PeopleMover.view.Problem', {
                         labelWrap: true,
                         name: 'infoBox',
                         required: true
+                    },
+                    {
+                        xtype: 'container',
+                        layout: 'hbox',
+                        items: [
+                            {
+                                xtype: 'image',
+                                height: 200,
+                                id: 'pictureBox',
+                                itemId: 'itemPictureBox',
+                                width: 200,
+                                src: 'resources/images/logo.png'
+                            },
+                            {
+                                xtype: 'button',
+                                height: 201,
+                                id: 'bPicture',
+                                itemId: 'itemBPicture',
+                                ui: 'decline-round',
+                                width: 99,
+                                iconAlign: 'top',
+                                iconCls: 'compose',
+                                text: 'Make<br>a<br>Picture'
+                            }
+                        ]
                     }
                 ]
             },

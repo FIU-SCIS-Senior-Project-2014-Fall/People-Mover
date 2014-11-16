@@ -35,6 +35,9 @@ Ext.define('PeopleMover.controller.StopController', {
             },
             "middlenorthview": {
                 itemtap: 'onListItemTap'
+            },
+            "esttimeview #bfavorite": {
+                tap: 'onButtonTap'
             }
         }
     },
@@ -63,11 +66,11 @@ Ext.define('PeopleMover.controller.StopController', {
         //mainView = this.getMainView();
 
         //Ext.Msg.alert("Info","clicked");
-        console.log(record.data);
+        //console.log(record.data);
         //Ext.getStore('MiddleNorthStore').clearFilter();
         //this.currentstop = record.get("street");
         //Ext.getStore('MiddleNorthStore').filter("name",this.currentstop);
-        console.log(dataview.title);
+        //console.log(dataview.title);
 
         var estTime = Ext.create('PeopleMover.view.EstTimeView',
                                 {
@@ -87,6 +90,24 @@ Ext.define('PeopleMover.controller.StopController', {
         });*/
 
 
+    },
+
+    onButtonTap: function(button, e, eOpts) {
+        if(localStorage.getItem("ppmtoken")===null)
+            {
+                var mybutton = this.down('#bfavorite');
+                        mybutton.setText('Save as Favorite');
+                        mybutton.enable();
+                   var loginForm = Ext.create('widget.loginform'),	// Login form
+                            mainView = this.getMainView();				// Main view
+
+                        // Navigate to login
+                        mainView.push({
+                            xtype: "loginform",
+                            title: "Login"
+                        });
+
+            }
     }
 
 });

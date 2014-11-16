@@ -27,6 +27,10 @@
          ],
          "theme": "Default",
          "path": "resources/css/sencha-touch-ccc92caf-3edd-40a7-b949-333b6cad7e99.css"
+      },
+      {
+         "path": "resources/css/pepe.css",
+         "update": "delta"
       }
    ],
    "appCache": {

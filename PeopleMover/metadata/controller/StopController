@@ -81,11 +81,11 @@
                     "//mainView = this.getMainView();",
                     "",
                     "//Ext.Msg.alert(\"Info\",\"clicked\");",
-                    "console.log(record.data);",
+                    "//console.log(record.data);",
                     "//Ext.getStore('MiddleNorthStore').clearFilter();",
                     "//this.currentstop = record.get(\"street\");",
                     "//Ext.getStore('MiddleNorthStore').filter(\"name\",this.currentstop);",
-                    "console.log(dataview.title);",
+                    "//console.log(dataview.title);",
                     "",
                     "var estTime = Ext.create('PeopleMover.view.EstTimeView',",
                     "                        {",
@@ -110,6 +110,39 @@
             },
             "name": "onListItemTap",
             "designerId": "343b8d5a-e69f-407c-adab-97b92a1d25ef"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "esttimeview #bfavorite",
+                "designer|targetType": "Ext.Button",
+                "fn": "onButtonTap",
+                "implHandler": [
+                    "if(localStorage.getItem(\"ppmtoken\")===null)",
+                    "    {",
+                    "        var mybutton = this.down('#bfavorite');",
+                    "                mybutton.setText('Save as Favorite');",
+                    "                mybutton.enable();",
+                    "           var loginForm = Ext.create('widget.loginform'),\t// Login form",
+                    "                    mainView = this.getMainView();\t\t\t\t// Main view",
+                    "",
+                    "                // Navigate to login",
+                    "                mainView.push({",
+                    "                    xtype: \"loginform\",",
+                    "                    title: \"Login\"",
+                    "                });",
+                    "",
+                    "    }"
+                ],
+                "name": "tap"
+            },
+            "name": "onButtonTap",
+            "designerId": "69f58e17-c230-40ce-8484-948a98e0cff8"
         }
     ]
 }
