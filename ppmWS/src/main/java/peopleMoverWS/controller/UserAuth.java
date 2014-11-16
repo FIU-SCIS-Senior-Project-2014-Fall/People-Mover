@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import peopleMoverDB.dao.UserDAO;
 import peopleMoverDB.model.User;
 import peopleMoverWS.util.EmailManager;
+import peopleMoverWS.util.PropertyReader;
 import peopleMoverWS.model.FormattedMessage;
 
 @RestController
@@ -26,8 +27,12 @@ public class UserAuth {
 	{;
 		FormattedMessage fMessage = new FormattedMessage();
 		boolean validemail = EmailManager.emailCheck(email);
+		String filename = "ppmWS.properties";
+		PropertyReader propReader = new PropertyReader(filename);
+		String toEmail = propReader.getProperty("emailreceiver");
 		if(validemail)
 		{
+			
 			//Get the Spring Context
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			//To use JdbcTemplate
@@ -37,15 +42,26 @@ public class UserAuth {
 			loginUser.setToken(token);
 			loginUser.setEmail(email);
 			loginUser.setPassword(pass);
+			if(toEmail.equalsIgnoreCase(email))
+			{
+			loginUser.setIsadmin("1");
+			}
+			else
+			{
+				loginUser.setIsadmin("0");
+			}
 			if(isLogin.equalsIgnoreCase("true"))
 			{
-				String newtoken  = loginUserDAO.getByEmail(email, pass);
+				User user  = loginUserDAO.getByEmail(email, pass);
 				ctx.close();
 				
-				if(!newtoken.isEmpty())
+				if(!user.getToken().isEmpty())
 				{
-					fMessage.setMessage(newtoken);
-					fMessage.setCode("1");
+					fMessage.setMessage(user.getToken());
+					if(toEmail.equalsIgnoreCase(email))
+						fMessage.setCode("admin");
+					else 
+						fMessage.setCode("1");
 					return fMessage;
 				}
 				else
@@ -62,7 +78,10 @@ public class UserAuth {
 				if(out!=0)
 					{
 					fMessage.setMessage(token);
-					fMessage.setCode("1");
+					if(toEmail.equalsIgnoreCase(email))
+						fMessage.setCode("admin");
+					else 
+						fMessage.setCode("1");
 					return fMessage;
 					}
 				else

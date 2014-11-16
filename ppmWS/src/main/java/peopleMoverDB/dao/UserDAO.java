@@ -9,9 +9,9 @@ public interface UserDAO {
 	    public int save(User user);
 	    //Read
 	    public User getByToken(String token);
-	    public String getByEmail(String email,String pass);
+	    public User getByEmail(String email,String pass);
 	    //Update
-	    public int update(User user);
+//	    public int update(User user);
 	    //Delete
 	    public int deleteByToken(String token);
 	    //Get All
