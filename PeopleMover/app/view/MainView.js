@@ -96,6 +96,8 @@ Ext.define('PeopleMover.view.MainView', {
                     },
                     {
                         xtype: 'trolleyalerts',
+                        id: 'btrolleyalerts',
+                        itemId: 'btrolleyalerts',
                         title: 'Trolley Alerts',
                         iconCls: 'info'
                     },

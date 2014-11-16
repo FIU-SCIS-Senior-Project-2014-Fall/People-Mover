@@ -170,6 +170,8 @@
                     "codeClass": null,
                     "userConfig": {
                         "iconCls": "info",
+                        "id": "btrolleyalerts",
+                        "itemId": "btrolleyalerts",
                         "title": "Trolley Alerts"
                     },
                     "name": "trolleyalerts",

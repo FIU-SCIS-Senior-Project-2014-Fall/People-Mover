@@ -113,7 +113,17 @@ Ext.define('PeopleMover.controller.AlertsController', {
 
                                             var jsonResp = Ext.JSON.decode(resp.responseText);
                                                //Ext.Msg.alert("Info","message:"+jsonResp.message);
+                                            var alert = jsonResp.message;
                                             alertfield.setValue(jsonResp.message);
+
+                                            if(alert!=="Not Defined Alert")
+                                                {
+                                   var alertbutton = Ext.getCmp('myTabPanel').getTabBar().getComponent(3);
+                                                        //Ext.getCmp('btrolleyalerts');
+                                                        //Ext.create('widget.mainview').down('#btrolleyalerts');
+                                                    alertbutton.setBadgeText("New");
+
+                                                }
 
         //                                     //get back
         //                                          mainView.pop();
