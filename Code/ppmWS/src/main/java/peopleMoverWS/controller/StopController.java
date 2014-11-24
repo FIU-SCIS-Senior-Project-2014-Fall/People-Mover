@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import peopleMoverDB.dao.StopsDAO;
-import peopleMoverDB.dao.UserDAO;
 import peopleMoverDB.model.Stops;
 
 

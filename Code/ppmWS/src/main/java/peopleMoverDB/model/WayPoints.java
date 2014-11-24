@@ -4,6 +4,13 @@ public class WayPoints {
 private String WayID;
 private String StopId;
 private String RouteId;
+private String Wayorder;
+public String getWayorder() {
+	return Wayorder;
+}
+public void setWayorder(String wayorder) {
+	Wayorder = wayorder;
+}
 public String getRouteId() {
 	return RouteId;
 }

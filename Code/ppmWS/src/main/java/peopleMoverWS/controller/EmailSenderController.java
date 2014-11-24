@@ -1,12 +1,13 @@
 package peopleMoverWS.controller;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
+import java.io.IOException;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import peopleMoverDB.dao.UserDAO;
-import peopleMoverDB.model.User;
 import peopleMoverWS.model.FormattedMessage;
 import peopleMoverWS.util.EmailManager;
 import peopleMoverWS.util.EmailSender;
@@ -16,16 +17,21 @@ import peopleMoverWS.util.PropertyReader;
 @RestController
 public class EmailSenderController {
 	@RequestMapping("/sendemail")
-	public FormattedMessage sendEmail(@RequestParam(value="name", required=true)String name,@RequestParam(value="type", required=true)String type,@RequestParam(value="email", required=true) String email,@RequestParam(value="message", required=true) String message) 
+	public FormattedMessage sendEmail(@RequestParam(value="name", required=true)String name,
+			@RequestParam(value="type", required=true)String type,
+			@RequestParam(value="email", required=true) String email,
+			@RequestParam(value="message", required=true) String message,
+			@RequestParam(value="attach", required=false) final String attachment
+			) 
 	{
 
 		FormattedMessage fMessage;
-		fMessage = sendEmailCx(name,type,email, message);
+		fMessage = sendEmailCx(name,type,email, message,attachment);
 		
 		
 		return fMessage ;
 	}
-	private FormattedMessage sendEmailCx(String name,String type,String email, String message)
+	private FormattedMessage sendEmailCx(String name,String type,String email, String message, String attachment)
 	{
 		FormattedMessage fMessage = new FormattedMessage();
 		boolean validemail = EmailManager.emailCheck(email);
@@ -49,7 +55,15 @@ public class EmailSenderController {
 			}
 			EmailSender emailsender = new EmailSender(emailhost,emailport,emailusername, emailpassword);
 			
-			boolean sent = emailsender.Send(email, "rjmartinez23@gmail.com", "From:"+name+" "+type, message);
+			String toEmail = propReader.getProperty("emailreceiver");
+			boolean sent=false;
+			
+				try {
+					sent = emailsender.Send(email, toEmail, type+"-From:"+name+" ", message, attachment);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			
 			if(sent)
 			{

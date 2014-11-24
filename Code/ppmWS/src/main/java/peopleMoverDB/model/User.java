@@ -5,6 +5,7 @@ public class User {
 private String token;
 private String email;
 private String password;
+private String isadmin;
 public String getToken() {
 	return token;
 }
@@ -23,6 +24,13 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
+public String getIsadmin() {
+	return isadmin;
+}
+public void setIsadmin(String isadmin) {
+	this.isadmin = isadmin;
+}
+
 
 	
 }
