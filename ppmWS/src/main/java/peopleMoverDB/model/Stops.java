@@ -7,6 +7,13 @@ private String StopId;
 private String RouteId;
 private String Street;
 private String ScheduledTime;
+private String Wayorder;
+public String getWayorder() {
+	return Wayorder;
+}
+public void setWayorder(String wayorder) {
+	Wayorder = wayorder;
+}
 public String getLatitude() {
 	return Latitude;
 }
