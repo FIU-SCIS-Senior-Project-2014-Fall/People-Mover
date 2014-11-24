@@ -6,6 +6,7 @@ Ext.define('PeopleMover.controller.MapController', {
     extend: 'Ext.app.Controller',
 
     requires: [
+        'Ext.JSON',
         'Ext.util.DelayedTask'
     ],
 
@@ -17,18 +18,346 @@ Ext.define('PeopleMover.controller.MapController', {
             'MapStore'
         ],
         views: [
-            'MyMap'
+            'MyMap',
+            'MainView'
         ],
 
         refs: {
-            mapComponent: '#mymap'
+            mapComponent: '#mymap',
+            nearMeButton: '#nearme',
+            nearMeRoute: '#bhighnorthRoute',
+            nearMeRoute2: '#bhighsouthRoute',
+            nearMeRoute3: '#bmiddlenorthRoute',
+            nearMeRoute4: '#bmiddlesouthRoute' 
+
         },
 
         control: {
             "#mymap": {
                 maprender: 'onMymapMaprender'
+            },
+            "#nearme": {
+                tap: 'onButtonClick'
+            },
+            "#bhighnorthRoute":{
+                tap: 'showNearestestStopHighNorth'
+            },
+            "#bhighsouthRoute":{
+                tap: 'showNearestestStopHighSouth'
+            },
+            "#bmiddlenorthRoute":{
+                tap: 'showNearestestStopMidNorth'
+            },
+            "#bmiddlesouthRoute":{
+                tap: 'showNearestestStopMidSouth'
             }
         }
+    },
+
+    showNearestestStopHighNorth: function(button, map, gmap, eOpts) {
+        var map = Ext.getCmp('mymap').getMap();
+
+        var geo = Ext.create('Ext.util.Geolocation', {
+              autoUpdate: true,
+
+                    listeners: {
+                        locationupdate: function (geo) {        
+
+                            var directionsDisplay = new google.maps.DirectionsRenderer();
+                            var directionsService = new google.maps.DirectionsService();
+
+                            var center = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
+                            var closest = near_meHighNorth(geo.getLatitude(), geo.getLongitude());
+
+                           var closestLat = closest[0];
+                           var closestLon = closest[1];
+
+                           var location = new google.maps.LatLng(closestLat, closestLon);
+
+
+                           var marker = new google.maps.Marker({map: map, position: new google.maps.LatLng( closestLat, closestLon ), clickable: true});
+
+                            marker.info = new google.maps.InfoWindow({
+                              content: '<b>this is the closest location</b>'
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function() {
+                              marker.info.open(map, marker);
+                            });
+
+                            // directionsDisplay.setMap(map);
+
+                            // var request = {
+                            //     origin: center,
+                            //     destination: location,
+                            //     travelMode: google.maps.TravelMode.DRIVING
+                            // };
+
+                            // directionsService.route(request, function(result, status){
+                            //     //console.log(status);
+                            //     if(status = google.maps.DirectionsStatus.OK){
+                            //         console.log(result);
+                            //         directionsDisplay.setDirections(result);
+                            //     }
+                            // });
+
+
+                            //Ext.getCmp('nearme').hide();
+                            //Ext.getCmp('hideButton').show();
+                        },
+
+
+
+                        locationerror: function (geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+
+                            if (bTimeout) {
+                                alert('Timeout occurred.');
+                            } 
+                            else {
+                                alert('Error occurred.');
+                            }
+
+                }
+
+            }
+
+        });
+
+        var overlay = Ext.getCmp('overlay').hide();
+    },
+    showNearestestStopHighSouth: function(button, map, gmap, eOpts) {
+        var map = Ext.getCmp('mymap').getMap();
+        highSouth = Ext.getStore('HighSouthStore');
+        highSouth.load();
+    
+        var geo = Ext.create('Ext.util.Geolocation', {
+              autoUpdate: true,
+
+                    listeners: {
+                        locationupdate: function (geo) {        
+
+                            var directionsDisplay = new google.maps.DirectionsRenderer();
+                            var directionsService = new google.maps.DirectionsService();
+
+                            var center = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
+                            var closest = near_meHighSouth(geo.getLatitude(), geo.getLongitude());
+
+                           var closestLat = closest[0];
+                           var closestLon = closest[1];
+
+                           var location = new google.maps.LatLng(closestLat, closestLon);
+
+                           
+
+                           var marker = new google.maps.Marker({map: map, position: new google.maps.LatLng( closestLat, closestLon ), clickable: true});
+
+                           if(marker.title == 'test'){
+                            console.log('it worked');
+                           }
+                            marker.info = new google.maps.InfoWindow({
+                              content: '<b>this is the closest location</b>'
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function() {
+                              marker.info.open(map, marker);
+                            });
+
+                            // directionsDisplay.setMap(map);
+
+                            // var request = {
+                            //     origin: center,
+                            //     destination: location,
+                            //     travelMode: google.maps.TravelMode.DRIVING
+                            // };
+
+                            // directionsService.route(request, function(result, status){
+                            //     //console.log(status);
+                            //     if(status = google.maps.DirectionsStatus.OK){
+                            //         console.log(result);
+                            //         directionsDisplay.setDirections(result);
+                            //     }
+                            // });
+
+
+                            //Ext.getCmp('nearme').hide();
+                            //Ext.getCmp('hideButton').show();
+                        },
+
+
+
+                        locationerror: function (geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+
+                            if (bTimeout) {
+                                alert('Timeout occurred.');
+                            } 
+                            else {
+                                alert('Error occurred.');
+                            }
+
+                }
+
+            }
+
+        });
+        var overlay = Ext.getCmp('overlay').hide();
+
+    },
+    showNearestestStopMidNorth: function(button, map, gmap, eOpts) {
+        var map = Ext.getCmp('mymap').getMap();
+        midNorth = Ext.getStore('MiddleNorthStore');
+        midNorth.load();
+
+
+        var geo = Ext.create('Ext.util.Geolocation', {
+              autoUpdate: true,
+
+                    listeners: {
+                        locationupdate: function (geo) {        
+
+                            var directionsDisplay = new google.maps.DirectionsRenderer();
+                            var directionsService = new google.maps.DirectionsService();
+
+                            var center = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
+                            var closest = near_meMidNorth(geo.getLatitude(), geo.getLongitude());
+
+                           var closestLat = closest[0];
+                           var closestLon = closest[1];
+
+                           var location = new google.maps.LatLng(closestLat, closestLon);
+
+
+                           var marker = new google.maps.Marker({id: 'test', map: map, position: new google.maps.LatLng( closestLat, closestLon ), clickable: true, title: 'test'});
+
+                            marker.info = new google.maps.InfoWindow({
+                              content: '<b>this is the closest location</b>'
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function() {
+                              marker.info.open(map, marker);
+                            });
+
+                            // directionsDisplay.setMap(map);
+
+                            // var request = {
+                            //     origin: center,
+                            //     destination: location,
+                            //     travelMode: google.maps.TravelMode.DRIVING
+                            // };
+
+                            // directionsService.route(request, function(result, status){
+                            //     //console.log(status);
+                            //     if(status = google.maps.DirectionsStatus.OK){
+                            //         console.log(result);
+                            //         directionsDisplay.setDirections(result);
+                            //     }
+                            // });
+
+
+                            //Ext.getCmp('nearme').hide();
+                            //Ext.getCmp('hideButton').show();
+                        },
+
+
+
+                        locationerror: function (geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+
+                            if (bTimeout) {
+                                alert('Timeout occurred.');
+                            } 
+                            else {
+                                alert('Error occurred.');
+                            }
+
+                }
+
+            }
+
+        });
+        var overlay = Ext.getCmp('overlay').hide();
+    },
+    showNearestestStopMidSouth: function(button, map, gmap, eOpts) {
+        var map = Ext.getCmp('mymap').getMap();
+        midSouth = Ext.getStore('MiddleSouthStore');
+        midSouth.load();
+
+        var geo = Ext.create('Ext.util.Geolocation', {
+              autoUpdate: true,
+
+                    listeners: {
+                        locationupdate: function (geo) {        
+
+                            var directionsDisplay = new google.maps.DirectionsRenderer();
+                            var directionsService = new google.maps.DirectionsService();
+
+                            var center = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
+                            var closest = near_meMidSouth(geo.getLatitude(), geo.getLongitude());
+
+                           var closestLat = closest[0];
+                           var closestLon = closest[1];
+
+                           var location = new google.maps.LatLng(closestLat, closestLon);
+
+
+                           var marker = new google.maps.Marker({map: map, position: new google.maps.LatLng( closestLat, closestLon ), clickable: true});
+
+                            marker.info = new google.maps.InfoWindow({
+                              content: '<b>this is the closest location</b>'
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function() {
+                              marker.info.open(map, marker);
+                            });
+
+                            // directionsDisplay.setMap(map);
+
+                            // var request = {
+                            //     origin: center,
+                            //     destination: location,
+                            //     travelMode: google.maps.TravelMode.DRIVING
+                            // };
+
+                            // directionsService.route(request, function(result, status){
+                            //     //console.log(status);
+                            //     if(status = google.maps.DirectionsStatus.OK){
+                            //         console.log(result);
+                            //         directionsDisplay.setDirections(result);
+                            //     }
+                            // });
+
+
+                            //Ext.getCmp('nearme').hide();
+                            //Ext.getCmp('hideButton').show();
+                        },
+
+
+
+                        locationerror: function (geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+
+                            if (bTimeout) {
+                                alert('Timeout occurred.');
+                            } 
+                            else {
+                                alert('Error occurred.');
+                            }
+
+                }
+
+            }
+
+        });
+        var overlay = Ext.getCmp('overlay').hide();
+    },
+
+    onButtonClick: function(map, gmap, eOpts){
+
+        //var gMap = this.getMapComponent();
+
+        var map = Ext.getCmp('mymap').getMap();
+
+        //Ext.getCmp('nearme').setCls('x-button-pressing');
+
+            
+
     },
 
     onMymapMaprender: function(map, gmap, eOpts) {
@@ -42,22 +371,48 @@ Ext.define('PeopleMover.controller.MapController', {
         var highSouthWayPoints = new Array();
         var highNorthWayPoints = new Array();
 
-                // Get store for Middle South WayPoints
-
+        var SouthTotalDist = 0;
+        
                 waypointMidSouth = Ext.getStore('WayPointStore1');
                 waypointMidSouth.load();
 
                 waypointMidSouth.each(function(record,index,length){
 
                     var x = 0;
+                    var y = record.data.listwp.length -1 ;
+                    //console.log("total number is : " + y);
+                    var southRouteDistance = 0;
+
+                    //total distance of the entire route
+                    while(y >= 1)
+                    {
+                       // console.log(record.get('listwp')[y].latitude + ',' + record.get('listwp')[y].longitude);
+                        //console.log(record.get('listwp')[y-1].latitude + ',' + record.get('listwp')[y-1].longitude);
+                        var total_distance = find_estimated_distance( record.get('listwp')[y].latitude, record.get('listwp')[y].longitude,
+                            record.get('listwp')[y-1].latitude, record.get('listwp')[y-1].longitude );
+
+                        southRouteDistance += total_distance;
+                        SouthTotalDist += total_distance;
+
+                        y--;
+
+                    }
+                    //console.log("from each stop: " + southRouteDistance + ' ');
+                    //console.log("estimted time to arrival " + southRouteDistance/35*60*60 + ' seconds');
+
+
 
                    while(x < record.data.listwp.length){
                         var temp = new google.maps.LatLng(record.get('listwp')[x].latitude, record.get('listwp')[x].longitude); 
                         midSouthWayPoints.push(temp);
+                        //console.log(record.get('listwp')[x].latitude)
                         x++;
+
+
                     }
 
                 });
+                //console.log("total distance of south route is: " + SouthTotalDist + ' ');
                 var pathMS = new google.maps.Polyline({
                     path: midSouthWayPoints,
                     strokeColor: '#f08616',
@@ -168,6 +523,46 @@ Ext.define('PeopleMover.controller.MapController', {
                 highSouth.load();
                 highNorth.load();
 
+                function markerClick(marker, routeId, stopId){
+                    
+                                
+                    var successCallback = function(data) {
+
+
+                    var jsonResp = Ext.JSON.decode(data.responseText);
+                    message = [];
+                    message[0] = jsonResp.message;
+                    return message[0];
+                };
+
+                var failureCallback = function(data) {
+
+                   console.log("ooops");
+
+
+
+                };
+
+                    var temp = Ext.Ajax.request({
+                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes",
+                                        method: 'GET',
+                                        /*headers: { 'Content-Type': 'application/json' },*/
+                                        params: {
+                                             "RouteId": routeId,
+                                             "StopId": stopId
+                                            },
+                                            disableCaching: false,
+                                            useDefaultXhrHeader: false,
+                                        success: successCallback,
+                                        failure: failureCallback
+                                    });
+                    var time = message[0];
+                    message.length = 0;
+
+                    return time;
+        }
+
+
 
                 // shows the stops for High School South Route
                 highSouth.each(function(record,index,length) {
@@ -178,16 +573,20 @@ Ext.define('PeopleMover.controller.MapController', {
                         position: x,
                         animation: google.maps.Animation.DROP,
                         draggable: false,
+                        id: record.data.stopId,
+                        customInfo: record.data.routeId,
                         title: record.data.street,
                         icon: iconBase + 'bus.png'
                     });
+                    
 
                                 (function(i, marker) {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
+                                        var holder = markerClick(marker,record.data.routeId, record.data.stopId);
                                         var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle() + '<br/>Scheduled Time ' + record.data.scheduledTime//new google.maps.LatLng(block3[0],block3[1])
+                                            content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + holder//new google.maps.LatLng(block3[0],block3[1])
                                         });
                                         infowindow.open(map, marker);
                                     });
@@ -206,16 +605,20 @@ Ext.define('PeopleMover.controller.MapController', {
                         position: x,
                         animation: google.maps.Animation.DROP,
                         draggable: false,
+                        id: record.data.stopId,
+                        customInfo: record.data.routeId,
                         title: record.data.street,
                         icon: iconBase + 'bus.png'
                     });
+
 
                                 (function(i, marker) {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
+                                        var holder2 = markerClick(marker,record.data.routeId, record.data.stopId);
                                         var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle()//new google.maps.LatLng(block3[0],block3[1])
+                                            content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + holder2//new google.maps.LatLng(block3[0],block3[1])
                                         });
                                         infowindow.open(map, marker);
                                     });
@@ -234,6 +637,8 @@ Ext.define('PeopleMover.controller.MapController', {
                         position: x,
                         animation: google.maps.Animation.DROP,
                         draggable: false,
+                        id: record.data.stopId,
+                        customInfo: record.data.routeId,
                         title: record.data.street,
                         icon: iconBase + 'bus2.png'
                     });
@@ -242,8 +647,9 @@ Ext.define('PeopleMover.controller.MapController', {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
+                                        var holder3 = markerClick(marker,record.data.routeId, record.data.stopId);
                                         var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle()//new google.maps.LatLng(block3[0],block3[1])
+                                            content: ''+ marker.getTitle() +'<br/>Middle School Route' + '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + holder3//new google.maps.LatLng(block3[0],block3[1])
                                         });
                                         infowindow.open(map, marker);
                                     });
@@ -262,18 +668,25 @@ Ext.define('PeopleMover.controller.MapController', {
                         position: x,
                         animation: google.maps.Animation.DROP,
                         draggable: false,
+                        id: record.data.stopId,
+                        customInfo: record.data.routeId,
                         title: record.data.street,
                         icon: iconBase + 'bus2.png'
                     });
+
+
 
                                 (function(i, marker) {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
+                                        
+                                        var holder4 = markerClick(marker,record.data.routeId, record.data.stopId);
                                         var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle()
+                                            content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br>' + holder4
                                         });
                                         infowindow.open(map, marker);
+                                        var holder4 = '';
                                     });
                                     })(i, marker);
 
@@ -282,11 +695,13 @@ Ext.define('PeopleMover.controller.MapController', {
                 });
 
 
+
+
                 // On each store record
                 store.each(function(record, index, length) {
 
                     // Get position
-                                        var m = new google.maps.LatLng(record.data.lastLatitude, record.data.lastLongitude);
+                                        //var m = new google.maps.LatLng(record.data.lastLatitude, record.data.lastLongitude);
 
                                 // var allStops = [
                                 //     [25.683558, -80.302937],[25.679579, -80.314014],[25.674111, -80.310723],
@@ -318,7 +733,7 @@ Ext.define('PeopleMover.controller.MapController', {
                     marker = new google.maps.Marker({
                         position: m,
                         animation: google.maps.Animation.DROP,
-                        draggable: true,
+                        draggable: false,
                         icon: iconBase + 'logo_icon.png',
                         title: record.data.unitID
                     });
@@ -379,7 +794,7 @@ Ext.define('PeopleMover.controller.MapController', {
                     marker = new google.maps.Marker({
                         position: m,
                         title: record.data.unitID,
-                        draggable: true,
+                        draggable: false,
 
                         icon: iconBase + 'logo_icon.png'
                     });
@@ -426,11 +841,255 @@ Ext.define('PeopleMover.controller.MapController', {
 
 });
 
+function near_meMidSouth( lat1, lon1 ) {  
+
+    var allStops = [];
+
+    var pi = Math.PI;
+    var R = 6371; //equatorial radius
+    var distances = [];
+    var closest = -1;
+    var lat3;
+    var lon3;
+    //var x;
+    //var map = Ext.getCmp('mymap').getMap();
+
+    stops1 = Ext.getStore('MiddleSouthStore');
+    stops1.load()
+
+    var markers = new Array();
+
+
+    stops1.each(function(record,index,length){
+
+                    markers.push({
+                        latitude: record.data.latitude,
+                        longitude: record.data.longitude
+                    });
+
+                });
+
+
+//console.log(markers.length);
+    for( i=0; i < markers.length; i++ ) {  
+        var lat2 = markers[i].latitude;
+        var lon2 = markers[i].longitude;
+
+        var chLat = lat2-lat1;
+        var chLon = lon2-lon1;
+
+        var dLat = chLat*(pi/180);
+        var dLon = chLon*(pi/180);
+
+        var rLat1 = lat1*(pi/180);
+        var rLat2 = lat2*(pi/180);
+
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(rLat1) * Math.cos(rLat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c;
+
+        distances[i] = d;
+        if ( closest == -1 || d < distances[closest] ) {
+            closest = i;
+            lat3 = lat2;
+            lon3 = lon2;
+        }
+    }
+    return [lat3, lon3];
+    
+};
+
+function near_meMidNorth( lat1, lon1 ) {  
+
+    var allStops = [];
+
+    var pi = Math.PI;
+    var R = 6371; //equatorial radius
+    var distances = [];
+    var closest = -1;
+    var lat3;
+    var lon3;
+    //var x;
+    //var map = Ext.getCmp('mymap').getMap();
+
+    stops2 = Ext.getStore('MiddleNorthStore');
+    stops2.load();
+
+    var markers = new Array();
+
+
+    stops2.each(function(record,index,length){
+
+                    markers.push({
+                        latitude: record.data.latitude,
+                        longitude: record.data.longitude
+                    });
+
+                });
+
+//console.log(markers.length);
+    for( i=0; i < markers.length; i++ ) {  
+        var lat2 = markers[i].latitude;
+        var lon2 = markers[i].longitude;
+
+        var chLat = lat2-lat1;
+        var chLon = lon2-lon1;
+
+        var dLat = chLat*(pi/180);
+        var dLon = chLon*(pi/180);
+
+        var rLat1 = lat1*(pi/180);
+        var rLat2 = lat2*(pi/180);
+
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(rLat1) * Math.cos(rLat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c;
+
+        distances[i] = d;
+        if ( closest == -1 || d < distances[closest] ) {
+            closest = i;
+            lat3 = lat2;
+            lon3 = lon2;
+        }
+    }
+    return [lat3, lon3];
+    
+}; 
+
+function near_meHighSouth( lat1, lon1 ) {  
+
+    var allStops = [];
+
+    var pi = Math.PI;
+    var R = 6371; //equatorial radius
+    var distances = [];
+    var closest = -1;
+    var lat3;
+    var lon3;
+    //var x;
+    //var map = Ext.getCmp('mymap').getMap();
+
+    stops3 = Ext.getStore('HighSouthStore');
+    stops3.load();
+
+    var markers = new Array();
+
+
+    stops3.each(function(record,index,length){
+
+                    markers.push({
+                        latitude: record.data.latitude,
+                        longitude: record.data.longitude
+                    });
+
+                });
+
+//console.log(markers.length);
+    for( i=0; i < markers.length; i++ ) {  
+        var lat2 = markers[i].latitude;
+        var lon2 = markers[i].longitude;
+
+        var chLat = lat2-lat1;
+        var chLon = lon2-lon1;
+
+        var dLat = chLat*(pi/180);
+        var dLon = chLon*(pi/180);
+
+        var rLat1 = lat1*(pi/180);
+        var rLat2 = lat2*(pi/180);
+
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(rLat1) * Math.cos(rLat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c;
+
+        distances[i] = d;
+        if ( closest == -1 || d < distances[closest] ) {
+            closest = i;
+            lat3 = lat2;
+            lon3 = lon2;
+        }
+    }
+    return [lat3, lon3];
+    
+}; 
+
+function near_meHighNorth(lat1, lon1){
+    var allStops = [];
+
+    var pi = Math.PI;
+    var R = 6371; //equatorial radius
+    var distances = [];
+    var closest = -1;
+    var lat3;
+    var lon3;
+    //var x;
+    //var map = Ext.getCmp('mymap').getMap();
+
+    stops4 = Ext.getStore('HighNorthStore');
+    stops4.load();
+
+    var markers = new Array();
+
+
+    stops4.each(function(record,index,length){
+
+                    markers.push({
+                        latitude: record.data.latitude,
+                        longitude: record.data.longitude
+                    });
+
+                });
+
+//console.log(markers.length);
+    for( i=0; i < markers.length; i++ ) {  
+        var lat2 = markers[i].latitude;
+        var lon2 = markers[i].longitude;
+
+        var chLat = lat2-lat1;
+        var chLon = lon2-lon1;
+
+        var dLat = chLat*(pi/180);
+        var dLon = chLon*(pi/180);
+
+        var rLat1 = lat1*(pi/180);
+        var rLat2 = lat2*(pi/180);
+
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(rLat1) * Math.cos(rLat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c;
+
+        distances[i] = d;
+        if ( closest == -1 || d < distances[closest] ) {
+            closest = i;
+            lat3 = lat2;
+            lon3 = lon2;
+        }
+    }
+    return [lat3, lon3];
+
+};
+
+
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+};
 
 
 function find_estimated_distance( lat1, lon1, lat2, lon2 ) {    
 
-    var R = 6371; // Radius of the earth in km
+    var R = 6371/1.609344; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
   var dLon = deg2rad(lon2-lon1); 
   var a = 
@@ -441,10 +1100,12 @@ function find_estimated_distance( lat1, lon1, lat2, lon2 ) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
 
-  //console.log('the caluclatd distance is ' + d);
+  //d = d * 3280.34; //distance in feet
+
   return d;  
 }   ;
 
 function deg2rad(deg) {
   return deg * (Math.PI/180)
+
 };

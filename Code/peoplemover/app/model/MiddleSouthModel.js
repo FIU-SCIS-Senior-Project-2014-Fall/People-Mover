@@ -4,8 +4,7 @@
 
 Ext.define('PeopleMover.model.MiddleSouthModel', {
     extend: 'Ext.data.Model',
-
-    requires: [
+ requires: [
         'Ext.data.Field',
         'Ext.data.proxy.Rest'
     ],

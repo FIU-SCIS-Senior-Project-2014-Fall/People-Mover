@@ -9,6 +9,11 @@ Ext.Loader.setConfig({
 
 
 Ext.application({
+
+    requires: [
+        'Ext.device.Camera',
+        'Ext.util.Geolocation' 
+    ],
     models: [
         'routeInfo',
         'UnitList',
@@ -16,11 +21,19 @@ Ext.application({
         'WayPoints2',
         'WayPoints3',
         'WayPoints4',
+        'WayPoints5',
+        'WayPoints6',
+        'WayPoints7',
+        'WayPoints8',
         'MapLocations',
         'MiddleNorthModel',
+        'MiddleNorthModelPM',
         'MiddleSouthModel',
+        'MiddleSouthModelPM',
         'HighNorthModel',
-        'HighSouthModel'
+        'HighNorthModelPM',
+        'HighSouthModel',
+        'HighSouthModelPM'
     ],
     stores: [
         'listRoutes',
@@ -28,38 +41,48 @@ Ext.application({
         'WayPointStore2',
         'WayPointStore3',
         'WayPointStore4',
+        'WayPointStore5',
+        'WayPointStore6',
+        'WayPointStore7',
+        'WayPointStore8',
         'UnitListStore',
         'MapStore',
         'MiddleSouthStore',
+        'MiddleSouthStorePM',
         'MiddleNorthStore',
+        'MiddleNorthStorePM',
         'HighNorthStore',
-        'HighSouthStore'
+        'HighNorthStorePM',
+        'HighSouthStore',
+        'HighSouthStorePM'
     ],
     views: [
         'RouteDetailsList',
         'FeedBackView',
         'Problem',
         'requestStop',
-        'TrolleyAlerts',
         'MyNavigationView',
         'UnitListView',
         'MyMap',
         'LoginForm',
         'RegisterForm',
         'MainView',
-        'MiddleSouthView',
         'MiddleNorthView',
+        'MiddleSouthView',
         'HighNorthView',
         'HighSouthView',
         'AboutUs',
-        'EstTimeView'
+        'EstTimeView',
+        'ServiceTimes',
+        'TrolleyAlerts'
     ],
     controllers: [
         'MyController',
         'UnitListController',
         'UserController',
         'MapController',
-        'StopController'
+        'StopController',
+        'AlertsController'
     ],
     name: 'PeopleMover',
 

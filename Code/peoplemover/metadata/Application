@@ -10,35 +10,45 @@
             "MyController",
             "UnitListController",
             "UserController",
-            "MapController"
+            "MapController",
+            "StopController",
+            "AlertsController"
         ],
         "models": [
             "routeInfo",
             "UnitList",
             "MapLocations",
-            "Waypoints1"
+            "MiddleNorthModel",
+            "HighNorthModel",
+            "HighSouthModel",
+            "MiddleSouthModel"
         ],
         "name": "PeopleMover",
+        "requires": [
+            "Ext.device.Camera"
+        ],
         "stores": [
             "listRoutes",
             "UnitListStore",
             "MapStore",
-            "MyWaypoints1"
+            "MiddleNorthStore"
         ],
         "views": [
             "RouteDetailsList",
-            "MyContainer2",
             "FeedBackView",
             "Problem",
             "requestStop",
-            "TrolleyAlerts",
             "MyNavigationView",
-            "MyPanel1",
             "UnitListView",
             "MyMap",
             "LoginForm",
             "RegisterForm",
-            "MainView"
+            "MainView",
+            "MiddleNorthView",
+            "AboutUs",
+            "EstTimeView",
+            "ServiceTimes",
+            "TrolleyAlerts"
         ]
     },
     "name": "Application",

@@ -33,6 +33,8 @@ Ext.define('PeopleMover.controller.UnitListController', {
 
                     task.delay(10000);
                 };
+
+
                 autocallFunction();
     }
 

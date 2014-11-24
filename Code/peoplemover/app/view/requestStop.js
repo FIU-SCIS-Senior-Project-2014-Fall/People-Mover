@@ -37,6 +37,7 @@ Ext.define('PeopleMover.view.requestStop', {
                     {
                         xtype: 'textfield',
                         label: 'Address of Stop',
+                        name: 'addressBox',
                         labelWrap: true,
                         required: true
                     },
@@ -51,6 +52,7 @@ Ext.define('PeopleMover.view.requestStop', {
             },
             {
                 xtype: 'button',
+                itemId: 'bRequestSubmit',
                 ui: 'confirm',
                 text: 'Submit'
             }

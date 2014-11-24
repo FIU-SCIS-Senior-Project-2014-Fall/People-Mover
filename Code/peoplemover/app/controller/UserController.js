@@ -6,7 +6,7 @@ Ext.define('PeopleMover.controller.UserController', {
     extend: 'Ext.app.Controller',
 
     requires: [
-        'Ext.util.JSON',
+        'Ext.JSON',
         'Ext.MessageBox'
     ],
 
@@ -34,8 +34,8 @@ Ext.define('PeopleMover.controller.UserController', {
             "mainview #feedback": {
                 tap: 'showRequestFeedback'
             },
-            "mainview #trolleyAlerts": {
-                tap: 'showTrolleyAlerts'
+            "mainview #serviceTimes": {
+                tap: 'showServiceTimes'
             },
             "loginform #loginButton": {
                 tap: 'login'
@@ -43,8 +43,17 @@ Ext.define('PeopleMover.controller.UserController', {
             "registerform #registerButton": {
                 tap: 'register'
             },
+            "problem #itemPictureBox": {
+                tap: 'onImageTap'
+            },
             "problem #bProbSubmit": {
                 tap: 'submitProb'
+            },
+            "requestStop #bRequestSubmit": {
+                tap: 'submitReq'
+            },
+            "feedback #bFeedBSubmit": {
+                tap: 'submitFeedBack'
             }
         }
     },
@@ -77,12 +86,12 @@ Ext.define('PeopleMover.controller.UserController', {
 
     showAboutUs: function(button, e, eOpts) {
 
-                        var reportProblem = Ext.create('widget.trolleyalerts'),	// Login form
+                        var reportProblem = Ext.create('widget.aboutus'),	// Login form
                             mainView = this.getMainView();				// Main view
 
                         // Navigate to login
                         mainView.push({
-                            xtype: "trolleyalerts",
+                            xtype: "aboutus",
                             title: "About Us"
                         });
 
@@ -127,161 +136,80 @@ Ext.define('PeopleMover.controller.UserController', {
 
     },
 
-    showTrolleyAlerts: function(button, e, eOpts) {
+    showServiceTimes: function(button, e, eOpts) {
 
-                var reportProblem = Ext.create('widget.trolleyalerts'),	// Login form
+                var reportProblem = Ext.create('widget.servicetimes'),	// Login form
                     mainView = this.getMainView();				// Main view
 
                 // Navigate to login
                 mainView.push({
-                    xtype: "trolleyalerts",
-                    title: "Trolley Alerts"
+                    xtype: "servicetimes",
+                    title: "Service Times"
                 });
 
     },
 
     login: function(button, e, eOpts) {
-          var form = button.up('formpanel'),			// Login form
-                	values = form.getValues(),				// Form values
-                    mainView = this.getMainView();			// Main view
-                	//loginPanel = this.getLoginPanel(),		// Login and register buttons
-                	//welcomePanel = this.getWelcomePanel();	// Welcome panel
+            var form = button.up('formpanel'),			// Login form
+                        	values = form.getValues(),				// Form values
+                            mainView = this.getMainView();			// Main view
+                        	//loginPanel = this.getLoginPanel(),		// Login and register buttons
+                        	//welcomePanel = this.getWelcomePanel();	// Welcome panel
 
-                // Success
-                var successCallback = function(resp, ops) {
-
-                //     // Go back
-                //     mainView.pop();
-
-                //     // Hide login panel
-                //     loginPanel.hide();
-
-                //     // Show welcome panel
-                //     welcomePanel.show();
-
-
-
-                    var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                      Ext.Msg.alert("Info","message: "+jsonResp.message);
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-
-
-                   var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                    Ext.Msg.alert("Info","message: "+jsonResp.message);
-
-
-
-                };
-
-                var enctext = CryptoJS.MD5(values.password);
-
-                // TODO: Login using server-side authentication service
-                Ext.Ajax.request({
-                		url: "http://pm-dev.cs.fiu.edu:8080/ppmws/userauth",
-                        method: 'POST',
-                        /*headers: { 'Content-Type': 'application/json' },*/
-                    params: {"islogin":true,
-                             "email":values.email,
-                             "pass":String(enctext)
-                            },
-                		success: successCallback,
-                		failure: failureCallback
-                 });
-
-
-    },
-
-    register: function(button, e, eOpts) {
-          var form = button.up('formpanel'),			// Login form
-                	values = form.getValues(),				// Form values
-                    mainView = this.getMainView();			// Main view
-                	//loginPanel = this.getLoginPanel(),		// Login and register buttons
-                	//welcomePanel = this.getWelcomePanel();	// Welcome panel
-
-                // Success
-                var successCallback = function(resp, ops) {
-
-                //     // Go back
-                //     mainView.pop();
-
-                //     // Hide login panel
-                //     loginPanel.hide();
-
-                //     // Show welcome panel
-                //     welcomePanel.show();
-
-
-                    var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                      Ext.Msg.alert("Info","message:"+jsonResp.message);
-
-                };
-
-                // Failure
-                var failureCallback = function(resp, ops) {
-
-                   var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                              Ext.Msg.alert("Info","message:"+jsonResp.message);
-
-
-
-                };
-                //TODO: Registration using server-side authentication service
-
-                     var pass1 = values.password;
-                     var pass2 = values.confirmation;
-
-
-                         if (pass1 != pass2)
-                             return Ext.Msg.alert("Info","errorMessage: "+"Passwords do not match!");
-
-                         else
-                             {
-                             var enctext = CryptoJS.MD5(values.password);
-
-
-                                    Ext.Ajax.request({
-                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/userauth",
-                                        method: 'POST',
-                                        /*headers: { 'Content-Type': 'application/json' },*/
-                                        params: {
-                                            "islogin":false,
-                                             "email":values.email,
-                                             "pass": String(enctext)
-                                            },
-                                        success: successCallback,
-                                        failure: failureCallback
-                                    });
-                             }
-
-
-    },
-
-    submitProb: function(button, e, eOpts) {
-        var form = button.up('formpanel'),
-                values = form.getValues(),              // Form values
-                mainView = this.getMainView();
-
-
-        // Success
+                        // Success
                         var successCallback = function(resp, ops) {
 
-
-
-
-                            var jsonResp = Ext.util.JSON.decode(resp.responseText);
-                               Ext.Msg.alert("Info","message:"+jsonResp.message);
-
-
-                            //get back
-                                 mainView.pop();
+                        //     // Go back
+                        //     mainView.pop();
 
                         //     // Hide login panel
-                             form.hide();
+                        //     loginPanel.hide();
+
+                        //     // Show welcome panel
+                        //     welcomePanel.show();
+
+
+
+                            var jsonResp = Ext.JSON.decode(resp.responseText);
+
+                                 if(jsonResp.message!=="No Match" && jsonResp.message!=="Insertion Error" && jsonResp.message!=="Not valid email"){
+                                     var alert = Ext.getCmp("alertfield");
+                                     if(jsonResp.code==="admin")
+                                      {
+
+                                          alert.setReadOnly(false);
+                                      }
+                                     else
+                                      {
+                                          alert.setReadOnly(true);
+                                      }
+                                      Ext.Msg.alert("Info","Login Successful");
+
+                                     localStorage.setItem('ppmtoken',jsonResp.message);
+
+                                     var mybutton = Ext.create('widget.esttimeview').down('#bfavorite');
+                                        mybutton.setText('Save as Favorite');
+                                        mybutton.enable();
+
+                                       //get back
+                                        mainView.pop();
+
+                                //     // Hide login panel
+                                        form.hide();
+                             }
+                             else
+                                 {
+                                    var token  = localStorage.getItem("ppmtoken");
+                                    if(token!==null){
+                                        localStorage.removeItem("ppmtoken");
+                                    }
+
+                                     Ext.Msg.alert("Info",jsonResp.message);
+                                 }
+
+
+
+
 
 
                         };
@@ -289,7 +217,80 @@ Ext.define('PeopleMover.controller.UserController', {
                         // Failure
                         var failureCallback = function(resp, ops) {
 
-                           var jsonResp = Ext.util.JSON.decode(resp.responseText);
+
+
+                           var jsonResp = Ext.JSON.decode(resp.responseText);
+
+                            Ext.Msg.alert("Info","message: "+jsonResp.message);
+                           //button.setDisabled(false);
+                        };
+
+
+                        //button.setText('Please wait ...');
+                        //button.setDisabled(true);
+                        var enctext = CryptoJS.MD5(values.password);
+
+                        // TODO: Login using server-side authentication service
+                        Ext.Ajax.request({
+                        		url: "http://pm-dev.cs.fiu.edu:8080/ppmws/userauth",
+                                method: 'POST',
+                                /*headers: { 'Content-Type': 'application/json' },*/
+                            params: {"islogin":true,
+                                     "email":values.email,
+                                     "pass":String(enctext)
+                                    },
+                        		success: successCallback,
+                        		failure: failureCallback
+                         });
+
+    },
+
+    register: function(button, e, eOpts) {
+          var form = button.up('formpanel'),			// Login form
+                        	values = form.getValues(),				// Form values
+                            mainView = this.getMainView();			// Main view
+                        	//loginPanel = this.getLoginPanel(),		// Login and register buttons
+                        	//welcomePanel = this.getWelcomePanel();	// Welcome panel
+
+                        // Success
+                        var successCallback = function(resp, ops) {
+
+                        //     // Go back
+                        //     mainView.pop();
+
+                        //     // Hide login panel
+                        //     loginPanel.hide();
+
+                        //     // Show welcome panel
+                        //     welcomePanel.show();
+
+
+                            var jsonResp = Ext.JSON.decode(resp.responseText);
+                            if(jsonResp.message!=="No Match" && jsonResp.message!=="Insertion Error" && jsonResp.message!=="Not valid email")
+                            {
+                               Ext.Msg.alert("Info","Registration Successful");
+
+                             localStorage.setItem('ppmtoken',jsonResp.message);
+                              //get back
+                                 mainView.pop();
+
+                        //     // Hide login panel
+                             form.hide();
+							}
+							else 
+							{
+								Ext.Msg.alert("Info",jsonResp.message);
+							}
+
+                           
+
+
+                        };
+
+                        // Failure
+                        var failureCallback = function(resp, ops) {
+
+                           var jsonResp = Ext.JSON.decode(resp.responseText);
                                       Ext.Msg.alert("Info","message:"+jsonResp.message);
 
 
@@ -297,25 +298,260 @@ Ext.define('PeopleMover.controller.UserController', {
                         };
                         //TODO: Registration using server-side authentication service
 
+                             var pass1 = values.password;
+                             var pass2 = values.confirmation;
 
 
+                                 if (pass1 != pass2)
+                                     return Ext.Msg.alert("Info","errorMessage: "+"Passwords do not match!");
+
+                                 else
+                                     {
+                                     var enctext = CryptoJS.MD5(values.password);
 
 
                                             Ext.Ajax.request({
-                                                url: "http://pm-dev.cs.fiu.edu:8080/ppmws/sendemail",
+                                                url: "http://pm-dev.cs.fiu.edu:8080/ppmws/userauth",
                                                 method: 'POST',
                                                 /*headers: { 'Content-Type': 'application/json' },*/
                                                 params: {
-                                                    "name":values.nameBox,
-                                                    "type": "PROBLEM",
-                                                     "email":values.emailBox,
-                                                     "message": values.infoBox
+                                                    "islogin":false,
+                                                     "email":values.email,
+                                                     "pass": String(enctext)
                                                     },
                                                 success: successCallback,
                                                 failure: failureCallback
                                             });
+                                     }
+
+    },
+
+    onImageTap: function(image, e, eOpts) {
+          Ext.device.Camera.capture({
+                            source: 'camera',
+                            destination: 'data',
+
+                            success: function(imagedata) {
+
+                                var img = Ext.getCmp('pictureBox');
+                                var attach = 'data:image/jpeg;base64,'+imagedata;
+                                sessionStorage.setItem('image',attach);
+                                img.setSrc(attach);
+
+                            },
+
+                            failure: function() {
+                                Ext.Msg.alert('Error', 'There was an error when acquiring the picture.');
+                            },
+                            scope: this
+                        });
+
+    },
+
+    submitProb: function(button, e, eOpts) {
+        var form = button.up('formpanel'),
+                        values = form.getValues(),				// Form values
+                        mainView = this.getMainView();
+		
+
+                // Success
+                                var successCallback = function(resp, ops) {
+
+								Ext.Viewport.unmask(); 
 
 
+                                    var jsonResp = Ext.JSON.decode(resp.responseText);
+                                       Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+                                    //get back
+                                         mainView.pop();
+
+                                //     // Hide login panel
+                                     form.hide();
+
+
+                                };
+
+                                // Failure
+                                var failureCallback = function(resp, ops) {
+									
+									Ext.Viewport.unmask(); 
+                                   var jsonResp = Ext.JSON.decode(resp.responseText);
+                                              Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+
+                                };
+                                //TODO: Registration using server-side authentication service
+
+                                        if(values.nameBox!=="" && values.emailBox!=="" && values.infoBox!=="")
+                                        {
+											Ext.Viewport.mask({ xtype: 'loadmask',
+														message: "Sending Email.." });
+        										var attach = sessionStorage.getItem("image");
+        										if(attach!==null){
+
+        										var callparams = {
+                                                            "name":values.nameBox,
+                                                            "type": "PROBLEM",
+                                                             "email":values.emailBox,
+                                                             "message": values.infoBox,
+                                                             "attach":attach
+
+                                                            };
+                                                 }
+                                                 else
+                                                 {
+        											 var callparams = {
+                                                            "name":values.nameBox,
+                                                            "type": "PROBLEM",
+                                                             "email":values.emailBox,
+                                                             "message": "DESCRIPTION: "+values.infoBox
+
+                                                            };
+        										 }
+
+                                                    Ext.Ajax.request({
+                                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/sendemail",
+                                                        /*url: "http://192.168.0.101/sendemail",*/
+                                                        method: 'POST',
+                                                        /*headers: { 'Content-Type': 'application/json' },*/
+                                                        params: callparams,
+                                                        success: successCallback,
+                                                        failure: failureCallback
+                                                    });
+                                            }
+                                            else
+                                                Ext.Msg.alert("WARNING","Missing Info Required");
+    },
+    submitReq: function(button, e, eOpts) {
+        var form = button.up('formpanel'),
+                        values = form.getValues(),              // Form values
+                        mainView = this.getMainView();
+		
+
+                // Success
+                                var successCallback = function(resp, ops) {
+
+
+
+									Ext.Viewport.unmask(); 
+                                    var jsonResp = Ext.JSON.decode(resp.responseText);
+                                       Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+                                    //get back
+                                         mainView.pop();
+
+                                //     // Hide login panel
+                                     form.hide();
+
+
+                                };
+
+                                // Failure
+                                var failureCallback = function(resp, ops) {
+									
+									Ext.Viewport.unmask(); 
+                                   var jsonResp = Ext.JSON.decode(resp.responseText);
+                                              Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+
+                                };
+                                //TODO: Registration using server-side authentication service
+
+                                        if(values.nameBox!=="" && values.emailBox!=="" && values.addressBox!=="")
+                                        {
+											Ext.Viewport.mask({ xtype: 'loadmask',
+													message: "Sending Email.." });
+                                             
+                                                     var callparams = {
+                                                            "name":values.nameBox,
+                                                            "type": "REQUEST STOP",
+                                                             "email":values.emailBox,
+                                                             "message": "LOCATION: "+values.addressBox+" :: REASON: "+values.infoBox
+
+                                                            };
+                                                 
+
+                                                    Ext.Ajax.request({
+                                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/sendemail",
+                                                        /*url: "http://192.168.0.101/sendemail",*/
+                                                        method: 'POST',
+                                                        /*headers: { 'Content-Type': 'application/json' },*/
+                                                        params: callparams,
+                                                        success: successCallback,
+                                                        failure: failureCallback
+                                                    });
+                                            }
+                                            else
+                                                Ext.Msg.alert("WARNING","Missing Info Required");
+    },
+    submitFeedBack: function(button, e, eOpts) {
+        var form = button.up('formpanel'),
+                        values = form.getValues(),              // Form values
+                        mainView = this.getMainView();
+		
+
+                // Success
+                                var successCallback = function(resp, ops) {
+									
+									
+									Ext.Viewport.unmask(); 
+
+
+                                    var jsonResp = Ext.JSON.decode(resp.responseText);
+                                       Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+                                    //get back
+                                         mainView.pop();
+
+                                //     // Hide login panel
+                                     form.hide();
+
+
+                                };
+
+                                // Failure
+                                var failureCallback = function(resp, ops) {
+								
+								Ext.Viewport.unmask(); 
+                                   var jsonResp = Ext.JSON.decode(resp.responseText);
+                                              Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+
+                                };
+                                //TODO: Registration using server-side authentication service
+
+                                        if(values.nameBox!=="" && values.emailBox!=="" && values.infoBox!=="")
+                                        {
+                                             Ext.Viewport.mask({ xtype: 'loadmask',
+													message: "Sending Email.." });
+                                                     var callparams = {
+                                                            "name":values.nameBox,
+                                                            "type": "FeedBack",
+                                                             "email":values.emailBox,
+                                                             "message": "FEEDBACK: "+values.infoBox
+
+                                                            };
+                                                 
+
+                                                    Ext.Ajax.request({
+                                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/sendemail",
+                                                        /*url: "http://192.168.0.101/sendemail",*/
+                                                        method: 'POST',
+                                                        /*headers: { 'Content-Type': 'application/json' },*/
+                                                        params: callparams,
+                                                        success: successCallback,
+                                                        failure: failureCallback
+                                                    });
+                                            }
+                                            else
+                                                Ext.Msg.alert("WARNING","Missing Info Required");
     }
 
 });

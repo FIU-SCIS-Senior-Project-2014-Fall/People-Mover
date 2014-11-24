@@ -17,7 +17,7 @@ Ext.define('PeopleMover.view.UnitListView', {
         itemTpl: [
             '<div>{unitID} | {lastEventDate} <br />',
             '    {lastLatitude} |{lastLongitude}<br />',
-            '    {address}</div>'
+            '    {address} | {speed}</div>'
         ]
     }
 

@@ -46,6 +46,7 @@ Ext.define('PeopleMover.view.FeedBackView', {
             },
             {
                 xtype: 'button',
+                 itemId: 'bFeedBSubmit',
                 ui: 'confirm',
                 text: 'Submit'
             }

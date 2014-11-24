@@ -42,7 +42,10 @@ Ext.define('PeopleMover.controller.StopController', {
             },
             "highsouthview": {
                 itemtap: 'onListItemTap'
-             }
+             },
+             "esttimeview #bfavorite":{
+				 tap: 'onButtonTap' 
+			}
         }
     },
 
@@ -91,24 +94,7 @@ Ext.define('PeopleMover.controller.StopController', {
     },
 
     onListItemTap: function(dataview, index, target, record, e, eOpts) {
-        /*// if (this.currentStop == record.data) {
-        //             Ext.getCmp('viewport').setActiveItem(1);
-        //             return;
-        //         }
-        // this.currentStop = record.data;
-        // Ext.getCmp('viewport').setActiveItem(1);
-        // Ext.getCmp('esttimeview').setData(this.currentStop);
-        */
-        //var reportProblem = Ext.create('widget.esttimeview'),	// Login form
-        //mainView = this.getMainView();
-
-        //Ext.Msg.alert("Info","clicked");
-        console.log(record.data);
-        //Ext.getStore('MiddleNorthStore').clearFilter();
-        //this.currentstop = record.get("street");
-        //Ext.getStore('MiddleNorthStore').filter("name",this.currentstop);
-        console.log(dataview.title);
-
+       
         var estTime = Ext.create('PeopleMover.view.EstTimeView',
                                 {
                                     title:" Estimated Time"
@@ -119,14 +105,26 @@ Ext.define('PeopleMover.controller.StopController', {
         estTime.getAt(0).setData(record.data);
 
 
-        /*mainView.push(
-        {
-            xtype: "esttimeview",
-            title: dataview.title +"</br>" +" Estimated Time",
-            data: record.getData()
-        });*/
 
+    },
 
+    onButtonTap: function(button, e, eOpts) {
+        if(localStorage.getItem("ppmtoken")===null)
+            {
+				var estview = button.up();
+                var mybutton = estview.down('#bfavorite');
+                        mybutton.setText('Save as Favorite');
+                        mybutton.enable();
+                   var loginForm = Ext.create('widget.loginform'),	// Login form
+                            mainView = this.getMainView();				// Main view
+
+                        // Navigate to login
+                        mainView.push({
+                            xtype: "loginform",
+                            title: "Login"
+                        });
+
+            }
     }
 
 });

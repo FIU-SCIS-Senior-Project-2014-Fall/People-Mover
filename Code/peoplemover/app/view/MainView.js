@@ -9,6 +9,7 @@ Ext.define('PeopleMover.view.MainView', {
     requires: [
         'PeopleMover.view.UnitListView',
         'PeopleMover.view.MyMap',
+        'PeopleMover.view.TrolleyAlerts',
         'Ext.tab.Panel',
         'Ext.tab.Bar',
         'Ext.Button',
@@ -32,6 +33,24 @@ Ext.define('PeopleMover.view.MainView', {
                         pack: 'center'
                     }
                 },
+                            listeners: {
+        activeitemchange : function() {
+            //console.log('hey!!!');
+            //var items = this.getActiveItem();
+            var activeItem = this.getActiveItem(); //The currently selected item
+            var innerItems = this.getInnerItems();
+            var idx = Ext.Array.indexOf(innerItems, activeItem);
+            //alert("items is: " + idx);
+            if(idx == 2 /*&& Ext.getCmp('hideButton').hide() == false*/)
+            {
+                Ext.getCmp('nearme').show();
+            }else{
+                Ext.getCmp('nearme').hide();
+            }
+
+            //button[action]();
+        }
+    },
                 items: [
                     {
                         xtype: 'container',
@@ -74,8 +93,8 @@ Ext.define('PeopleMover.view.MainView', {
                     },
                     {
                         xtype: 'unitlistview',
-                        title: 'Favorites',
-                        iconCls: 'star'
+                        title: 'Position',
+                        iconCls: 'organize'
                     },
                     {
                         xtype: 'mymap',
@@ -83,8 +102,10 @@ Ext.define('PeopleMover.view.MainView', {
                         iconCls: 'maps'
                     },
                     {
-                        xtype: 'container',
-                        title: 'Service Times',
+                        xtype: 'trolleyalerts',
+                        id: 'btrolleyalerts',
+                        itemId: 'btrolleyalerts',
+                        title: 'Trolley Alerts',
                         iconCls: 'info'
                     },
                     {
@@ -133,10 +154,10 @@ Ext.define('PeopleMover.view.MainView', {
                                 xtype: 'button',
                                 border: 1,
                                 height: '50px',
-                                itemId: 'trolleyAlerts',
+                                itemId: 'serviceTimes',
                                 style: 'background:white',
                                 iconCls: 'info',
-                                text: 'Trolley Alerts'
+                                text: 'Service Times'
                             },
                             {
                                 xtype: 'button',
@@ -178,7 +199,86 @@ Ext.define('PeopleMover.view.MainView', {
                             src: 'resources/images/word_pvlogo.png'
                         }
                     ]
+                },                 
+                {
+                text: 'Near Me',
+                hidden: false,
+                    id: 'nearme',
+                    itemId: 'nearme',
+                handler: function() {
+                    if (!this.overlay) {
+                        this.overlay = Ext.Viewport.add({
+                            xtype: 'panel',
+                            modal: true,
+                            id: 'overlay',
+                            itemId: 'overlay',
+                            hideOnMaskTap: true,
+                            showAnimation: {
+                                type: 'popIn',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            hideAnimation: {
+                                type: 'popOut',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            centered: true,
+                            width:400,
+                            height:400,
+                            styleHtmlContent: true,
+                            //html: '<p style="text-align:center">Find Nearest Stop per Route</p>',
+                            items: [
+                                {
+                                    docked: 'top',
+                                    xtype: 'toolbar',
+                                    title: 'Choose Route'
+                                },
+                                {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                itemId: 'bhighnorthRoute',
+                                id: 'bhighnorthRoute',
+                                style: 'background: white',
+                                text: 'Palmetto High North Route'
+                                },
+                                {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                id: 'bhighsouthRoute',
+                                itemId: 'bhighsouthRoute',
+                                style: 'background: white',
+                                text: 'Palmetto High South Route'
+                            },
+                            {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                id: 'bmiddlenorthRoute',
+                                itemId: 'bmiddlenorthRoute',
+                                style: 'background: white',
+                                text: 'Palmetto Middle North Route'
+                            },
+                            {
+                                xtype: 'button',
+                                border: 1,
+                                height: '50px',
+                                id: 'bmiddlesouthRoute',
+                                itemId: 'bmiddlesouthRoute',
+                                style: 'background: white',
+                                text: 'Palmetto Middle South Route'
+                            }
+                                
+                            ],
+                            scrollable: true
+                        });
+                    }
+
+                    this.overlay.show();
                 }
+            }
             ]
         }
     }
