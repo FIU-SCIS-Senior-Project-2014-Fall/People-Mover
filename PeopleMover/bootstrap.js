@@ -9,28 +9,29 @@
  * metadata-driven class system features
  */
 Ext.Loader.addClassPathMappings({
-  "Ext": "../src",
-  "Ext-more": "../src/core/Ext-more.js",
-  "Ext.DomHelper": "../src/dom/Helper.js",
-  "Ext.DomQuery": "../src/dom/Query.js",
-  "Ext.Element-alignment": "../src/dom/Element.alignment.js",
-  "Ext.Element-all": "../src/dom/Element.traversal.js",
-  "Ext.Element-insertion": "../src/dom/Element.insertion.js",
-  "Ext.Element-position": "../src/dom/Element.position.js",
-  "Ext.Element-static": "../src/dom/Element.static.js",
-  "Ext.Element-style": "../src/dom/Element.style.js",
-  "Ext.Element-traversal": "../src/dom/Element.traversal.js",
-  "Ext.core.DomQuery": "../src/dom/Query.js",
-  "Ext.device.Purchases.Product": "../src/device/purchases/Sencha.js",
-  "Ext.device.filesystem.DirectoryEntry": "../src/device/filesystem/Sencha.js",
-  "Ext.device.filesystem.Entry": "../src/device/filesystem/Sencha.js",
-  "Ext.device.filesystem.FileEntry": "../src/device/filesystem/Sencha.js",
-  "Ext.device.filesystem.FileSystem": "../src/device/filesystem/Sencha.js",
-  "Ext.device.purchases.Purchase": "../src/device/purchases/Sencha.js",
-  "Ext.device.sqlite.Database": "../src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLResultSet": "../src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLResultSetRowList": "../src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLTransaction": "../src/device/sqlite/Sencha.js",
+  "Ext": "touch/src",
+  "Ext-more": "touch/src/core/Ext-more.js",
+  "Ext.Boot": ".sencha/app/Boot.js",
+  "Ext.DomHelper": "touch/src/dom/Helper.js",
+  "Ext.DomQuery": "touch/src/dom/Query.js",
+  "Ext.Element-alignment": "touch/src/dom/Element.alignment.js",
+  "Ext.Element-all": "touch/src/dom/Element.traversal.js",
+  "Ext.Element-insertion": "touch/src/dom/Element.insertion.js",
+  "Ext.Element-position": "touch/src/dom/Element.position.js",
+  "Ext.Element-static": "touch/src/dom/Element.static.js",
+  "Ext.Element-style": "touch/src/dom/Element.style.js",
+  "Ext.Element-traversal": "touch/src/dom/Element.traversal.js",
+  "Ext.core.DomQuery": "touch/src/dom/Query.js",
+  "Ext.device.Purchases.Product": "touch/src/device/purchases/Sencha.js",
+  "Ext.device.filesystem.DirectoryEntry": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.filesystem.Entry": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.filesystem.FileEntry": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.filesystem.FileSystem": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.purchases.Purchase": "touch/src/device/purchases/Sencha.js",
+  "Ext.device.sqlite.Database": "touch/src/device/sqlite/Sencha.js",
+  "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
+  "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
+  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
   "PeopleMover": "app"
 });
 
@@ -81,7 +82,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.Template": [],
   "Ext.Title": [],
   "Ext.TitleBar": [],
-  "Ext.Toast": [],
   "Ext.Toolbar": [],
   "Ext.Video": [],
   "Ext.XTemplate": [],
@@ -531,17 +531,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
-  "Ext.log.Base": [],
-  "Ext.log.Logger": [],
-  "Ext.log.filter.Filter": [],
-  "Ext.log.filter.Priority": [],
-  "Ext.log.formatter.Default": [],
-  "Ext.log.formatter.Formatter": [],
-  "Ext.log.formatter.Identity": [],
-  "Ext.log.writer.Console": [],
-  "Ext.log.writer.DocumentTitle": [],
-  "Ext.log.writer.Remote": [],
-  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -666,16 +655,67 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "PeopleMover.controller.AlertsController": [],
+  "PeopleMover.controller.MapController": [],
   "PeopleMover.controller.MyController": [],
+  "PeopleMover.controller.StopController": [],
+  "PeopleMover.controller.UnitListController": [],
+  "PeopleMover.controller.UserController": [],
+  "PeopleMover.model.HighNorthModel": [],
+  "PeopleMover.model.HighNorthModelPM": [],
+  "PeopleMover.model.HighSouthModel": [],
+  "PeopleMover.model.HighSouthModelPM": [],
+  "PeopleMover.model.MapLocations": [],
+  "PeopleMover.model.MiddleNorthModel": [],
+  "PeopleMover.model.MiddleNorthModelPM": [],
+  "PeopleMover.model.MiddleSouthModel": [],
+  "PeopleMover.model.MiddleSouthModelPM": [],
+  "PeopleMover.model.UnitList": [],
+  "PeopleMover.model.WayPoints1": [],
+  "PeopleMover.model.WayPoints2": [],
+  "PeopleMover.model.WayPoints3": [],
+  "PeopleMover.model.WayPoints4": [],
+  "PeopleMover.model.WayPoints5": [],
+  "PeopleMover.model.WayPoints6": [],
+  "PeopleMover.model.WayPoints7": [],
+  "PeopleMover.model.WayPoints8": [],
   "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.HighNorthStore": [],
+  "PeopleMover.store.HighNorthStorePM": [],
+  "PeopleMover.store.HighSouthStore": [],
+  "PeopleMover.store.HighSouthStorePM": [],
+  "PeopleMover.store.MapStore": [],
+  "PeopleMover.store.MiddleNorthStore": [],
+  "PeopleMover.store.MiddleNorthStorePM": [],
+  "PeopleMover.store.MiddleSouthStore": [],
+  "PeopleMover.store.MiddleSouthStorePM": [],
+  "PeopleMover.store.UnitListStore": [],
+  "PeopleMover.store.WayPointStore1": [],
+  "PeopleMover.store.WayPointStore2": [],
+  "PeopleMover.store.WayPointStore3": [],
+  "PeopleMover.store.WayPointStore4": [],
+  "PeopleMover.store.WayPointStore5": [],
+  "PeopleMover.store.WayPointStore6": [],
+  "PeopleMover.store.WayPointStore7": [],
+  "PeopleMover.store.WayPointStore8": [],
   "PeopleMover.store.listRoutes": [],
-  "PeopleMover.view.MyContainer": [],
-  "PeopleMover.view.MyFormPanel1": [],
+  "PeopleMover.view.AboutUs": [],
+  "PeopleMover.view.EstTimeView": [],
+  "PeopleMover.view.FeedBackView": [],
+  "PeopleMover.view.HighNorthView": [],
+  "PeopleMover.view.HighSouthView": [],
+  "PeopleMover.view.LoginForm": [],
+  "PeopleMover.view.MainView": [],
+  "PeopleMover.view.MiddleNorthView": [],
+  "PeopleMover.view.MiddleSouthView": [],
+  "PeopleMover.view.MyMap": [],
   "PeopleMover.view.MyNavigationView": [],
-  "PeopleMover.view.MyPanel1": [],
   "PeopleMover.view.Problem": [],
+  "PeopleMover.view.RegisterForm": [],
   "PeopleMover.view.RouteDetailsList": [],
+  "PeopleMover.view.ServiceTimes": [],
   "PeopleMover.view.TrolleyAlerts": [],
+  "PeopleMover.view.UnitListView": [],
   "PeopleMover.view.requestStop": []
 });
 
@@ -757,7 +797,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.TitleBar": [
     "widget.titlebar"
   ],
-  "Ext.Toast": [],
   "Ext.Toolbar": [
     "widget.toolbar"
   ],
@@ -1257,17 +1296,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
-  "Ext.log.Base": [],
-  "Ext.log.Logger": [],
-  "Ext.log.filter.Filter": [],
-  "Ext.log.filter.Priority": [],
-  "Ext.log.formatter.Default": [],
-  "Ext.log.formatter.Formatter": [],
-  "Ext.log.formatter.Identity": [],
-  "Ext.log.writer.Console": [],
-  "Ext.log.writer.DocumentTitle": [],
-  "Ext.log.writer.Remote": [],
-  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -1408,25 +1436,98 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "PeopleMover.controller.AlertsController": [],
+  "PeopleMover.controller.MapController": [],
   "PeopleMover.controller.MyController": [],
+  "PeopleMover.controller.StopController": [],
+  "PeopleMover.controller.UnitListController": [],
+  "PeopleMover.controller.UserController": [],
+  "PeopleMover.model.HighNorthModel": [],
+  "PeopleMover.model.HighNorthModelPM": [],
+  "PeopleMover.model.HighSouthModel": [],
+  "PeopleMover.model.HighSouthModelPM": [],
+  "PeopleMover.model.MapLocations": [],
+  "PeopleMover.model.MiddleNorthModel": [],
+  "PeopleMover.model.MiddleNorthModelPM": [],
+  "PeopleMover.model.MiddleSouthModel": [],
+  "PeopleMover.model.MiddleSouthModelPM": [],
+  "PeopleMover.model.UnitList": [],
+  "PeopleMover.model.WayPoints1": [],
+  "PeopleMover.model.WayPoints2": [],
+  "PeopleMover.model.WayPoints3": [],
+  "PeopleMover.model.WayPoints4": [],
+  "PeopleMover.model.WayPoints5": [],
+  "PeopleMover.model.WayPoints6": [],
+  "PeopleMover.model.WayPoints7": [],
+  "PeopleMover.model.WayPoints8": [],
   "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.HighNorthStore": [],
+  "PeopleMover.store.HighNorthStorePM": [],
+  "PeopleMover.store.HighSouthStore": [],
+  "PeopleMover.store.HighSouthStorePM": [],
+  "PeopleMover.store.MapStore": [],
+  "PeopleMover.store.MiddleNorthStore": [],
+  "PeopleMover.store.MiddleNorthStorePM": [],
+  "PeopleMover.store.MiddleSouthStore": [],
+  "PeopleMover.store.MiddleSouthStorePM": [],
+  "PeopleMover.store.UnitListStore": [],
+  "PeopleMover.store.WayPointStore1": [],
+  "PeopleMover.store.WayPointStore2": [],
+  "PeopleMover.store.WayPointStore3": [],
+  "PeopleMover.store.WayPointStore4": [],
+  "PeopleMover.store.WayPointStore5": [],
+  "PeopleMover.store.WayPointStore6": [],
+  "PeopleMover.store.WayPointStore7": [],
+  "PeopleMover.store.WayPointStore8": [],
   "PeopleMover.store.listRoutes": [],
-  "PeopleMover.view.MyContainer": [
-    "widget.main"
+  "PeopleMover.view.AboutUs": [
+    "widget.aboutus"
   ],
-  "PeopleMover.view.MyFormPanel1": [
-    "widget.contactUs"
+  "PeopleMover.view.EstTimeView": [
+    "widget.esttimeview"
+  ],
+  "PeopleMover.view.FeedBackView": [
+    "widget.feedback"
+  ],
+  "PeopleMover.view.HighNorthView": [
+    "widget.highnorthview"
+  ],
+  "PeopleMover.view.HighSouthView": [
+    "widget.highsouthview"
+  ],
+  "PeopleMover.view.LoginForm": [
+    "widget.loginform"
+  ],
+  "PeopleMover.view.MainView": [
+    "widget.mainview"
+  ],
+  "PeopleMover.view.MiddleNorthView": [
+    "widget.middlenorthview"
+  ],
+  "PeopleMover.view.MiddleSouthView": [
+    "widget.middlesouthview"
+  ],
+  "PeopleMover.view.MyMap": [
+    "widget.mymap"
   ],
   "PeopleMover.view.MyNavigationView": [],
-  "PeopleMover.view.MyPanel1": [],
   "PeopleMover.view.Problem": [
     "widget.problem"
+  ],
+  "PeopleMover.view.RegisterForm": [
+    "widget.registerform"
   ],
   "PeopleMover.view.RouteDetailsList": [
     "widget.DetailList"
   ],
+  "PeopleMover.view.ServiceTimes": [
+    "widget.servicetimes"
+  ],
   "PeopleMover.view.TrolleyAlerts": [
-    "widget.alerts"
+    "widget.trolleyalerts"
+  ],
+  "PeopleMover.view.UnitListView": [
+    "widget.unitlistview"
   ],
   "PeopleMover.view.requestStop": [
     "widget.requestStop"

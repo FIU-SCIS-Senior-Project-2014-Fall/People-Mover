@@ -100,33 +100,11 @@
                                 "height": 200,
                                 "id": "pictureBox",
                                 "itemId": "itemPictureBox",
-                                "src": "resources/images/logo.png",
+                                "src": "resources/images/camera.png",
                                 "width": 200
                             },
                             "name": "MyImg",
                             "designerId": "56f37009-14ac-4a74-8959-b3566460f720"
-                        },
-                        {
-                            "type": "Ext.Button",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|uiInterfaceName": "decline-round",
-                                "docked": null,
-                                "height": 201,
-                                "iconAlign": "top",
-                                "iconCls": "compose",
-                                "id": "bPicture",
-                                "itemId": "itemBPicture",
-                                "text": "Make<br>a<br>Picture",
-                                "ui": "decline-round",
-                                "width": 99
-                            },
-                            "name": "MyButton",
-                            "designerId": "eac5a7e0-4f62-46b5-b9d4-30aff697354d"
                         }
                     ]
                 }
