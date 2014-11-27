@@ -28,6 +28,9 @@
     <bean id="WayPointsAfterDAOJDBCTemplate" class="peopleMoverDB.dao.WayPointsAfterDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
+     <bean id="FavoriteDAOJDBCTemplate" class="peopleMoverDB.dao.FavoriteDAOImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />

@@ -24,11 +24,11 @@ public class WayPointsAfterDAOImpl implements WayPointsAfterDAO {
 	}
 	public List<WayPoints> getListByRouteANDStop(String StopId, String RouteId, String Latitude, String Longitude)
 	{
-		String query = "select * from Waypoints WHERE StopID < ? and RouteID =? and Wayorder >= (SELECT Wayorder from Waypoints where Latitude =? and Longitude=?)";
+		String query = "select * from Waypoints WHERE StopID < ? and RouteID =? and Wayorder >= (SELECT Wayorder from Waypoints where Latitude =? and Longitude=? and RouteID=? LIMIT 1)";
     	JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
     	List<WayPoints> waypointlist = new ArrayList<WayPoints>();
     	
-    	List<Map<String,Object>> waypointsRow = jdbcTemplate.queryForList(query,new Object[]{StopId,RouteId,Latitude, Longitude});
+    	List<Map<String,Object>> waypointsRow = jdbcTemplate.queryForList(query,new Object[]{StopId,RouteId,Latitude, Longitude,RouteId});
     	for(Map<String,Object> waypointRow : waypointsRow){
     		WayPoints waypoint = new WayPoints();
         	waypoint.setWayID(String.valueOf(waypointRow.get("ID")));
