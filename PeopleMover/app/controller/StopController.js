@@ -11,11 +11,14 @@ Ext.define('PeopleMover.controller.StopController', {
 
     config: {
         views: [
+			'MainView',
             'EstTimeView'
         ],
 
         refs: {
-            mainView: 'mainview'
+            mainView: 'mainview',
+            esttimeview : 'esttimeview',
+            unitlistview:'unitlistview'
         },
 
         control: {
@@ -48,7 +51,7 @@ Ext.define('PeopleMover.controller.StopController', {
 			}
         }
     },
-
+    
     showMiddleNorthList: function(button, e, eOpts) {
             var stopList = Ext.create('widget.middlenorthview');
             mainView = this.getMainView();
@@ -92,6 +95,7 @@ Ext.define('PeopleMover.controller.StopController', {
                 title: "High School South Stops"
             });
     },
+    
 
     onListItemTap: function(dataview, index, target, record, e, eOpts) {
        
@@ -99,7 +103,9 @@ Ext.define('PeopleMover.controller.StopController', {
                                 {
                                     title:" Estimated Time"
                                 });
+        mainView = this.getMainView();
         mainView.push(estTime);
+        console.log(record.data);
         estTime.getAt(0).setTitle(dataview.title);
 
         estTime.getAt(0).setData(record.data);
@@ -107,24 +113,111 @@ Ext.define('PeopleMover.controller.StopController', {
 
 
     },
+	mydata:null,
 
     onButtonTap: function(button, e, eOpts) {
-        if(localStorage.getItem("ppmtoken")===null)
-            {
-				var estview = button.up();
-                var mybutton = estview.down('#bfavorite');
-                        mybutton.setText('Save as Favorite');
-                        mybutton.enable();
-                   var loginForm = Ext.create('widget.loginform'),	// Login form
-                            mainView = this.getMainView();				// Main view
+		var favToken = localStorage.getItem("ppmtoken");
+		//mainView = this.getMainView();
+		
+		mainView = this.getMainView();
+		
+        if(favToken===null)
+		{
+			var estview = button.up();
+			var mybutton = estview.down('#bfavorite');
+					mybutton.setText('Save as Favorite');
+					mybutton.enable();
+					
+					var eTimeView = Ext.getCmp("esttimeview");
+					var data  = eTimeView.getAt(0).getData();
+					//sessionStorage.setItem("data",data);
+					this.mydata = data;
+					console.log(this.mydata);
+					
+			   //~ var loginForm = Ext.create('widget.loginform');	// Login form
+						//~ //mainView = this.getMainView();				// Main view
+//~ 
+					//~ // Navigate to login
+					//~ mainView.push({
+						//~ xtype: "loginform",
+						//~ title: "Login"
+					//~ });
+					var mypanel =Ext.getCmp("myTabPanel");
+					mypanel.setActiveItem(4);
+					mainView.reset();
+					
+					estview.hide();
+					
 
-                        // Navigate to login
-                        mainView.push({
-                            xtype: "loginform",
-                            title: "Login"
-                        });
+		}
+		else{
+			
+			var eTimeView = Ext.getCmp("esttimeview");
+			var data  = eTimeView.getAt(0).getData();
+			if(data===null)
+			{
+				data = this.mydata; 
+				//sessionStorage.getItem("data");
+			}
+			console.log(data);
+			//~ var favView = Ext.get;
+			//mainView = this.getMainView();
+			//esttimeview  = this.getEstTimeView();
+			     var successCallback = function(resp, ops) {
+									
+									
+									Ext.Viewport.unmask(); 
 
-            }
+
+                                    var jsonResp = Ext.JSON.decode(resp.responseText);
+                                       Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+									
+									
+									var mypanel =Ext.getCmp("myTabPanel");
+									mypanel.setActiveItem(2);
+									mainView.reset();
+									
+									
+                                    
+
+
+                                };
+
+                                // Failure
+                                var failureCallback = function(resp, ops) {
+								
+								Ext.Viewport.unmask(); 
+                                   var jsonResp = Ext.JSON.decode(resp.responseText);
+                                              Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+
+
+                                };
+                                //TODO: Registration using server-side authentication service
+
+                                     
+                                             Ext.Viewport.mask({ xtype: 'loadmask',
+													message: "Setting Favorite.." });
+                                                     var callparams = {
+                                                            "token":favToken,
+                                                            "stopid": data.stopId,
+                                                             "routeid":data.routeId,
+                                                             "remove": "false"
+
+                                                            };
+                                                 
+
+                                                    Ext.Ajax.request({
+                                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/setalarm",
+                                                        //url: "http://localhost:8080/setalarm",
+                                                        method: 'POST',
+                                                        /*headers: { 'Content-Type': 'application/json' },*/
+                                                        params: callparams,
+                                                        success: successCallback,
+                                                        failure: failureCallback
+                                                    });					
+			}
     }
 
 });

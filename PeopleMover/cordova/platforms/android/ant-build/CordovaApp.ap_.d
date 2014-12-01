@@ -44,6 +44,7 @@
 /var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/css/loading.css \
 /var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/css/sencha-touch-ccc92caf-3edd-40a7-b949-333b6cad7e99.css \
 /var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/images/logo_icon.png \
+/var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/images/word_pvlogo-original.png \
 /var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/images/bus2.png \
 /var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/images/middlebusstop2.png \
 /var/www/html/touch/ppmfixed/cordova/platforms/android/assets/www/resources/images/bus_mid2.png \

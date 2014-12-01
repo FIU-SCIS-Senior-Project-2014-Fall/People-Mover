@@ -6,7 +6,7 @@ Ext.define('PeopleMover.controller.MapController', {
     extend: 'Ext.app.Controller',
 
     requires: [
-        'Ext.util.JSON',
+        'Ext.JSON',
         'Ext.util.DelayedTask'
     ],
 
@@ -528,7 +528,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                 
         //             var successCallback = function(data) {
 
-        //             var jsonResp = Ext.util.JSON.decode(data.responseText);
+        //             var jsonResp = Ext.JSON.decode(data.responseText);
         //             message = [];
         //             message[0] = jsonResp.message;
 
@@ -596,7 +596,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             disableCaching: false,
                                             useDefaultXhrHeader: false, 
                                             success: function(data) {  
-                                                 var jsonResp = Ext.util.JSON.decode(data.responseText);
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
                                                         content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
@@ -641,7 +641,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             disableCaching: false,
                                             useDefaultXhrHeader: false, 
                                             success: function(data) {  
-                                                 var jsonResp = Ext.util.JSON.decode(data.responseText);
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
                                                         content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
@@ -684,7 +684,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             disableCaching: false,
                                             useDefaultXhrHeader: false, 
                                             success: function(data) {  
-                                                 var jsonResp = Ext.util.JSON.decode(data.responseText);
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
                                                         content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
@@ -745,7 +745,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             disableCaching: false,
                                             useDefaultXhrHeader: false, 
                                             success: function(data) {  
-                                                 var jsonResp = Ext.util.JSON.decode(data.responseText);
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
                                                         content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
