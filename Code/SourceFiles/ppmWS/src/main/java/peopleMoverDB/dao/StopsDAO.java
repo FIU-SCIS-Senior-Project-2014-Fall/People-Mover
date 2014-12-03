@@ -1,6 +1,6 @@
 package peopleMoverDB.dao;
 
-import java.text.ParseException;
+
 import java.util.List;
 
 import peopleMoverDB.model.Stops;
@@ -12,7 +12,7 @@ public interface StopsDAO {
 //    //Create
 //    public int save(Stops stop) throws ParseException;
 //    //Read
-//    public Stops getByRouteId(String RouteId);
+    public Stops getByStopsAndRoute(String StopId, String RouteId);
 //    //Update
 //    public int update(Stops location);
 //    //Delete

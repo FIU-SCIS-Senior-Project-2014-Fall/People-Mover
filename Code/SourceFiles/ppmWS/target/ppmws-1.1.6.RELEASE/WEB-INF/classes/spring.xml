@@ -16,6 +16,9 @@
     <bean id="StopsDAOJDBCTemplate" class="peopleMoverDB.dao.StopsDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
+    <bean id="RouteDAOJDBCTemplate" class="peopleMoverDB.dao.RouteDAOImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
     <bean id="WayPointsDAOJDBCTemplate" class="peopleMoverDB.dao.WayPointsDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
@@ -26,6 +29,9 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     <bean id="WayPointsAfterDAOJDBCTemplate" class="peopleMoverDB.dao.WayPointsAfterDAOImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+     <bean id="FavoriteDAOJDBCTemplate" class="peopleMoverDB.dao.FavoriteDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
