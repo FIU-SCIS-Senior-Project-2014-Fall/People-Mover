@@ -116,6 +116,7 @@ public class FavoriteDAOImpl implements FavoriteDAO{
 	{
 		String query = "SELECT * FROM FavoriteStops";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
 		List<Favorite> listfav = new ArrayList<Favorite>();
 		List<Map<String,Object>> favRows = jdbcTemplate.queryForList(query);
 		
@@ -126,6 +127,29 @@ public class FavoriteDAOImpl implements FavoriteDAO{
 			fav.setRouteId(String.valueOf(favRow.get("Stops_RouteID")));
 			fav.setEmailFlag(String.valueOf(favRow.get("email_flag")));
 			fav.setTime(String.valueOf(favRow.get("DefinedTime")));
+			listfav.add(fav);
+			
+		}
+		return listfav;
+		
+	}
+	@Override
+	public List<Favorite> getAll(String token)
+	{
+		String query = "SELECT * FROM FavoriteStops WHERE User_token=?";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] args = new Object[] {token};
+		List<Favorite> listfav = new ArrayList<Favorite>();
+		List<Map<String,Object>> favRows = jdbcTemplate.queryForList(query,args);
+		
+		for(Map<String,Object> favRow : favRows){
+			Favorite fav = new Favorite();
+			fav.setUserToken(String.valueOf(favRow.get("User_token")));
+			fav.setStopId(String.valueOf(favRow.get("Stops_ID")));
+			fav.setRouteId(String.valueOf(favRow.get("Stops_RouteID")));
+			fav.setEmailFlag(String.valueOf(favRow.get("email_flag")));
+			fav.setTime(String.valueOf(favRow.get("DefinedTime")));
+			listfav.add(fav);
 			
 		}
 		return listfav;

@@ -24,10 +24,10 @@ import peopleMoverWS.model.Unit;
 @ComponentScan
 @EnableAutoConfiguration
 @EnableScheduling
-public class TSOLookupService {
+public class TSOLookupService extends Service{
 
 	
-	@Scheduled(cron="${cron.expression}?")
+	@Scheduled(cron="${cronexpression}")
     public void ServiceMethod()
     {
 //        System.out.println("Method executed at every 5 seconds. Current time is :: "+ new Date());

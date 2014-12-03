@@ -47,7 +47,7 @@ public class EstimatedTime {
 			fMessage.setMessage(result);
 		}else{
 			fMessage.setCode("1");
-			fMessage.setMessage("Estimated Time: N/A");
+			fMessage.setMessage("N/A");
 		}
 		
 		return fMessage;
@@ -110,6 +110,7 @@ public class EstimatedTime {
 					if(holder[0].equals("waypoint") ){
 						String wayorder = liststop.get(i).getWayorder();
 						System.out.println("Wayorder is" + liststop.get(i).getWayorder());
+						System.out.println("Route is" + liststop.get(i).getRouteId());						
 						System.out.println("holders: " + holder[1] + "," + holder[2]);
 						totalDistance = getDistance( route, targetStp.get(Integer.parseInt(stop)).getStopId(), holder[1], holder[2], wayorder);
 						foundWaypoint = true;
@@ -134,14 +135,14 @@ public class EstimatedTime {
 		DecimalFormat formatter = new DecimalFormat("##");
 		
 		if(totalDistance == 0.0){
-			result = "Estimated Time: N/A";
+			result = "N/A";
 			System.out.println(result);
 			return result;
 		}else if((time*60*60) < 60)
 		{
 			int finalSec = (int) Math.round((time*60*60));
 			showTime = formatter.format(finalSec);
-			result = "Estimated Time: 00:00:" + showTime;
+			result = "00:00:" + showTime;
 			System.out.println(result);
 			return result;
 		}else if((time*60) < 60)
@@ -154,7 +155,7 @@ public class EstimatedTime {
 				
 				String showSec = formatter.format(finalSec);
 				String showMin = formatter.format(finalMin);
-				result = "Estimated Time: 00:"+ temp1.substring(0,2) +  ":" + temp.substring(0,2);
+				result = "00:"+ temp1.substring(0,2) +  ":" + temp.substring(0,2);
 			}
 			
 			double finalSec = (double) Math.round((time*60*60));
@@ -166,16 +167,16 @@ public class EstimatedTime {
 			String showMin = formatter.format(finalMin);
 			if(showMin.length() == 1 )
 			{
-				result = "Estimated Time: 00:"+ "0" +temp1.substring(0,1) +  ":" + temp.substring(0,2);
+				result = "00:"+ "0" +temp1.substring(0,1) +  ":" + temp.substring(0,2);
 			}else{
-				result = "Estimated Time: 00:"+ temp1.substring(0,2) +  ":" + temp.substring(0,2);
+				result = "00:"+ temp1.substring(0,2) +  ":" + temp.substring(0,2);
 			}
 
 			System.out.println(result);
 			return result;
 		}else{
 			
-			result = "Estimated Time: " + (int) (Math.round(time*60)) + ":" + (int) Math.round((time*60)) + ":"+ (int) Math.round((time*60*60));
+			result = "" + (int) (Math.round(time*60)) + ":" + (int) Math.round((time*60)) + ":"+ (int) Math.round((time*60*60));
 			System.out.println(result);
 			return result;
 		}

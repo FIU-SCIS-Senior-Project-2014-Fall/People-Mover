@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import peopleMoverWS.util.AlarmService;
 import peopleMoverWS.util.TSOLookupService;
 
 @Configuration
@@ -18,7 +19,7 @@ public class Application {
     	
         //ApplicationContext appcontext = SpringApplication.run(Application.class, args);
         //TSOLookupService tso = appcontext.getBean(TSOLookupService.class);
-       SpringApplication.run(new Object[]{Application.class, TSOLookupService.class}, args);
+       SpringApplication.run(new Object[]{Application.class, AlarmService.class, TSOLookupService.class}, args);
     	//ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 }

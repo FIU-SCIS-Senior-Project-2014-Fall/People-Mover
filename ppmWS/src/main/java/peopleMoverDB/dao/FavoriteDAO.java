@@ -18,4 +18,5 @@ public interface FavoriteDAO {
 	public int deleteFavorite(String token,String StopId, String RouteId);
 	//GET ALL
 	public List<Favorite> getAll();
+	public List<Favorite> getAll(String token);
 }

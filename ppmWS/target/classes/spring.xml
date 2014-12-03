@@ -16,6 +16,9 @@
     <bean id="StopsDAOJDBCTemplate" class="peopleMoverDB.dao.StopsDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
+    <bean id="RouteDAOJDBCTemplate" class="peopleMoverDB.dao.RouteDAOImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
     <bean id="WayPointsDAOJDBCTemplate" class="peopleMoverDB.dao.WayPointsDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
