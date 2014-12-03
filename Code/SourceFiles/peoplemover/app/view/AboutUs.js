@@ -18,6 +18,7 @@ Ext.define('PeopleMover.view.AboutUs', {
                 //grow:true,
                 //maxHeight: '500',         
                 label: 'What is the Pinecrest People Mover?',
+                labelAlign: 'top',
                 labelWrap: true,
                 html: 	' <p>The Pinecrest People Mover is your '+
 						'connection to schools and more in the Village of Pinecrest.'+

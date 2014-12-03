@@ -33,7 +33,8 @@ Ext.application({
         'HighNorthModel',
         'HighNorthModelPM',
         'HighSouthModel',
-        'HighSouthModelPM'
+        'HighSouthModelPM',
+        'FavoriteList'
     ],
     stores: [
         'listRoutes',
@@ -54,7 +55,8 @@ Ext.application({
         'HighNorthStore',
         'HighNorthStorePM',
         'HighSouthStore',
-        'HighSouthStorePM'
+        'HighSouthStorePM',
+        'FavoriteListStore'
     ],
     views: [
         'RouteDetailsList',
@@ -74,7 +76,8 @@ Ext.application({
         'AboutUs',
         'EstTimeView',
         'ServiceTimes',
-        'TrolleyAlerts'
+        'TrolleyAlerts',
+        'FavoriteView'
     ],
     controllers: [
         'MyController',
@@ -82,7 +85,8 @@ Ext.application({
         'UserController',
         'MapController',
         'StopController',
-        'AlertsController'
+        'AlertsController',
+        'FavoritesController'
     ],
     name: 'PeopleMover',
 

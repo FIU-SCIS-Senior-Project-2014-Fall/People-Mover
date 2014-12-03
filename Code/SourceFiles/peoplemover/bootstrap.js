@@ -656,11 +656,13 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "PeopleMover.controller.AlertsController": [],
+  "PeopleMover.controller.FavoritesController": [],
   "PeopleMover.controller.MapController": [],
   "PeopleMover.controller.MyController": [],
   "PeopleMover.controller.StopController": [],
   "PeopleMover.controller.UnitListController": [],
   "PeopleMover.controller.UserController": [],
+  "PeopleMover.model.FavoriteList": [],
   "PeopleMover.model.HighNorthModel": [],
   "PeopleMover.model.HighNorthModelPM": [],
   "PeopleMover.model.HighSouthModel": [],
@@ -680,6 +682,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "PeopleMover.model.WayPoints7": [],
   "PeopleMover.model.WayPoints8": [],
   "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.FavoriteListStore": [],
   "PeopleMover.store.HighNorthStore": [],
   "PeopleMover.store.HighNorthStorePM": [],
   "PeopleMover.store.HighSouthStore": [],
@@ -701,6 +704,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "PeopleMover.store.listRoutes": [],
   "PeopleMover.view.AboutUs": [],
   "PeopleMover.view.EstTimeView": [],
+  "PeopleMover.view.FavoriteView": [],
   "PeopleMover.view.FeedBackView": [],
   "PeopleMover.view.HighNorthView": [],
   "PeopleMover.view.HighSouthView": [],
@@ -1437,11 +1441,13 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
   "PeopleMover.controller.AlertsController": [],
+  "PeopleMover.controller.FavoritesController": [],
   "PeopleMover.controller.MapController": [],
   "PeopleMover.controller.MyController": [],
   "PeopleMover.controller.StopController": [],
   "PeopleMover.controller.UnitListController": [],
   "PeopleMover.controller.UserController": [],
+  "PeopleMover.model.FavoriteList": [],
   "PeopleMover.model.HighNorthModel": [],
   "PeopleMover.model.HighNorthModelPM": [],
   "PeopleMover.model.HighSouthModel": [],
@@ -1461,6 +1467,7 @@ Ext.ClassManager.addNameAliasMappings({
   "PeopleMover.model.WayPoints7": [],
   "PeopleMover.model.WayPoints8": [],
   "PeopleMover.model.routeInfo": [],
+  "PeopleMover.store.FavoriteListStore": [],
   "PeopleMover.store.HighNorthStore": [],
   "PeopleMover.store.HighNorthStorePM": [],
   "PeopleMover.store.HighSouthStore": [],
@@ -1485,6 +1492,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "PeopleMover.view.EstTimeView": [
     "widget.esttimeview"
+  ],
+  "PeopleMover.view.FavoriteView": [
+    "widget.favoriteStops"
   ],
   "PeopleMover.view.FeedBackView": [
     "widget.feedback"

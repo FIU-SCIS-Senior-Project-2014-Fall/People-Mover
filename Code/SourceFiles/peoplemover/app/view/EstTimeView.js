@@ -15,6 +15,7 @@ Ext.define('PeopleMover.view.EstTimeView', {
 
     config: {
         id: 'esttimeview',
+        itemId: "esttimeview",
         scrollable: 'vertical',
         items: [
             {

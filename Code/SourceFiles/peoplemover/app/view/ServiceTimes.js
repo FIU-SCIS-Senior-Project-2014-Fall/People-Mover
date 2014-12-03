@@ -28,6 +28,7 @@ Ext.define('PeopleMover.view.ServiceTimes', {
                 height: '100%',
                 //maxHeight: '100%',
                 label: 'People Mover Service Time',
+                labelAlign: 'top',
                 labelWrap: true,
                 html: '<p>Palmetto Middle Shool: </br>8:40AM - 9:00AM' +
 						' </br> 4:00PM - 4:40PM</p>'+'</br>'+

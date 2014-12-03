@@ -92,9 +92,11 @@ Ext.define('PeopleMover.view.MainView', {
                         ]
                     },
                     {
-                        xtype: 'unitlistview',
-                        title: 'Position',
-                        iconCls: 'organize'
+                         xtype: 'favoriteStops',
+                        id: 'favoriteStops',
+                        itemId: 'favoriteStops2',
+                        title: 'Favorites',
+                        iconCls: 'star'
                     },
                     {
                         xtype: 'mymap',

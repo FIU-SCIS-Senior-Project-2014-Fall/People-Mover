@@ -523,44 +523,7 @@ Ext.define('PeopleMover.controller.MapController', {
                 highSouth.load();
                 highNorth.load();
 
-                function markerClick(marker, routeId, stopId){
-                    
-                                
-                    var successCallback = function(data) {
-
-
-                    var jsonResp = Ext.JSON.decode(data.responseText);
-                    message = [];
-                    message[0] = jsonResp.message;
-                    return message[0];
-                };
-
-                var failureCallback = function(data) {
-
-                   console.log("ooops");
-
-
-
-                };
-
-                    var temp = Ext.Ajax.request({
-                                        url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes",
-                                        method: 'GET',
-                                        /*headers: { 'Content-Type': 'application/json' },*/
-                                        params: {
-                                             "RouteId": routeId,
-                                             "StopId": stopId
-                                            },
-                                            disableCaching: false,
-                                            useDefaultXhrHeader: false,
-                                        success: successCallback,
-                                        failure: failureCallback
-                                    });
-                    var time = message[0];
-                    message.length = 0;
-
-                    return time;
-        }
+      
 
 
 
@@ -578,19 +541,32 @@ Ext.define('PeopleMover.controller.MapController', {
                         title: record.data.street,
                         icon: iconBase + 'bus.png'
                     });
-                    
-
-                                (function(i, marker) {
-                                    // Creating the event listener. It now has access to the values of
-                                    // i and marker as they were during its creation
-                                    google.maps.event.addListener(marker, 'click', function() {
-                                        var holder = markerClick(marker,record.data.routeId, record.data.stopId);
-                                        var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + holder//new google.maps.LatLng(block3[0],block3[1])
-                                        });
-                                        infowindow.open(map, marker);
+                                //var holder = markerClick(marker,record.data.routeId, record.data.stopId);
+                                
+                            (function(i, marker) {
+                                google.maps.event.addListener(marker, "click", function()  
+                                    {  
+                                        // Make an AJAX request to get the data  
+                                        // The return will be put into the InfoWindow  
+                                        Ext.Ajax.request({  
+                                            url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes", 
+                                            params: {
+                                             "RouteId": record.data.routeId,
+                                             "StopId": record.data.stopId
+                                            },
+                                            disableCaching: false,
+                                            useDefaultXhrHeader: false, 
+                                            success: function(data) {  
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
+                                                var infowindow = new google.maps.InfoWindow({
+                                                        content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    });
+                                                    //infowindow2.setContent(data.responseText);  
+                                                infowindow.open(map, marker);  
+                                            }  
+                                        });  
                                     });
-                                    })(i, marker);
+                                })(i, marker);
 
                     marker.setMap(map);
 
@@ -616,11 +592,24 @@ Ext.define('PeopleMover.controller.MapController', {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
-                                        var holder2 = markerClick(marker,record.data.routeId, record.data.stopId);
-                                        var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + holder2//new google.maps.LatLng(block3[0],block3[1])
-                                        });
-                                        infowindow.open(map, marker);
+
+                                        Ext.Ajax.request({  
+                                            url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes", 
+                                            params: {
+                                             "RouteId": record.data.routeId,
+                                             "StopId": record.data.stopId
+                                            },
+                                            disableCaching: false,
+                                            useDefaultXhrHeader: false, 
+                                            success: function(data) {  
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
+                                                var infowindow = new google.maps.InfoWindow({
+                                                        content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    });
+                                                    //infowindow2.setContent(data.responseText);  
+                                                infowindow.open(map, marker);  
+                                            }  
+                                        }); 
                                     });
                                     })(i, marker);
 
@@ -647,11 +636,23 @@ Ext.define('PeopleMover.controller.MapController', {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
                                     google.maps.event.addListener(marker, 'click', function() {
-                                        var holder3 = markerClick(marker,record.data.routeId, record.data.stopId);
-                                        var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle() +'<br/>Middle School Route' + '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + holder3//new google.maps.LatLng(block3[0],block3[1])
-                                        });
-                                        infowindow.open(map, marker);
+                                        Ext.Ajax.request({  
+                                            url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes", 
+                                            params: {
+                                             "RouteId": record.data.routeId,
+                                             "StopId": record.data.stopId
+                                            },
+                                            disableCaching: false,
+                                            useDefaultXhrHeader: false, 
+                                            success: function(data) {  
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
+                                                var infowindow = new google.maps.InfoWindow({
+                                                        content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    });
+                                                    //infowindow2.setContent(data.responseText);  
+                                                infowindow.open(map, marker);  
+                                            }  
+                                        }); 
                                     });
                                     })(i, marker);
 
@@ -673,21 +674,49 @@ Ext.define('PeopleMover.controller.MapController', {
                         title: record.data.street,
                         icon: iconBase + 'bus2.png'
                     });
-
+                        var currentTime = new Date()
+                        var hours = currentTime.getHours()
+                        var minutes = currentTime.getMinutes()
+                        if (minutes < 10){
+                        minutes = "0" + minutes
+                        }
+                        //console.log("current time is " + currentTime );
+                        //console.log(hours + ":" + minutes + " ");
 
 
                                 (function(i, marker) {
                                     // Creating the event listener. It now has access to the values of
                                     // i and marker as they were during its creation
-                                    google.maps.event.addListener(marker, 'click', function() {
+                                    
+                                     google.maps.event.addListener(marker, 'click', function() {
+                                    //     if((currentTime.getHours() <= 8 && currentTime.getMinutes() < 30) || (hours > 9)){
+                                    //     var infowindow = new google.maps.InfoWindow({
+                                    //                     content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>Not on the Route'//new google.maps.LatLng(block3[0],block3[1])
+                                    //                 });
+                                    //                 //infowindow2.setContent(data.responseText);  
+                                    //             infowindow.open(map, marker);
+                                    // }else{
                                         
-                                        var holder4 = markerClick(marker,record.data.routeId, record.data.stopId);
-                                        var infowindow = new google.maps.InfoWindow({
-                                            content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br>' + holder4
-                                        });
-                                        infowindow.open(map, marker);
-                                        var holder4 = '';
+                                        Ext.Ajax.request({  
+                                            url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes", 
+                                            params: {
+                                             "RouteId": record.data.routeId,
+                                             "StopId": record.data.stopId
+                                            },
+                                            disableCaching: false,
+                                            useDefaultXhrHeader: false, 
+                                            success: function(data) {  
+                                                 var jsonResp = Ext.JSON.decode(data.responseText);
+                                                var infowindow = new google.maps.InfoWindow({
+                                                        content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    });
+                                                    //infowindow2.setContent(data.responseText);  
+                                                infowindow.open(map, marker);  
+                                            }  
+                                        }); 
+                                       // }
                                     });
+
                                     })(i, marker);
 
                     marker.setMap(map);

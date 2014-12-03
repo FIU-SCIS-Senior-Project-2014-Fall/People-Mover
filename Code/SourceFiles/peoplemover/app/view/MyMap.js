@@ -23,7 +23,19 @@ Ext.define('PeopleMover.view.MyMap', {
             navigationControl: true,
             disableDefaultUI: true
             
-        }
+        },
+        monitorResize : true,
+		 listeners: {
+			onResize: function() {
+				console.log('MAP');
+				  var gmap = this.getMap();
+				  if(gmap)
+				  {
+					  console.log('MAP painted');
+						google.maps.event.trigger(gmap.map, 'resize');
+					}
+			}
+		}
     },
 
     initialize: function() {
@@ -69,11 +81,10 @@ Ext.define('PeopleMover.view.MyMap', {
                               	};
                                 //closestStop();
                                 maprender();
+                                
+                               //this.on('activate', function(component){ google.maps.event.trigger(gMap.map, 'resize');});
+           
 
     }
-
-
-
-
 
 });
