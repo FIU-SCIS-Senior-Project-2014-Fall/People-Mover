@@ -107,9 +107,26 @@ Ext.define('PeopleMover.controller.StopController', {
         mainView.push(estTime);
         console.log(record.data);
         estTime.getAt(0).setTitle(dataview.title);
+        var temp = Ext.Ajax.request({  
+                url: "http://localhost:8080/getTimes", 
+                params: {
+                    "RouteId": record.data.routeId,
+                    "StopId": record.data.stopId
+                    },
+                disableCaching: false,
+                useDefaultXhrHeader: false, 
+                success: function(data) {  
+                var jsonResp = Ext.util.JSON.decode(data.responseText);
+                //return jsonResp.message;
+                //console.log(jsonResp.message);
+                record.data.estimated = jsonResp.message;
+                //record.data.set(jsonResp.message, 'Estimated');
+                estTime.getAt(0).setData(record.data);
 
-        estTime.getAt(0).setData(record.data);
-
+                //
+                                         
+                }  
+        });
 
 
     },

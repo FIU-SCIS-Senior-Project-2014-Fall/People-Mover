@@ -100,7 +100,7 @@ Ext.define('PeopleMover.view.MainView', {
                     },
                     {
                         xtype: 'mymap',
-                        title: 'Near Me',
+                        title: 'Map',
                         iconCls: 'maps'
                     },
                     {
