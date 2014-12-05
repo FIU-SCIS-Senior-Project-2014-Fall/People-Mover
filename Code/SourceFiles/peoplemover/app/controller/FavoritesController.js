@@ -283,6 +283,6 @@ Ext.define('PeopleMover.controller.FavoritesController', {
                         });
                     }
                     overlay.show();
-    },
+    }
 
 	});

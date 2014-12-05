@@ -108,7 +108,7 @@ Ext.define('PeopleMover.controller.StopController', {
         console.log(record.data);
         estTime.getAt(0).setTitle(dataview.title);
         var temp = Ext.Ajax.request({  
-                url: "http://localhost:8080/getTimes", 
+                url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes", 
                 params: {
                     "RouteId": record.data.routeId,
                     "StopId": record.data.stopId

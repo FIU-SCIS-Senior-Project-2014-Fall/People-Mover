@@ -22,10 +22,10 @@ Ext.define('PeopleMover.view.FavoriteView', {
             '<div>Address: {streetName} <br/>Route: {routeName} <br />',
             'Stop ID: {stopId} <br/> Estimated Time: {estimateTime}<br />',
             'Alert Time: {time}</div>'
-        ],
+        ]
         
 
- },
+ }
 
 });
 
