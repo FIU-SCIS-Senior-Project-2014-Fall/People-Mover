@@ -30,56 +30,56 @@ public class TSOLookupService extends Service{
 	@Scheduled(cron="${cronexpression}")
     public void ServiceMethod()
     {
-//        System.out.println("Method executed at every 5 seconds. Current time is :: "+ new Date());
-		UnitListController unitListCont = new UnitListController();
-		List<Unit> unitlist = (List<Unit>) unitListCont.getunitlist();
-		
-		LocationController locCont = new LocationController();
-		
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		UnitDAO unitDAO = ctx.getBean("UnitDAOJDBCTemplate", UnitDAO.class);
-		LocationDAO locationDAO = ctx.getBean("LocationDAOJDBCTemplate", LocationDAO.class);
-		for (Unit unit : unitlist) {
-			Unit newUnit = null;
-			try {
-				newUnit=unitDAO.getByID(unit.getID());
-			} catch (EmptyResultDataAccessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			finally{
-				if(newUnit == null)
-				{
-					try {
-						unitDAO.save(unit);
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}	
-			}
-			Location loc = locCont.getLocation(unit.getUnitID());
-			Location dbLoc=null;
-			try {
-				dbLoc = locationDAO.getByUnitIDAndDateTime(loc.getUnitID(), loc.getLastEventDate());
-			} catch (EmptyResultDataAccessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			finally
-			{
-				if(dbLoc == null)
-				{
-					try {
-						locationDAO.save(loc);
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-		ctx.close();
+        System.out.println("Method executed at every 10 seconds. Current time is :: "+ new Date());
+//		UnitListController unitListCont = new UnitListController();
+//		List<Unit> unitlist = (List<Unit>) unitListCont.getunitlist();
+//		
+//		LocationController locCont = new LocationController();
+//		
+//		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+//		UnitDAO unitDAO = ctx.getBean("UnitDAOJDBCTemplate", UnitDAO.class);
+//		LocationDAO locationDAO = ctx.getBean("LocationDAOJDBCTemplate", LocationDAO.class);
+//		for (Unit unit : unitlist) {
+//			Unit newUnit = null;
+//			try {
+//				newUnit=unitDAO.getByID(unit.getID());
+//			} catch (EmptyResultDataAccessException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			finally{
+//				if(newUnit == null)
+//				{
+//					try {
+//						unitDAO.save(unit);
+//					} catch (ParseException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}	
+//			}
+//			Location loc = locCont.getLocation(unit.getUnitID());
+//			Location dbLoc=null;
+//			try {
+//				dbLoc = locationDAO.getByUnitIDAndDateTime(loc.getUnitID(), loc.getLastEventDate());
+//			} catch (EmptyResultDataAccessException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			finally
+//			{
+//				if(dbLoc == null)
+//				{
+//					try {
+//						locationDAO.save(loc);
+//					} catch (ParseException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//		}
+//		ctx.close();
 		
     }
 }
