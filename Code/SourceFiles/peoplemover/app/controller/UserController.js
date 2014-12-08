@@ -158,7 +158,7 @@ Ext.define('PeopleMover.controller.UserController', {
 
                         // Success
                         var successCallback = function(resp, ops) {
-
+						Ext.Viewport.unmask(); 
                         //     // Go back
                         //     mainView.pop();
 
@@ -216,7 +216,7 @@ Ext.define('PeopleMover.controller.UserController', {
 
                         // Failure
                         var failureCallback = function(resp, ops) {
-
+						Ext.Viewport.unmask(); 
 
 
                            var jsonResp = Ext.JSON.decode(resp.responseText);
@@ -225,7 +225,10 @@ Ext.define('PeopleMover.controller.UserController', {
                            //button.setDisabled(false);
                         };
 
-
+						if(values.email!=="" && values.password!=="" )
+                        {
+											Ext.Viewport.mask({ xtype: 'loadmask',
+														message: "Login..." });
                         //button.setText('Please wait ...');
                         //button.setDisabled(true);
                         var enctext = CryptoJS.MD5(values.password);
@@ -242,6 +245,8 @@ Ext.define('PeopleMover.controller.UserController', {
                         		success: successCallback,
                         		failure: failureCallback
                          });
+                      }
+                      else{Ext.Msg.alert("WARNING","Missing Info Required");}
 
     },
 
@@ -254,7 +259,7 @@ Ext.define('PeopleMover.controller.UserController', {
 
                         // Success
                         var successCallback = function(resp, ops) {
-
+						Ext.Viewport.unmask(); 
                         //     // Go back
                         //     mainView.pop();
 
@@ -289,7 +294,7 @@ Ext.define('PeopleMover.controller.UserController', {
 
                         // Failure
                         var failureCallback = function(resp, ops) {
-
+						Ext.Viewport.unmask(); 
                            var jsonResp = Ext.JSON.decode(resp.responseText);
                                       Ext.Msg.alert("Info","message:"+jsonResp.message);
 
@@ -301,7 +306,10 @@ Ext.define('PeopleMover.controller.UserController', {
                              var pass1 = values.password;
                              var pass2 = values.confirmation;
 
-
+								if(values.email!=="" && values.password!=="" && values.confirmation!=="")
+                                        {
+											Ext.Viewport.mask({ xtype: 'loadmask',
+														message: "Registering..." });
                                  if (pass1 != pass2)
                                      return Ext.Msg.alert("Info","errorMessage: "+"Passwords do not match!");
 
@@ -323,7 +331,8 @@ Ext.define('PeopleMover.controller.UserController', {
                                                 failure: failureCallback
                                             });
                                      }
-
+								 }
+								 else{Ext.Msg.alert("WARNING","Missing Info Required");}
     },
 
     onImageTap: function(image, e, eOpts) {

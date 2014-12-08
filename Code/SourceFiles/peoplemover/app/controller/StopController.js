@@ -104,29 +104,52 @@ Ext.define('PeopleMover.controller.StopController', {
                                     title:" Estimated Time"
                                 });
         mainView = this.getMainView();
-        mainView.push(estTime);
+        
         console.log(record.data);
         estTime.getAt(0).setTitle(dataview.title);
-        var temp = Ext.Ajax.request({  
-                url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes", 
-                params: {
-                    "RouteId": record.data.routeId,
-                    "StopId": record.data.stopId
-                    },
-                disableCaching: false,
-                useDefaultXhrHeader: false, 
-                success: function(data) {  
-                var jsonResp = Ext.util.JSON.decode(data.responseText);
-                //return jsonResp.message;
-                //console.log(jsonResp.message);
-                record.data.estimated = jsonResp.message;
-                //record.data.set(jsonResp.message, 'Estimated');
-                estTime.getAt(0).setData(record.data);
+      
+						// Success
+							var successCallback = function(resp, ops) {
+									
+									
+									Ext.Viewport.unmask(); 
 
-                //
-                                         
-                }  
-        });
+
+                                    var jsonResp = Ext.JSON.decode(resp.responseText);
+                                       //Ext.Msg.alert("Info","message:"+jsonResp.message);
+                                       console.log(jsonResp.message);
+                                       record.data.estimated = jsonResp.message;
+                                       estTime.getAt(0).setData(record.data);
+                              };
+
+                           // Failure
+							var failureCallback = function(resp, ops) {
+							
+							Ext.Viewport.unmask(); 
+							   var jsonResp = Ext.JSON.decode(resp.responseText);
+										  Ext.Msg.alert("Info","message:"+jsonResp.message);
+
+							};
+                                //TODO: Registration using server-side authentication service
+
+                                       Ext.Viewport.mask({ xtype: 'loadmask',
+													message: "Wait..." });
+                                                     var callparams = {
+                                                           "RouteId": record.data.routeId,
+															"StopId": record.data.stopId
+
+                                                            };
+									Ext.Ajax.request({
+										url: "http://pm-dev.cs.fiu.edu:8080/ppmws/getTimes",
+										/*url: "http://192.168.0.101/sendemail",*/
+										method: 'POST',
+										/*headers: { 'Content-Type': 'application/json' },*/
+										params: callparams,
+										success: successCallback,
+										failure: failureCallback
+									});
+						
+						mainView.push(estTime);
 
 
     },
