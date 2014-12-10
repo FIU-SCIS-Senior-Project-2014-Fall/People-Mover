@@ -40,8 +40,8 @@ public class EstimatedTime {
 			String stop = liststop.get(liststop.size()-1).getStopId();
 			String lat = liststop.get(liststop.size()-1).getLatitude();
 			String lon = liststop.get(liststop.size()-1).getLongitude();
-			System.out.println("lat is " + lat);
-			System.out.println("lat is " + lon);
+			//System.out.println("lat is " + lat);
+			//System.out.println("lat is " + lon);
 			String result = getEstimatedTime(liststop, route, stop, lat, lon);
 			fMessage.setCode("1");
 			fMessage.setMessage(result);
@@ -66,7 +66,7 @@ public class EstimatedTime {
 		
 		List<Stops> stopsInfo = new ArrayList<Stops>();
 		
-		System.out.println("Stop = "+ stop);
+		//System.out.println("Stop = "+ stop);
 
 		//System.out.pritnln
 		
@@ -91,12 +91,12 @@ public class EstimatedTime {
 		
 		//25.6684025323
 		for(Stops latlon : stopsInfo){
-			System.out.println(latlon.getLatitude() + "," + latlon.getLongitude());
-			System.out.println(lat);
-			System.out.println(lon);
+//			System.out.println(latlon.getLatitude() + "," + latlon.getLongitude());
+//			System.out.println(lat);
+//			System.out.println(lon);
 			
 			if(latlon.getLatitude().equals(lat) && latlon.getLongitude().equals(lon)){
-				System.out.println("we are in");
+				//System.out.println("we are in");
 				
 				for(int i = 0; i < liststop.size()-1; i++){
 					String waypointLat = liststop.get(i).getLatitude();
@@ -105,13 +105,13 @@ public class EstimatedTime {
 					String testLon = "-80.323429";
 					
 					
-					System.out.println(latlon.getLatitude() + "," + latlon.getLongitude() );
+					//System.out.println(latlon.getLatitude() + "," + latlon.getLongitude() );
 					String[] holder = compareDistance(testLat, testLon, waypointLat, waypointLon, latlon.getLatitude(), latlon.getLongitude());
 					if(holder[0].equals("waypoint") ){
 						String wayorder = liststop.get(i).getWayorder();
-						System.out.println("Wayorder is" + liststop.get(i).getWayorder());
-						System.out.println("Route is" + liststop.get(i).getRouteId());						
-						System.out.println("holders: " + holder[1] + "," + holder[2]);
+//						System.out.println("Wayorder is" + liststop.get(i).getWayorder());
+//						System.out.println("Route is" + liststop.get(i).getRouteId());						
+//						System.out.println("holders: " + holder[1] + "," + holder[2]);
 						totalDistance = getDistance( route, targetStp.get(Integer.parseInt(stop)).getStopId(), holder[1], holder[2], wayorder);
 						foundWaypoint = true;
 						break;
@@ -136,14 +136,14 @@ public class EstimatedTime {
 		
 		if(totalDistance == 0.0){
 			result = "N/A";
-			System.out.println(result);
+			//System.out.println(result);
 			return result;
 		}else if((time*60*60) < 60)
 		{
 			int finalSec = (int) Math.round((time*60*60));
 			showTime = formatter.format(finalSec);
 			result = "00:00:" + showTime;
-			System.out.println(result);
+			//System.out.println(result);
 			return result;
 		}else if((time*60) < 60)
 		{
@@ -172,12 +172,12 @@ public class EstimatedTime {
 				result = "00:"+ temp1.substring(0,2) +  ":" + temp.substring(0,2);
 			}
 
-			System.out.println(result);
+			//System.out.println(result);
 			return result;
 		}else{
 			
 			result = "" + (int) (Math.round(time*60)) + ":" + (int) Math.round((time*60)) + ":"+ (int) Math.round((time*60*60));
-			System.out.println(result);
+			//System.out.println(result);
 			return result;
 		}
 
@@ -230,10 +230,10 @@ public class EstimatedTime {
 			double lat2 = Double.parseDouble(wpList.get(i+1).getLatitude());
 			double lon2 = Double.parseDouble(wpList.get(i+1).getLongitude());
 			
-			System.out.println("dist lat = "+ lat1);
-			System.out.println("dist lon = "+ lon1);
-			System.out.println("dist lat2 = "+ lat2);
-			System.out.println("dist lon2 = "+ lon2);
+//			System.out.println("dist lat = "+ lat1);
+//			System.out.println("dist lon = "+ lon1);
+//			System.out.println("dist lat2 = "+ lat2);
+//			System.out.println("dist lon2 = "+ lon2);
 			
 			double theta = lon1 - lon2;
 		    double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
@@ -273,25 +273,25 @@ public class EstimatedTime {
 		    dist1 = Math.acos(dist1);
 		    dist1 = rad2deg(dist1);
 			dist1 = dist1 * 60 * 1.1515;
-			System.out.println("dist = "+ dist);
-			System.out.println("dist1 = "+ dist1);
+//			System.out.println("dist = "+ dist);
+//			System.out.println("dist1 = "+ dist1);
 
 		if(Math.abs(dist - dist1) < 0.01)
 		{
-			System.out.println("Same distance");
+			//System.out.println("Same distance");
 			return new String[]{"Close enough"};
 		}
 		else if(dist < dist1)
 		{
-			System.out.println("trolley is closer");
+			//System.out.println("trolley is closer");
 			return new String[]{"trolley", trolleyLat, trolleyLon};
 		}else if(dist1 < dist)
 		{
-			System.out.println("waypoint is closer");
-			System.out.println(wpLat);
+//			System.out.println("waypoint is closer");
+//			System.out.println(wpLat);
 			return new String[]{"waypoint", wpLat, wpLon};
 		}else{
-			System.out.println("same distance");
+			//System.out.println("same distance");
 			return new String[]{"same distance"};
 		}
 	}
