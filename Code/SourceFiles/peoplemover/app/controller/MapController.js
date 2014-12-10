@@ -559,7 +559,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             success: function(data) {  
                                                  var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
-                                                        content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                        content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>Estimated Time: ' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
                                                     //infowindow2.setContent(data.responseText);  
                                                 infowindow.open(map, marker);  
@@ -604,7 +604,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             success: function(data) {  
                                                  var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
-                                                        content: ''+ marker.getTitle() +'<br/>High School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    content: '' + marker.getTitle() + '<br/>High School Route' + '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>Estimated Time: ' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
                                                     //infowindow2.setContent(data.responseText);  
                                                 infowindow.open(map, marker);  
@@ -647,7 +647,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             success: function(data) {  
                                                  var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
-                                                        content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    content: '' + marker.getTitle() + '<br/>Middle School Route' + '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>Estimated Time: ' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
                                                     //infowindow2.setContent(data.responseText);  
                                                 infowindow.open(map, marker);  
@@ -708,7 +708,7 @@ Ext.define('PeopleMover.controller.MapController', {
                                             success: function(data) {  
                                                  var jsonResp = Ext.JSON.decode(data.responseText);
                                                 var infowindow = new google.maps.InfoWindow({
-                                                        content: ''+ marker.getTitle() +'<br/>Middle School Route' +  '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
+                                                    content: '' + marker.getTitle() + '<br/>Middle School Route' + '<br/>Scheduled Time ' + record.data.scheduledTime + '<br/>Estimated Time: ' + jsonResp.message//new google.maps.LatLng(block3[0],block3[1])
                                                     });
                                                     //infowindow2.setContent(data.responseText);  
                                                 infowindow.open(map, marker);  
