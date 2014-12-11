@@ -44,8 +44,8 @@ public class LocationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- String urlParamToken = "token="+tokenString;
-		  
+		  String urlParamToken = "token="+tokenString;
+		  tokenValidationRequest=domain+tokenValidationRequest;
 		  MyCx mcValToken = new MyCx();
 	        ValTokenHandler valTokenHlnd = new ValTokenHandler();
 	        mcValToken.GetCx(urlParamToken, tokenValidationRequest, valTokenHlnd);
