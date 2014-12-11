@@ -28,28 +28,46 @@ public class LocationController {
 	      String domain = "";
 	      String userValidationRequest="";
 	      String locationRequest="";
+	      String tokenValidationRequest="";
+	      String tokenString="";
 		  PropertyReader propReader = new PropertyReader(filename);
 		  try {
 			 login=propReader.getProperty("login");
 			 password = propReader.getProperty("password");
 			 domain = propReader.getProperty("domain");
 			 userValidationRequest = propReader.getProperty("userValidationRequest");
-			 locationRequest = propReader.getProperty("locationRequest");	 
+			 locationRequest = propReader.getProperty("locationRequest");
+			 tokenValidationRequest = propReader.getProperty("tokenValidationRequest");
+			 tokenString = propReader.getProperty("tokenString");
 			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+ String urlParamToken = "token="+tokenString;
+		  
+		  MyCx mcValToken = new MyCx();
+	        ValTokenHandler valTokenHlnd = new ValTokenHandler();
+	        mcValToken.GetCx(urlParamToken, tokenValidationRequest, valTokenHlnd);
+	        
+	        String tokenStatus = valTokenHlnd.getTokenStatus();
+		  
+		  if(tokenStatus.equalsIgnoreCase("false"))
+		  {	  
 	        ValidateUser vu = new ValidateUser(login,password);
-	        String urlParameters = "login="+vu.getLogin()+"&password="+vu.getPass()+"&AppId="+vu.getAppId()+"&IPAddress=";	 
-	        userValidationRequest= domain+userValidationRequest;       
+	        String urlParameters = "login="+vu.getLogin()+"&password="+vu.getPass()+"&AppId="+vu.getAppId()+"&IPAddress=";
+	 
+	        userValidationRequest= domain+userValidationRequest;        
+	       
+	       
 
 	         ValUserHandler valUserHlnd = new ValUserHandler(vu);
 	         MyCx mc = new MyCx();
 	         mc.GetCx(urlParameters, userValidationRequest, valUserHlnd);	         
-	         String token  = vu.getToken();
+	         tokenString  = vu.getToken();
+		  }
 	         	         
-	         String urlParamLocation = "token="+token+"&filterBy=UNITID"/*+filter*/+"&id="+filterId;
+	         String urlParamLocation = "token="+tokenString+"&filterBy=UNITID"/*+filter*/+"&id="+filterId;
 	         locationRequest = domain+locationRequest;
 	        
 	         MyCx mcLocation = new MyCx();

@@ -36,7 +36,7 @@ public class AlarmService extends Service{
 	//@Scheduled(cron="0/11 * * * * MON-FRI")
 	public void ServiceMethod()
 	{
-		System.out.println("Cron Alarm Executing");
+		System.out.println("Alarm Method executed at every 1 min");
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		//To use JdbcTemplate
 		FavoriteDAO favDAO = ctx.getBean("FavoriteDAOJDBCTemplate", FavoriteDAO.class);
@@ -69,7 +69,7 @@ public class AlarmService extends Service{
 			EmailSender emailsender = new EmailSender(emailhost,emailport,emailusername, emailpassword);
 			
 			EstimatedTime est = new EstimatedTime();
-			String estTime = "00:"+getRandomNumber(20)+":00";//est.getStops(RouteId, StopId).getMessage();
+			String estTime = "00:"+getRandomNumber(20)+":00";
 			for(Favorite fav : favlist)
 			{
 				String emailflag = fav.getEmailFlag();
@@ -80,7 +80,7 @@ public class AlarmService extends Service{
 					String RouteId = fav.getRouteId();
 					String time = fav.getTime();
 					
-					
+					//est.getStops(RouteId, StopId).getMessage();
 					
 					if(!estTime.equalsIgnoreCase("N/A"))
 					{

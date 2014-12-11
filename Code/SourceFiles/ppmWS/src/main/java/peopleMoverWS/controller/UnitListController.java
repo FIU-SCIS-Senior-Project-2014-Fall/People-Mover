@@ -29,18 +29,32 @@ public class UnitListController {
 	      String domain = "";
 	      String userValidationRequest="";
 	      String unitListRequest="";
+	      String tokenValidationRequest="";
+	      String tokenString="";
 		  PropertyReader propReader = new PropertyReader(filename);
 		  try {
 			 login=propReader.getProperty("login");
 			 password = propReader.getProperty("password");
 			 domain = propReader.getProperty("domain");
 			 userValidationRequest = propReader.getProperty("userValidationRequest");
-			 unitListRequest = propReader.getProperty("unitListRequest");	 
+			 unitListRequest = propReader.getProperty("unitListRequest");	
+			 tokenValidationRequest = propReader.getProperty("tokenValidationRequest");
+			 tokenString = propReader.getProperty("tokenString");
 			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		  String urlParamToken = "token="+tokenString;
+		  tokenValidationRequest=domain+tokenValidationRequest;
+		  MyCx mcValToken = new MyCx();
+	        ValTokenHandler valTokenHlnd = new ValTokenHandler();
+	        mcValToken.GetCx(urlParamToken, tokenValidationRequest, valTokenHlnd);
+	        
+	        String tokenStatus = valTokenHlnd.getTokenStatus();
+		  System.out.println(tokenStatus);
+		  if(tokenStatus.equalsIgnoreCase("false"))
+		  {	  
 	        ValidateUser vu = new ValidateUser(login,password);
 	        String urlParameters = "login="+vu.getLogin()+"&password="+vu.getPass()+"&AppId="+vu.getAppId()+"&IPAddress=";
 	 
@@ -51,9 +65,11 @@ public class UnitListController {
 	         ValUserHandler valUserHlnd = new ValUserHandler(vu);
 	         MyCx mc = new MyCx();
 	         mc.GetCx(urlParameters, userValidationRequest, valUserHlnd);	         
-	         String token  = vu.getToken();
+	         tokenString  = vu.getToken();
 	         
-	         String urlParamUnitList = "token="+token;
+		  }
+	         
+	         String urlParamUnitList = "token="+tokenString;
 	         unitListRequest = domain+unitListRequest;
 	        
 	         MyCx mcUnitL = new MyCx();
